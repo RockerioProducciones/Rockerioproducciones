@@ -1,1 +1,464 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Sistema de Reservas</title>
+  <!-- Tailwind CSS para diseño moderno responsivo -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons para iconografía limpia -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen pb-12 antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Encabezado / Barra superior -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
+    <div class="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="bg-indigo-600 text-white p-2 rounded-xl flex items-center justify-center shadow-sm">
+          <i data-lucide="calendar" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h1 class="font-bold text-slate-900 leading-tight">Agenda Online</h1>
+          <p class="text-xs text-slate-500" id="modo-conexion">Conectando...</p>
+        </div>
+      </div>
+      
+      <!-- Botón para alternar entre Cliente y Admin -->
+      <button onclick="alternarVista()" id="btn-cambiar-vista" class="text-xs font-semibold px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl transition flex items-center gap-1.5 active:scale-95">
+        <i data-lucide="shield" class="w-4 h-4"></i>
+        <span id="txt-cambiar-vista">Panel Admin</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="max-w-2xl mx-auto px-4 mt-6">
+
+    <!-- ========================================== -->
+    <!-- 1. VISTA PÚBLICA: RESERVA DE CLIENTES      -->
+    <!-- ========================================== -->
+    <div id="vista-clientes" class="space-y-5">
+      
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+        <h2 class="text-lg font-bold text-slate-900 mb-1">Reserva tu Horario</h2>
+        <p class="text-xs text-slate-500 mb-4">Selecciona fecha y hora para agendar tu atención.</p>
+
+        <form id="form-reserva" onsubmit="crearReservaCliente(event)" class="space-y-4">
+          <!-- Nombre -->
+          <div>
+            <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Nombre y Apellido</label>
+            <input type="text" id="nombre-cliente" required placeholder="Ej: Juan Pérez" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500 transition">
+          </div>
+
+          <!-- Teléfono / WhatsApp -->
+          <div>
+            <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Teléfono / WhatsApp</label>
+            <input type="tel" id="telefono-cliente" required placeholder="Ej: +56 9 1234 5678" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500 transition">
+          </div>
+
+          <!-- Fecha -->
+          <div>
+            <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Fecha</label>
+            <input type="date" id="fecha-reserva" required onchange="actualizarHorariosDisponibles()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500 transition">
+          </div>
+
+          <!-- Selector de Horas -->
+          <div>
+            <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Horarios Disponibles</label>
+            <div id="grid-horarios" class="grid grid-cols-3 gap-2">
+              <p class="col-span-3 text-xs text-slate-400 py-3 text-center">Selecciona una fecha para ver horarios</p>
+            </div>
+            <input type="hidden" id="hora-seleccionada" required>
+          </div>
+
+          <button type="submit" id="btn-confirmar" disabled class="w-full bg-indigo-600 disabled:bg-slate-300 text-white font-semibold py-3 rounded-xl transition shadow-sm flex items-center justify-center gap-2 active:scale-98">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            Confirmar Reserva
+          </button>
+        </form>
+
+        <div id="alerta-exito" class="hidden mt-4 p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm rounded-xl text-center font-medium">
+          ¡Tu cita ha sido agendada con éxito!
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- 2. VISTA PRIVADA: LOGIN DE ADMIN           -->
+    <!-- ========================================== -->
+    <div id="vista-admin-login" class="hidden bg-white p-6 rounded-2xl border border-slate-200 shadow-sm max-w-sm mx-auto text-center">
+      <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-3">
+        <i data-lucide="lock" class="w-6 h-6"></i>
+      </div>
+      <h2 class="text-base font-bold text-slate-900 mb-1">Acceso Administrativo</h2>
+      <p class="text-xs text-slate-500 mb-4">Ingresa tu contraseña para gestionar la agenda.</p>
+
+      <form onsubmit="verificarLoginAdmin(event)" class="space-y-3">
+        <input type="password" id="admin-pass" placeholder="Contraseña de admin" required class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-center tracking-widest outline-none focus:ring-2 focus:ring-indigo-500">
+        <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2.5 rounded-xl text-sm transition">
+          Ingresar
+        </button>
+      </form>
+      <p id="error-login" class="hidden text-xs text-rose-600 mt-2 font-medium">Contraseña incorrecta.</p>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- 3. VISTA PRIVADA: PANEL DE ADMINISTRACIÓN  -->
+    <!-- ========================================== -->
+    <div id="vista-admin-panel" class="hidden space-y-6">
+
+      <!-- Herramienta para Bloquear Horarios -->
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-sm font-bold text-slate-900 flex items-center gap-1.5">
+            <i data-lucide="ban" class="w-4 h-4 text-amber-500"></i>
+            Bloquear un Horario
+          </h2>
+          <button onclick="cerrarSesionAdmin()" class="text-xs text-rose-600 hover:underline">Cerrar sesión</button>
+        </div>
+        
+        <form onsubmit="bloquearHorarioAdmin(event)" class="grid grid-cols-2 gap-2">
+          <input type="date" id="block-fecha" required class="col-span-2 sm:col-span-1 bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-indigo-500">
+          <select id="block-hora" required class="col-span-2 sm:col-span-1 bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-indigo-500">
+            <option value="09:00">09:00 AM</option>
+            <option value="10:00">10:00 AM</option>
+            <option value="11:00">11:00 AM</option>
+            <option value="12:00">12:00 PM</option>
+            <option value="14:00">02:00 PM</option>
+            <option value="15:00">03:00 PM</option>
+            <option value="16:00">04:00 PM</option>
+            <option value="17:00">05:00 PM</option>
+          </select>
+          <button type="submit" class="col-span-2 bg-amber-500 hover:bg-amber-600 text-white font-medium py-2 rounded-xl text-xs transition">
+            Bloquear Horario
+          </button>
+        </form>
+      </div>
+
+      <!-- Lista de Reservas Agendadas -->
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+        <h2 class="text-sm font-bold text-slate-900 mb-3 flex items-center justify-between">
+          <span>Reservas Registradas</span>
+          <span id="contador-reservas" class="bg-indigo-50 text-indigo-700 text-xs px-2 py-0.5 rounded-full font-semibold">0</span>
+        </h2>
+        
+        <div id="lista-reservas-admin" class="divide-y divide-slate-100 max-h-96 overflow-y-auto">
+          <p class="text-xs text-slate-400 py-4 text-center">No hay reservas registradas aún.</p>
+        </div>
+      </div>
+
+      <!-- Lista de Bloqueos Activos -->
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+        <h2 class="text-sm font-bold text-slate-900 mb-3">Horarios Bloqueados</h2>
+        <div id="lista-bloqueos-admin" class="divide-y divide-slate-100 max-h-60 overflow-y-auto">
+          <p class="text-xs text-slate-400 py-3 text-center">No hay bloqueos activos.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- LÓGICA JAVASCRIPT & CONEXIÓN A FIREBASE    -->
+  <!-- ========================================== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { 
+      getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, query, orderBy 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // -------------------------------------------------------------
+    // CONFIGURACIÓN DE FIREBASE
+    // -------------------------------------------------------------
+    // Cuando crees tu proyecto en console.firebase.google.com, 
+    // pega tus credenciales dentro de este objeto.
+    const firebaseConfig = {
+      apiKey: "PEGAR_TU_API_KEY",
+      authDomain: "PEGAR_TU_PROJECT_ID.firebaseapp.com",
+      projectId: "PEGAR_TU_PROJECT_ID",
+      storageBucket: "PEGAR_TU_PROJECT_ID.appspot.com",
+      messagingSenderId: "PEGAR_SENDER_ID",
+      appId: "PEGAR_APP_ID"
+    };
+
+    // Contraseña de acceso para el panel de administración
+    const ADMIN_PASSWORD = "admin1234";
+
+    // Horarios predeterminados que ofrece tu negocio
+    const HORARIOS_BASE = ["09:00", "10:00", "11:00", "12:00", "14:00", "15:00", "16:00", "17:00"];
+
+    // Estados en memoria sincronizados con la nube
+    let reservas = [];
+    let bloqueos = [];
+    let db = null;
+    let usaFirebase = false;
+
+    // Inicializar Firebase si las claves están configuradas
+    if (firebaseConfig.apiKey !== "PEGAR_TU_API_KEY") {
+      try {
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        usaFirebase = true;
+        document.getElementById('modo-conexion').textContent = "● Sincronizado en Nube";
+        document.getElementById('modo-conexion').className = "text-xs text-emerald-600 font-medium";
+
+        // Escuchar cambios en Reservas en tiempo real
+        onSnapshot(query(collection(db, "reservas"), orderBy("fecha", "asc")), (snapshot) => {
+          reservas = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+          renderizarTodo();
+        });
+
+        // Escuchar cambios en Bloqueos en tiempo real
+        onSnapshot(collection(db, "bloqueos"), (snapshot) => {
+          bloqueos = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+          renderizarTodo();
+        });
+      } catch (e) {
+        console.error("Error al iniciar Firebase", e);
+      }
+    } else {
+      document.getElementById('modo-conexion').textContent = "● Modo Local (Demostración)";
+      document.getElementById('modo-conexion').className = "text-xs text-amber-600 font-medium";
+      // Cargar fecha de hoy por defecto
+      const hoy = new Date().toISOString().split('T')[0];
+      document.getElementById('fecha-reserva').value = hoy;
+      document.getElementById('fecha-reserva').min = hoy;
+      document.getElementById('block-fecha').value = hoy;
+      document.getElementById('block-fecha').min = hoy;
+      renderizarTodo();
+    }
+
+    // Asegurar fecha mínima en el selector
+    const fechaInput = document.getElementById('fecha-reserva');
+    const hoyStr = new Date().toISOString().split('T')[0];
+    fechaInput.min = hoyStr;
+    if(!fechaInput.value) fechaInput.value = hoyStr;
+    document.getElementById('block-fecha').min = hoyStr;
+    document.getElementById('block-fecha').value = hoyStr;
+
+    // -------------------------------------------------------------
+    // FUNCIONES DE CLIENTE: AGENDAR RESERVA
+    // -------------------------------------------------------------
+    window.actualizarHorariosDisponibles = function() {
+      const fecha = document.getElementById('fecha-reserva').value;
+      const grid = document.getElementById('grid-horarios');
+      const inputHora = document.getElementById('hora-seleccionada');
+      const btnConfirmar = document.getElementById('btn-confirmar');
+      
+      inputHora.value = "";
+      btnConfirmar.disabled = true;
+      grid.innerHTML = "";
+
+      if (!fecha) {
+        grid.innerHTML = '<p class="col-span-3 text-xs text-slate-400 py-3 text-center">Selecciona una fecha</p>';
+        return;
+      }
+
+      // Filtrar horas ocupadas por reservas o bloqueos
+      const horasOcupadas = [
+        ...reservas.filter(r => r.fecha === fecha).map(r => r.hora),
+        ...bloqueos.filter(b => b.fecha === fecha).map(b => b.hora)
+      ];
+
+      HORARIOS_BASE.forEach(hora => {
+        const estaOcupado = horasOcupadas.includes(hora);
+        const boton = document.createElement('button');
+        boton.type = "button";
+        boton.textContent = hora;
+        
+        if (estaOcupado) {
+          boton.disabled = true;
+          boton.className = "py-2.5 text-xs font-semibold rounded-xl bg-slate-100 text-slate-300 border border-slate-200 cursor-not-allowed line-through";
+        } else {
+          boton.className = "btn-hora py-2.5 text-xs font-semibold rounded-xl bg-white border border-slate-300 text-slate-700 hover:border-indigo-500 hover:text-indigo-600 transition active:scale-95";
+          boton.onclick = () => {
+            document.querySelectorAll('.btn-hora').forEach(b => {
+              b.classList.remove('bg-indigo-600', 'text-white', 'border-indigo-600');
+              b.classList.add('bg-white', 'text-slate-700');
+            });
+            boton.classList.remove('bg-white', 'text-slate-700');
+            boton.classList.add('bg-indigo-600', 'text-white', 'border-indigo-600');
+            inputHora.value = hora;
+            btnConfirmar.disabled = false;
+          };
+        }
+        grid.appendChild(boton);
+      });
+    };
+
+    window.crearReservaCliente = async function(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre-cliente').value.trim();
+      const telefono = document.getElementById('telefono-cliente').value.trim();
+      const fecha = document.getElementById('fecha-reserva').value;
+      const hora = document.getElementById('hora-seleccionada').value;
+
+      if (!hora) return;
+
+      const nuevaReserva = {
+        nombre,
+        telefono,
+        fecha,
+        hora,
+        creadoEn: new Date().toISOString()
+      };
+
+      if (usaFirebase) {
+        await addDoc(collection(db, "reservas"), nuevaReserva);
+      } else {
+        reservas.push({ id: 'local_' + Date.now(), ...nuevaReserva });
+        renderizarTodo();
+      }
+
+      // Limpiar formulario y mostrar feedback
+      document.getElementById('nombre-cliente').value = "";
+      document.getElementById('telefono-cliente').value = "";
+      document.getElementById('hora-seleccionada').value = "";
+      document.getElementById('btn-confirmar').disabled = true;
+      
+      const alerta = document.getElementById('alerta-exito');
+      alerta.classList.remove('hidden');
+      setTimeout(() => alerta.classList.add('hidden'), 4000);
+
+      window.actualizarHorariosDisponibles();
+    };
+
+    // -------------------------------------------------------------
+    // FUNCIONES DEL PANEL ADMIN
+    // -------------------------------------------------------------
+    window.verificarLoginAdmin = function(e) {
+      e.preventDefault();
+      const pass = document.getElementById('admin-pass').value;
+      const error = document.getElementById('error-login');
+
+      if (pass === ADMIN_PASSWORD) {
+        document.getElementById('vista-admin-login').classList.add('hidden');
+        document.getElementById('vista-admin-panel').classList.remove('hidden');
+        document.getElementById('admin-pass').value = "";
+        error.classList.add('hidden');
+        sessionStorage.setItem('admin_logueado', 'true');
+        renderizarTodo();
+      } else {
+        error.classList.remove('hidden');
+      }
+    };
+
+    window.cerrarSesionAdmin = function() {
+      sessionStorage.removeItem('admin_logueado');
+      document.getElementById('vista-admin-panel').classList.add('hidden');
+      document.getElementById('vista-admin-login').classList.remove('hidden');
+    };
+
+    window.bloquearHorarioAdmin = async function(e) {
+      e.preventDefault();
+      const fecha = document.getElementById('block-fecha').value;
+      const hora = document.getElementById('block-hora').value;
+
+      const nuevoBloqueo = { fecha, hora };
+
+      if (usaFirebase) {
+        await addDoc(collection(db, "bloqueos"), nuevoBloqueo);
+      } else {
+        bloqueos.push({ id: 'block_' + Date.now(), ...nuevoBloqueo });
+        renderizarTodo();
+      }
+    };
+
+    window.eliminarItem = async function(coleccion, id) {
+      if (!confirm("¿Seguro que deseas eliminar este registro?")) return;
+
+      if (usaFirebase) {
+        await deleteDoc(doc(db, coleccion, id));
+      } else {
+        if (coleccion === 'reservas') reservas = reservas.filter(r => r.id !== id);
+        if (coleccion === 'bloqueos') bloqueos = bloqueos.filter(b => b.id !== id);
+        renderizarTodo();
+      }
+    };
+
+    // Alternar vistas sin recargar el navegador
+    window.alternarVista = function() {
+      const vistaClientes = document.getElementById('vista-clientes');
+      const vistaLogin = document.getElementById('vista-admin-login');
+      const vistaPanel = document.getElementById('vista-admin-panel');
+      const txtBtn = document.getElementById('txt-cambiar-vista');
+
+      const estaEnAdmin = !vistaLogin.classList.contains('hidden') || !vistaPanel.classList.contains('hidden');
+
+      if (estaEnAdmin) {
+        // Volver a vista pública
+        vistaLogin.classList.add('hidden');
+        vistaPanel.classList.add('hidden');
+        vistaClientes.classList.remove('hidden');
+        txtBtn.textContent = "Panel Admin";
+        window.actualizarHorariosDisponibles();
+      } else {
+        // Ir a Admin
+        vistaClientes.classList.add('hidden');
+        txtBtn.textContent = "Ver Agenda";
+        if (sessionStorage.getItem('admin_logueado') === 'true') {
+          vistaPanel.classList.remove('hidden');
+        } else {
+          vistaLogin.classList.remove('hidden');
+        }
+      }
+    };
+
+    // Renderizar listados en pantalla
+    function renderizarTodo() {
+      window.actualizarHorariosDisponibles();
+
+      // Contador
+      document.getElementById('contador-reservas').textContent = reservas.length;
+
+      // Lista admin de reservas
+      const contenedorReservas = document.getElementById('lista-reservas-admin');
+      if (reservas.length === 0) {
+        contenedorReservas.innerHTML = '<p class="text-xs text-slate-400 py-4 text-center">No hay reservas registradas aún.</p>';
+      } else {
+        contenedorReservas.innerHTML = reservas.map(r => `
+          <div class="py-3 flex items-center justify-between text-xs">
+            <div>
+              <p class="font-bold text-slate-800 text-sm">${r.nombre}</p>
+              <p class="text-slate-500">${r.telefono}</p>
+              <p class="text-indigo-600 font-semibold mt-0.5">📅 ${r.fecha} — ⏰ ${r.hora}</p>
+            </div>
+            <button onclick="eliminarItem('reservas', '${r.id}')" class="text-rose-500 hover:text-rose-700 p-2 rounded-lg hover:bg-rose-50 transition" title="Cancelar Reserva">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        `).join('');
+      }
+
+      // Lista admin de bloqueos
+      const contenedorBloqueos = document.getElementById('lista-bloqueos-admin');
+      if (bloqueos.length === 0) {
+        contenedorBloqueos.innerHTML = '<p class="text-xs text-slate-400 py-3 text-center">No hay bloqueos activos.</p>';
+      } else {
+        contenedorBloqueos.innerHTML = bloqueos.map(b => `
+          <div class="py-2.5 flex items-center justify-between text-xs">
+            <span class="font-medium text-slate-700">🔒 ${b.fecha} a las ${b.hora}</span>
+            <button onclick="eliminarItem('bloqueos', '${b.id}')" class="text-rose-500 hover:text-rose-700 p-1" title="Desbloquear">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+          </div>
+        `).join('');
+      }
+
+      // Refrescar iconos
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Inicializar iconos y horarios
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) lucide.createIcons();
+      window.actualizarHorariosDisponibles();
+    });
+  </script>
+</body>
+</html>
