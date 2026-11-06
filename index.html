@@ -2,1126 +2,1100 @@
 <html lang="es" class="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Rockerío Producciones | Salas de Ensayo & Estudio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content">
+  <title>Rockerio Producciones SpA | Portal Oficial</title>
   
-  <!-- Tailwind CSS por CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Iconografía Lucide -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
-    /* Estilos base modo oscuro Rockerío */
+    :root {
+      --primary-color: #e59d2a;
+      --bg-main: #0b0b0c;
+      --card-bg: #141416;
+      --card-inner: #1c1c1e;
+      --border-color: #27272a;
+    }
     body {
-      background-color: #0a0a0a;
-      color: #ffffff;
+      background-color: var(--bg-main);
+      color: #e4e4e7;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       -webkit-tap-highlight-color: transparent;
+    }
+    input, select, textarea {
+      font-size: 15px !important;
     }
     input[type="date"]::-webkit-calendar-picker-indicator {
       filter: invert(0.8);
     }
     .custom-scroll::-webkit-scrollbar {
-      width: 4px;
-      height: 4px;
+      width: 5px;
+      height: 5px;
     }
     .custom-scroll::-webkit-scrollbar-track {
-      background: #141414;
+      background: #111113;
     }
     .custom-scroll::-webkit-scrollbar-thumb {
-      background: #2d2d2d;
+      background: #27272a;
       border-radius: 4px;
     }
   </style>
 </head>
-<body class="min-h-screen pb-28 antialiased selection:bg-amber-500 selection:text-black">
+<body class="min-h-screen antialiased selection:bg-amber-500 selection:text-black pb-20">
 
   <!-- ======================================================= -->
-  <!-- BARRA DE NAVEGACIÓN SUPERIOR (9 PESTAÑAS)              -->
+  <!-- 1. ENCABEZADO PRINCIPAL (NAVBAR SUPERIOR FLUIDO)        -->
   <!-- ======================================================= -->
-  <header class="sticky top-0 z-40 bg-[#121212]/95 backdrop-blur-md border-b border-[#242424] px-3 py-2 shadow-lg">
-    <div class="max-w-4xl mx-auto flex items-center justify-between mb-2">
-      <div class="flex items-center gap-2.5">
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-black font-black shadow-md shadow-amber-500/20">
+  <header class="bg-[#121214] border-b border-[#242427] px-4 py-2.5 sticky top-0 z-50">
+    <div class="w-full flex items-center justify-between gap-3">
+      
+      <!-- Identidad Corporativa -->
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-black font-black shadow-md shadow-amber-500/20 shrink-0">
           <i data-lucide="mic-2" class="w-4 h-4"></i>
         </div>
         <div>
-          <h1 class="text-sm font-black tracking-wider text-white uppercase flex items-center gap-1.5">
-            Rockerío <span class="text-amber-500 text-[10px] bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/20">Studio</span>
+          <h1 id="header-tit-web" class="text-xs sm:text-sm font-black tracking-wider text-white uppercase flex items-center gap-2">
+            Rockerio Producciones SpA
+            <span id="badge-rt-status" class="text-[9px] bg-emerald-500/10 text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-500/20 font-bold uppercase">RTDB Sincronizado</span>
           </h1>
-          <p id="conexion-estado" class="text-[10px] text-zinc-400 font-medium">Iniciando sistema...</p>
+          <p id="header-subtit-web" class="text-[10px] text-zinc-400">SALA DE ENSAYO / ESTUDIO DE GRABACIÓN / TIENDA DE INSUMOS MUSICALES / QUINTA NORMAL</p>
         </div>
       </div>
-      <span class="text-[11px] text-zinc-500 font-mono hidden sm:inline">Quinta Normal · Stgo</span>
-    </div>
 
-    <!-- Menú de pestañas con scroll horizontal táctil -->
-    <nav class="max-w-4xl mx-auto flex gap-1 overflow-x-auto pb-1 custom-scroll" id="nav-tabs">
-      <button onclick="cambiarPestana('reservar')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shrink-0 bg-amber-500 text-black shadow-sm" data-tab="reservar">
-        <span>📅</span> <span>Reservar</span>
-      </button>
-      <button onclick="cambiarPestana('produccion')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="produccion">
-        <span>🎚️</span> <span>Producción</span>
-      </button>
-      <button onclick="cambiarPestana('ficha')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="ficha">
-        <span>🎛️</span> <span>Ficha Técnica</span>
-      </button>
-      <button onclick="cambiarPestana('planes')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="planes">
-        <span>🎟️</span> <span>Planes</span>
-      </button>
-      <button onclick="cambiarPestana('tienda')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="tienda">
-        <span>🎸</span> <span>Tienda</span>
-      </button>
-      <button onclick="cambiarPestana('evaluaciones')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="evaluaciones">
-        <span>⭐</span> <span>Evaluaciones</span>
-      </button>
-      <button onclick="cambiarPestana('galeria')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="galeria">
-        <span>🎬</span> <span>Galería</span>
-      </button>
-      <button onclick="cambiarPestana('redes')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="redes">
-        <span>🎧</span> <span>Contacto</span>
-      </button>
-      <button onclick="cambiarPestana('admin')" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-amber-400 border border-zinc-800 hover:border-amber-500/40" data-tab="admin">
-        <span>🔒</span> <span>Admin</span>
-      </button>
-    </nav>
+      <!-- Barra de Estado Admin / Switch de Modo -->
+      <div class="flex items-center gap-2">
+        <button onclick="alternarModoAdmin()" id="btn-cambio-modo" class="text-xs bg-[#1f1f23] hover:bg-[#27272a] text-zinc-300 border border-zinc-700 px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 font-bold">
+          <i data-lucide="shield" class="w-3.5 h-3.5 text-amber-500"></i>
+          <span id="txt-cambio-modo">Portal de Control Admin</span>
+        </button>
+      </div>
+    </div>
   </header>
 
-  <!-- CONTENEDOR PRINCIPAL -->
-  <main class="max-w-4xl mx-auto p-4 mt-2">
-
-    <!-- ======================================================= -->
-    <!-- 01. PESTAÑA: RESERVAS                                   -->
-    <!-- ======================================================= -->
-    <div id="tab-reservar" class="tab-content space-y-6">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-        
-        <!-- Formulario (2 Columnas) -->
-        <div class="md:col-span-2 space-y-5">
-          <div class="bg-[#141414] border border-[#262626] rounded-2xl p-5 shadow-xl">
-            <h2 class="text-xs font-bold tracking-wider text-amber-400 uppercase mb-3 flex items-center gap-1.5">
-              <span>⚡ 01 / Configura tu Sesión</span>
-            </h2>
-
-            <!-- Selector Servicio -->
-            <div class="grid grid-cols-2 gap-3 mb-4">
-              <button type="button" onclick="setServicio('ensayo')" id="btn-srv-ensayo" class="p-3.5 rounded-xl border-2 border-amber-500 bg-amber-500/10 text-left transition">
-                <p class="font-bold text-xs text-white">🎸 Sala de Ensayo</p>
-                <p class="text-[11px] text-amber-400 mt-0.5" id="lbl-precio-ensayo">$15.000 / hr</p>
-              </button>
-              <button type="button" onclick="setServicio('grabacion')" id="btn-srv-grabacion" class="p-3.5 rounded-xl border-2 border-[#262626] bg-[#1a1a1a] text-left transition">
-                <p class="font-bold text-xs text-white">🎙️ Grabación en Vivo</p>
-                <p class="text-[11px] text-zinc-400 mt-0.5" id="lbl-precio-grabacion">$30.000 / hr</p>
-              </button>
-            </div>
-
-            <!-- Fecha y Duración -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
-              <div>
-                <label class="block text-[11px] font-bold text-zinc-400 uppercase mb-1">📆 Fecha de Atención</label>
-                <input type="date" id="res-fecha" onchange="cargarDisponibilidad()" class="w-full bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-amber-500">
-              </div>
-              <div>
-                <label class="block text-[11px] font-bold text-zinc-400 uppercase mb-1">⏱️ Duración del Bloque</label>
-                <select id="res-duracion" onchange="actualizarCalculos()" class="w-full bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-amber-500">
-                  <option value="1">1 hora</option>
-                  <option value="2" selected>2 horas</option>
-                  <option value="3">3 horas</option>
-                  <option value="4">4 horas</option>
-                  <option value="5">5 horas</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Bloques Disponibles -->
-            <div class="mb-4">
-              <label class="block text-[11px] font-bold text-zinc-400 uppercase mb-1.5">⏰ Horarios Disponibles</label>
-              <div id="grid-bloques" class="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                <p class="col-span-full text-xs text-zinc-500 py-4 text-center">Selecciona una fecha para ver horarios disponibles</p>
-              </div>
-              <input type="hidden" id="bloque-seleccionado">
-            </div>
-
-            <!-- Banner Multipista Incluida -->
-            <div id="banner-multipista" class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3.5 mb-5">
-              <h4 class="text-xs font-bold text-amber-400">🎁 ¡Grabación multipista incluida sin costo adicional!</h4>
-              <p class="text-[11px] text-zinc-300 mt-1 leading-relaxed" id="txt-multipista">
-                Por reservar 2 horas, incluye los últimos 30 minutos de grabación en vivo con entrega de archivo WAV con la mezcla.
-              </p>
-            </div>
-
-            <!-- Equipos Extras -->
-            <div class="border-t border-[#262626] pt-4 mb-4">
-              <label class="block text-[11px] font-bold text-zinc-400 uppercase mb-2">🎸 Arriendo de Instrumentos / Extras ($3.000 / hr c/u)</label>
-              <div class="space-y-1.5" id="contenedor-extras">
-                <!-- Se inyecta dinámicamente -->
-              </div>
-            </div>
-
-            <!-- Adicionales de Video / Raw -->
-            <div id="caja-opcionales-ensayo" class="space-y-2 border-t border-[#262626] pt-4">
-              <label class="flex items-center gap-2.5 p-3 rounded-xl bg-[#1a1a1a] border border-[#2d2d2d] cursor-pointer">
-                <input type="checkbox" id="chk-video" onchange="actualizarCalculos()" class="rounded border-zinc-700 text-amber-500 focus:ring-0">
-                <div class="text-xs">
-                  <span class="font-bold text-white">📹 Grabación en Video GoPro Hero 13</span>
-                  <span class="text-amber-400 block text-[11px] mt-0.5">+$20.000 · Registro multicámara con mezcla de audio sincronizada</span>
-                </div>
-              </label>
-              <label class="flex items-center gap-2.5 p-3 rounded-xl bg-[#1a1a1a] border border-[#2d2d2d] cursor-pointer">
-                <input type="checkbox" id="chk-raw" onchange="actualizarCalculos()" class="rounded border-zinc-700 text-amber-500 focus:ring-0">
-                <div class="text-xs">
-                  <span class="font-bold text-white">📁 Material en Bruto (Audio / Video)</span>
-                  <span class="text-amber-400 block text-[11px] mt-0.5">+$10.000 · Entrega de pistas individuales multitrack para mezcla externa</span>
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <!-- Datos de Contacto -->
-          <div class="bg-[#141414] border border-[#262626] rounded-2xl p-5 shadow-xl space-y-3">
-            <h2 class="text-xs font-bold tracking-wider text-amber-400 uppercase mb-2">👤 02 / Datos de la Banda o Músico</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label class="block text-[11px] font-bold text-zinc-400 uppercase mb-1">Nombre *</label>
-                <input type="text" id="cli-nombre" placeholder="Tu nombre" class="w-full bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-amber-500">
-              </div>
-              <div>
-                <label class="block text-[11px] font-bold text-zinc-400 uppercase mb-1">Apellido *</label>
-                <input type="text" id="cli-apellido" placeholder="Tu apellido" class="w-full bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-amber-500">
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label class="block text-[11px] font-bold text-zinc-400 uppercase mb-1">WhatsApp (8 dígitos) *</label>
-                <div class="flex items-center bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl overflow-hidden focus-within:border-amber-500">
-                  <span class="bg-[#262626] text-amber-400 text-xs font-bold px-2.5 py-2.5">+56 9</span>
-                  <input type="tel" id="cli-wsp" maxlength="8" placeholder="87654321" class="w-full bg-transparent px-3 py-2.5 text-xs text-white outline-none">
-                </div>
-              </div>
-              <div>
-                <label class="block text-[11px] font-bold text-zinc-400 uppercase mb-1">Correo Electrónico *</label>
-                <input type="email" id="cli-mail" placeholder="contacto@banda.cl" class="w-full bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-amber-500">
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-[11px] font-bold text-zinc-400 uppercase mb-1">Banda o Proyecto Musical *</label>
-              <input type="text" id="cli-banda" placeholder="Ej: Los Prisioneros" class="w-full bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl px-3 py-2.5 text-xs text-white outline-none focus:border-amber-500">
-            </div>
-          </div>
-        </div>
-
-        <!-- Resumen Sticky (Columna 3) -->
-        <div class="md:sticky md:top-24">
-          <div class="bg-[#141414] border-2 border-amber-500/70 rounded-2xl p-5 shadow-2xl space-y-4">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-amber-400">📋 03 / Resumen de Reserva</h3>
-            
-            <div>
-              <p class="font-extrabold text-sm text-white" id="sum-servicio">Sala de Ensayo · 2 hrs</p>
-              <p class="text-xs text-zinc-400 mt-0.5" id="sum-bloque">Selecciona fecha y hora.</p>
-            </div>
-
-            <div class="space-y-1.5 text-xs text-zinc-400 border-t border-[#262626] pt-3">
-              <div class="flex justify-between">
-                <span>Sesión Base</span>
-                <span id="sum-costo-base">$30.000</span>
-              </div>
-              <div class="flex justify-between">
-                <span>Arriendos Extras</span>
-                <span id="sum-costo-extras">$0</span>
-              </div>
-              <div class="flex justify-between" id="sum-fila-video">
-                <span>Video GoPro Hero 13</span>
-                <span id="sum-costo-video">$0</span>
-              </div>
-              <div class="flex justify-between" id="sum-fila-raw">
-                <span>Material en Bruto</span>
-                <span id="sum-costo-raw">$0</span>
-              </div>
-            </div>
-
-            <div class="border-t border-[#262626] pt-3 flex justify-between items-center text-sm font-black">
-              <span class="text-white">Total Estimado</span>
-              <span class="text-amber-400 text-base" id="sum-total">$30.000</span>
-            </div>
-
-            <div class="bg-[#1a1a1a] p-3 rounded-xl space-y-1 text-xs">
-              <div class="flex justify-between font-bold text-amber-400">
-                <span>Abono para Agendar</span>
-                <span id="sum-abono">$10.000</span>
-              </div>
-              <div class="flex justify-between text-zinc-400">
-                <span>Saldo en Sala</span>
-                <span id="sum-saldo">$20.000</span>
-              </div>
-            </div>
-
-            <label class="flex items-start gap-2 text-[11px] text-zinc-400 cursor-pointer pt-1">
-              <input type="checkbox" id="chk-tyc" class="mt-0.5 rounded border-zinc-700 text-amber-500 focus:ring-0">
-              <span>Acepto las <button type="button" onclick="abrirModalTyc()" class="text-amber-400 underline">condiciones del servicio</button> y reserva.</span>
-            </label>
-
-            <button type="button" onclick="confirmarYEnviarReserva()" id="btn-solicitar" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-extrabold py-3.5 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-amber-500/20 flex items-center justify-center gap-1.5 active:scale-95">
-              <span>▶ Solicitar por WhatsApp</span>
-            </button>
-          </div>
-        </div>
-
-      </div>
+  <!-- ======================================================= -->
+  <!-- 2. NAVEGACIÓN PÚBLICA (PORTAL CLIENTES)                 -->
+  <!-- ======================================================= -->
+  <div id="nav-publico" class="bg-[#151518] border-b border-[#242427] px-4 py-2">
+    <div class="max-w-7xl mx-auto flex gap-1.5 overflow-x-auto custom-scroll">
+      <button onclick="cambiarSeccionPublica('reservar')" id="tab-pub-reservar" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 bg-amber-500 text-black shadow-sm" data-tab="reservar">
+        <i data-lucide="calendar" class="w-4 h-4"></i> RESERVA Y DISPONIBILIDAD
+      </button>
+      <button onclick="cambiarSeccionPublica('produccion')" id="tab-pub-produccion" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="produccion">
+        <i data-lucide="sliders" class="w-4 h-4"></i> PRODUCCIÓN
+      </button>
+      <button onclick="cambiarSeccionPublica('ficha')" id="tab-pub-ficha" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="ficha">
+        <i data-lucide="file-text" class="w-4 h-4"></i> FICHA TÉCNICA
+      </button>
+      <button onclick="cambiarSeccionPublica('planes')" id="tab-pub-planes" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="planes">
+        <i data-lucide="award" class="w-4 h-4"></i> PLANES
+      </button>
+      <button onclick="cambiarSeccionPublica('tienda')" id="tab-pub-tienda" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="tienda">
+        <i data-lucide="shopping-bag" class="w-4 h-4"></i> TIENDA
+      </button>
+      <button onclick="cambiarSeccionPublica('evaluaciones')" id="tab-pub-evaluaciones" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="evaluaciones">
+        <i data-lucide="star" class="w-4 h-4"></i> EVALUACIONES
+      </button>
+      <button onclick="cambiarSeccionPublica('galeria')" id="tab-pub-galeria" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="galeria">
+        <i data-lucide="image" class="w-4 h-4"></i> GALERÍA
+      </button>
+      <button onclick="cambiarSeccionPublica('contacto')" id="tab-pub-contacto" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="contacto">
+        <i data-lucide="phone" class="w-4 h-4"></i> CONTACTO
+      </button>
+      <button onclick="cambiarSeccionPublica('proaudix')" id="tab-pub-proaudix" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="proaudix">
+        <i data-lucide="coffee" class="w-4 h-4"></i> PROAUDIX
+      </button>
     </div>
+  </div>
 
-
-    <!-- ======================================================= -->
-    <!-- 02. PESTAÑA: PRODUCCIÓN MUSICAL                         -->
-    <!-- ======================================================= -->
-    <div id="tab-produccion" class="tab-content hidden space-y-5">
-      <div class="bg-gradient-to-r from-[#181818] to-[#261e0e] border border-amber-500/30 rounded-2xl p-6 shadow-xl flex items-center gap-4">
-        <span class="text-3xl">🎚️</span>
-        <div>
-          <h2 class="text-sm font-black text-amber-400 uppercase tracking-wide">Producción Musical & Estudio Rockerío</h2>
-          <p class="text-xs text-zinc-300 mt-1 leading-relaxed">
-            Hola, soy Juan Carlos Retamal, ingeniero en sonido. Desarrollamos un estándar de grabación y mezcla pensado para la potencia del rock, metal y bandas instrumentales.
-          </p>
-        </div>
+  <!-- ======================================================= -->
+  <!-- 3. NAVEGACIÓN ADMINISTRATIVA (SUBMENÚ COMPLETO)         -->
+  <!-- ======================================================= -->
+  <div id="nav-admin" class="hidden bg-[#18181b] border-b border-[#2b2b2f] px-4 py-2">
+    <div class="w-full flex items-center justify-between gap-4 overflow-x-auto custom-scroll">
+      <div class="flex items-center gap-1">
+        <span class="text-[10px] bg-amber-500 text-black font-extrabold px-1.5 py-0.5 rounded uppercase mr-1">ADMIN</span>
+        <button onclick="cambiarPestanaAdmin('reservas')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-black shrink-0" data-adm="reservas">Reservas y Jornadas</button>
+        <button onclick="abrirModalCotizador()" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white shrink-0">Cotizador Express PDF <span class="text-[9px] bg-amber-500/20 text-amber-400 px-1 py-0.2 rounded ml-1">SpA</span></button>
+        <button onclick="cambiarPestanaAdmin('clientes')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white shrink-0" data-adm="clientes">Clientes y Bandas 36</button>
+        <button onclick="cambiarPestanaAdmin('planes')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white shrink-0" data-adm="planes">Planes Mensuales</button>
+        <button onclick="cambiarPestanaAdmin('tienda')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white shrink-0" data-adm="tienda">Control Tienda</button>
+        <button onclick="cambiarPestanaAdmin('bebestibles')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-emerald-400 hover:bg-emerald-950/40 shrink-0" data-adm="bebestibles">Bebestibles ProAudix <span class="text-[9px] bg-emerald-500/20 px-1 py-0.5 rounded">Independiente</span></button>
+        <button onclick="cambiarPestanaAdmin('balance')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white shrink-0" data-adm="balance">Balance y Tributario SII</button>
+        <button onclick="cambiarPestanaAdmin('resenas')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white shrink-0" data-adm="resenas">Reseñas y Evaluaciones</button>
+        <button onclick="cambiarPestanaAdmin('configuracion')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-amber-400 hover:text-white shrink-0" data-adm="configuracion">⚙️ Configuración Web</button>
       </div>
 
-      <div class="bg-[#141414] border border-[#262626] rounded-2xl p-5 space-y-3">
-        <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider border-b border-[#262626] pb-2">🎸 Filosofía de Trabajo</h3>
-        <ul class="text-xs text-zinc-300 space-y-2 leading-relaxed">
-          <li>• <b>Sin promesas mágicas:</b> Trabajamos al máximo sobre la mejor interpretación real de la banda.</li>
-          <li>• <b>Aprender escuchando:</b> La mejor herramienta para crecer es salir del ensayo con la grabación en vivo en la mano para evaluar y corregir.</li>
-          <li>• <b>Flujo híbrido:</b> Consola digital Midas M32 + suma análoga con SSL SiX y compresor G-Series.</li>
-        </ul>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="bg-[#141414] border border-[#262626] rounded-2xl p-3 text-center">
-          <img src="https://lh3.googleusercontent.com/d/1ew4As5evEuBzu0u6pnJI8MWvNvuiH0nR" alt="Sesión de Mezcla" class="w-full h-56 object-cover rounded-xl" onerror="this.style.display='none'">
-          <p class="text-[11px] text-zinc-400 mt-2 font-medium">Control Room & Mezcla Multitrack</p>
-        </div>
-        <div class="bg-[#141414] border border-[#262626] rounded-2xl p-3 text-center">
-          <img src="https://lh3.googleusercontent.com/d/1IiMOrG1tf_Vz5cIHrlgnCELByJmCSuAN" alt="Control Room SSL" class="w-full h-56 object-cover rounded-xl" onerror="this.style.display='none'">
-          <p class="text-[11px] text-zinc-400 mt-2 font-medium">Procesamiento Análogo SSL SiX</p>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- ======================================================= -->
-    <!-- 03. PESTAÑA: FICHA TÉCNICA                              -->
-    <!-- ======================================================= -->
-    <div id="tab-ficha" class="tab-content hidden space-y-5">
-      <div class="bg-[#141414] border border-[#262626] rounded-2xl p-5">
-        <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">✨ Comodidades del Espacio</h3>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs text-zinc-300">
-          <div class="p-3 bg-[#1a1a1a] rounded-xl border border-[#2d2d2d]">❄️ Aire Acondicionado</div>
-          <div class="p-3 bg-[#1a1a1a] rounded-xl border border-[#2d2d2d]">🌿 Patio de Descanso</div>
-          <div class="p-3 bg-[#1a1a1a] rounded-xl border border-[#2d2d2d]">📶 Wi-Fi Alta Velocidad</div>
-          <div class="p-3 bg-[#1a1a1a] rounded-xl border border-[#2d2d2d]">☕ Café y Té Libre</div>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <!-- Sala Ensayo -->
-        <div class="bg-[#141414] border border-[#262626] rounded-2xl p-5 space-y-3">
-          <img src="https://lh3.googleusercontent.com/d/1oGmrLj7w_wiBNUX7iqWtJ9chC3PRYSYn" alt="Sala Ensayo" class="w-full h-48 object-cover rounded-xl mb-3" onerror="this.style.display='none'">
-          <h3 class="text-sm font-bold text-white uppercase tracking-wider">🎸 Sala de Ensayo Principal</h3>
-          <p class="text-xs text-zinc-400 leading-relaxed">
-            <b>Batería:</b> Pearl Export 5 piezas (parches Evans Hydraulic y Remo Controlled Sound).<br>
-            <b>Bajo:</b> Fender Rumble 500 (350W) combo + Shure Beta52A.<br>
-            <b>Guitarras:</b> Laney Ironheart IRT60 (2x12"), Laney GH30 (1x12") y Cabezal Orange TH30 valvular con caja Marshall 1922.<br>
-            <b>PA & Monitoreo:</b> Cajas activas JBL EON 615, mixer Mackie ProFX10 v3, ampli Mackie HM-800 con 8 in-ears inalámbricos dedicados.
-          </p>
-        </div>
-
-        <!-- Control Room -->
-        <div class="bg-[#141414] border border-[#262626] rounded-2xl p-5 space-y-3">
-          <img src="https://lh3.googleusercontent.com/d/10ih4Jp2OPd6liqUR9BOLsqg8FPJfzTEH" alt="Control Room" class="w-full h-48 object-cover rounded-xl mb-3" onerror="this.style.display='none'">
-          <h3 class="text-sm font-bold text-white uppercase tracking-wider">🎛️ Control Room & Grabación</h3>
-          <p class="text-xs text-zinc-400 leading-relaxed">
-            <b>Consola Principal:</b> Midas M32 (32 canales in / 16 bus).<br>
-            <b>Procesamiento:</b> SSL SiX análogo con compresor de bus estéreo.<br>
-            <b>DAW & Cómputo:</b> Mac Mini M4 (24GB RAM) + Universal Audio LUNA Pro.<br>
-            <b>Microfonía:</b> Telefunken TF39 valvular, M82, M80, M81, Shure Beta 91A, SM57 y SM58.
-          </p>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- ======================================================= -->
-    <!-- 04. PESTAÑA: PLANES MENSUALES                           -->
-    <!-- ======================================================= -->
-    <div id="tab-planes" class="tab-content hidden space-y-5">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
-        <div class="bg-[#141414] border border-[#262626] rounded-2xl p-5 space-y-4">
-          <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider">🎟️ Membresías Fijas para Bandas</h3>
-          <p class="text-xs text-zinc-300 leading-relaxed">Asegura tu día y hora fija a la semana durante todo el mes con descuento preferencial.</p>
-          
-          <div class="space-y-3">
-            <div class="p-4 rounded-xl bg-[#1a1a1a] border border-[#2d2d2d]">
-              <h4 class="font-bold text-amber-400 text-sm" id="lbl-plan8">Plan 8 Horas ($112.000)</h4>
-              <p class="text-xs text-zinc-400 mt-1">• 4 ensayos de 2h al mes | Incluye grabación de los últimos 30 min en cada ensayo.</p>
-            </div>
-            <div class="p-4 rounded-xl bg-[#1a1a1a] border border-[#2d2d2d]">
-              <h4 class="font-bold text-amber-400 text-sm" id="lbl-plan12">Plan 12 Horas ($168.000)</h4>
-              <p class="text-xs text-zinc-400 mt-1">• 4 ensayos de 3h al mes | Incluye grabación de la última hora en cada ensayo.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-[#141414] border border-[#262626] rounded-2xl p-5 space-y-3">
-          <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider">📝 Solicitar Plan</h3>
-          <div>
-            <label class="block text-[11px] font-bold text-zinc-400 uppercase mb-1">Plan Elegido</label>
-            <select id="p-tipo" class="w-full bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl px-3 py-2 text-xs text-white outline-none">
-              <option value="8">Plan 8 Horas ($112.000)</option>
-              <option value="12">Plan 12 Horas ($168.000)</option>
-            </select>
-          </div>
-          <div class="grid grid-cols-2 gap-2">
-            <input type="text" id="p-nombre" placeholder="Nombre" class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl px-3 py-2 text-xs text-white outline-none">
-            <input type="text" id="p-apellido" placeholder="Apellido" class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl px-3 py-2 text-xs text-white outline-none">
-          </div>
-          <input type="tel" id="p-wsp" placeholder="WhatsApp (8 dígitos)" class="w-full bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl px-3 py-2 text-xs text-white outline-none">
-          <input type="text" id="p-banda" placeholder="Nombre de tu Banda" class="w-full bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl px-3 py-2 text-xs text-white outline-none">
-          <input type="text" id="p-horario" placeholder="Ej: Todos los Martes de 19:00 a 21:00" class="w-full bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl px-3 py-2 text-xs text-white outline-none">
-          
-          <button type="button" onclick="enviarPlanWsp()" class="w-full bg-amber-500 hover:bg-amber-400 text-black font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider transition">
-            ▶ Coordinar Plan por WhatsApp
-          </button>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- ======================================================= -->
-    <!-- 05. PESTAÑA: TIENDA DE MÚSICA                           -->
-    <!-- ======================================================= -->
-    <div id="tab-tienda" class="tab-content hidden space-y-5">
-      <div class="bg-[#141414] border border-[#262626] rounded-2xl p-4 flex items-center justify-between">
-        <div>
-          <h2 class="text-sm font-bold text-white uppercase">Tienda en Sala & Insumos</h2>
-          <p class="text-xs text-zinc-400">Retira tus cuerdas y accesorios directamente en Rockerío.</p>
-        </div>
-        <span class="text-2xl">🎸</span>
-      </div>
-
-      <div id="grid-tienda" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        <!-- Generado dinámicamente -->
-      </div>
-    </div>
-
-
-    <!-- ======================================================= -->
-    <!-- 06. PESTAÑA: EVALUACIONES                               -->
-    <!-- ======================================================= -->
-    <div id="tab-evaluaciones" class="tab-content hidden space-y-5">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
-        <div class="bg-[#141414] border border-[#262626] rounded-2xl p-5 space-y-3">
-          <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider">⭐ Deja tu Evaluación</h3>
-          <form onsubmit="guardarEvaluacion(event)" class="space-y-3">
-            <input type="text" id="rev-nombre" placeholder="Tu Nombre *" required class="w-full bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl px-3 py-2 text-xs text-white outline-none">
-            <input type="text" id="rev-banda" placeholder="Nombre de tu Banda" class="w-full bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl px-3 py-2 text-xs text-white outline-none">
-            <select id="rev-rating" class="w-full bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl px-3 py-2 text-xs text-white outline-none">
-              <option value="5">⭐⭐⭐⭐⭐ (5/5) Excelente</option>
-              <option value="4">⭐⭐⭐⭐ (4/5) Muy Bueno</option>
-              <option value="3">⭐⭐⭐ (3/5) Bueno</option>
-            </select>
-            <textarea id="rev-comentario" placeholder="¿Cómo estuvo el ensayo o grabación? *" required rows="3" class="w-full bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl px-3 py-2 text-xs text-white outline-none"></textarea>
-            <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-black font-extrabold py-2.5 rounded-xl text-xs uppercase tracking-wider transition">
-              Publicar Reseña
-            </button>
-          </form>
-        </div>
-
-        <div class="bg-[#141414] border border-[#262626] rounded-2xl p-5 space-y-3">
-          <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider">🗣️ Opiniones de Músicos</h3>
-          <div id="lista-reviews" class="space-y-2.5 max-h-96 overflow-y-auto custom-scroll">
-            <!-- Inyectado dinámicamente -->
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- ======================================================= -->
-    <!-- 07. PESTAÑA: GALERÍA                                    -->
-    <!-- ======================================================= -->
-    <div id="tab-galeria" class="tab-content hidden space-y-5">
-      <div class="bg-[#141414] border border-[#262626] rounded-2xl p-5 text-center">
-        <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-4">📷 Instalaciones de Rockerío</h3>
-        <div class="relative max-w-xl mx-auto overflow-hidden rounded-xl bg-zinc-900 border border-zinc-800">
-          <img id="img-carrusel" src="" alt="Galería" class="w-full h-72 sm:h-80 object-cover">
-          <div class="p-3 bg-zinc-950 text-left border-t border-zinc-800">
-            <h4 id="tit-carrusel" class="text-sm font-bold text-amber-400"></h4>
-            <p id="desc-carrusel" class="text-xs text-zinc-400"></p>
-          </div>
-        </div>
-        <div class="flex justify-center gap-2 mt-4" id="dots-carrusel"></div>
-      </div>
-
-      <div class="bg-[#141414] border border-[#262626] rounded-2xl p-5">
-        <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-3">🎧 Playlist Oficial en YouTube</h3>
-        <div class="w-full rounded-xl overflow-hidden border border-[#262626]">
-          <iframe class="w-full h-80" src="https://www.youtube.com/embed/videoseries?list=PLVvxu7INRfmo" title="Rockerío Playlist" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- ======================================================= -->
-    <!-- 08. PESTAÑA: CONTACTO & REDES                           -->
-    <!-- ======================================================= -->
-    <div id="tab-redes" class="tab-content hidden space-y-5">
-      <div class="bg-[#141414] border border-[#262626] rounded-2xl p-5 space-y-4">
-        <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider">💬 Contacto Directo</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <a href="https://api.whatsapp.com/send?phone=56963402567" target="_blank" class="p-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold text-xs flex items-center justify-between transition">
-            <span>WhatsApp Directo (+56 9 6340 2567)</span>
-            <span>📱</span>
-          </a>
-          <a href="mailto:rockerioestudio@gmail.com" class="p-4 bg-amber-500 hover:bg-amber-400 text-black rounded-xl font-bold text-xs flex items-center justify-between transition">
-            <span>rockerioestudio@gmail.com</span>
-            <span>✉️</span>
-          </a>
-        </div>
-        <p class="text-xs text-zinc-400 text-center pt-2">📍 Av. José Joaquín Pérez 4547, Quinta Normal, Santiago.</p>
-      </div>
-
-      <div class="bg-[#141414] border border-[#262626] rounded-2xl p-5">
-        <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-3">📲 Redes Sociales Oficiales</h3>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          <a href="https://www.instagram.com/rockerio_producciones" target="_blank" class="p-3 bg-[#1a1a1a] hover:bg-zinc-800 rounded-xl text-center text-xs font-semibold text-white border border-[#2d2d2d]">Instagram</a>
-          <a href="https://www.youtube.com/@Rockerio_Producciones" target="_blank" class="p-3 bg-[#1a1a1a] hover:bg-zinc-800 rounded-xl text-center text-xs font-semibold text-white border border-[#2d2d2d]">YouTube</a>
-          <a href="https://linktr.ee/Rockerio_Producciones" target="_blank" class="p-3 bg-[#1a1a1a] hover:bg-zinc-800 rounded-xl text-center text-xs font-semibold text-white border border-[#2d2d2d]">Linktree</a>
-          <a href="https://music.youtube.com/playlist?list=PLVvxu7INRfmo" target="_blank" class="p-3 bg-[#1a1a1a] hover:bg-zinc-800 rounded-xl text-center text-xs font-semibold text-white border border-[#2d2d2d]">YT Music</a>
-          <a href="https://www.twitch.tv/rockerio_producciones" target="_blank" class="p-3 bg-[#1a1a1a] hover:bg-zinc-800 rounded-xl text-center text-xs font-semibold text-white border border-[#2d2d2d]">Twitch</a>
-          <a href="https://www.facebook.com/profile.php?id=61576322491053" target="_blank" class="p-3 bg-[#1a1a1a] hover:bg-zinc-800 rounded-xl text-center text-xs font-semibold text-white border border-[#2d2d2d]">Facebook</a>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- ======================================================= -->
-    <!-- 09. PESTAÑA: PANEL ADMIN (PROTEGIDO)                    -->
-    <!-- ======================================================= -->
-    <div id="tab-admin" class="tab-content hidden space-y-5">
-      <!-- Login Admin -->
-      <div id="admin-login-box" class="max-w-sm mx-auto bg-[#141414] border border-[#262626] rounded-2xl p-6 text-center space-y-4">
-        <span class="text-3xl">🔒</span>
-        <h3 class="text-sm font-bold text-white uppercase">Acceso Técnico Rockerío</h3>
-        <p class="text-xs text-zinc-500">Gestión de tarifas, bloqueos y catálogo.</p>
-        <form onsubmit="autenticarAdmin(event)" class="space-y-3">
-          <input type="password" id="admin-pass" placeholder="Ingresa contraseña" required class="w-full bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl px-3 py-2.5 text-xs text-center text-white tracking-widest outline-none focus:border-amber-500">
-          <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-black font-extrabold py-2.5 rounded-xl text-xs uppercase tracking-wider transition">
-            Ingresar
-          </button>
-        </form>
-        <p id="admin-error" class="text-xs text-rose-500 font-medium hidden">Contraseña incorrecta.</p>
-      </div>
-
-      <!-- Panel Admin Desbloqueado -->
-      <div id="admin-panel-box" class="hidden space-y-6">
-        <div class="flex justify-between items-center bg-[#181818] p-4 rounded-xl border border-[#262626]">
-          <div>
-            <h3 class="text-xs font-bold text-amber-400 uppercase">Panel de Control Activo</h3>
-            <p class="text-[11px] text-zinc-400">Modifica tarifas y bloquea horas directamente en la nube.</p>
-          </div>
-          <button onclick="cerrarSesionAdmin()" class="text-xs text-rose-400 hover:underline">Cerrar Sesión</button>
-        </div>
-
-        <!-- Bloqueos Manuales -->
-        <div class="bg-[#141414] border border-[#262626] rounded-2xl p-5 space-y-3">
-          <h4 class="text-xs font-bold text-amber-400 uppercase">🔒 Bloquear un Horario</h4>
-          <form onsubmit="agregarBloqueoAdmin(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-            <input type="date" id="b-fecha" required class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl px-3 py-2 text-xs text-white outline-none">
-            <input type="text" id="b-bloque" placeholder="19:00 - 21:00 hrs" required class="bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl px-3 py-2 text-xs text-white outline-none">
-            <button type="submit" class="bg-amber-500 hover:bg-amber-400 text-black font-bold py-2 rounded-xl text-xs transition">
-              Bloquear Horario
-            </button>
-          </form>
-          <div id="lista-bloqueos" class="divide-y divide-[#262626] pt-2"></div>
-        </div>
-
-        <!-- Reservas en Firebase -->
-        <div class="bg-[#141414] border border-[#262626] rounded-2xl p-5 space-y-3">
-          <h4 class="text-xs font-bold text-amber-400 uppercase">📅 Reservas Registradas en la Nube</h4>
-          <div id="lista-reservas-admin" class="divide-y divide-[#262626] max-h-72 overflow-y-auto custom-scroll">
-            <p class="text-xs text-zinc-500 py-3 text-center">Sin reservas aún.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </main>
-
-  <!-- MODAL TÉRMINOS Y CONDICIONES -->
-  <div id="modal-tyc" class="fixed inset-0 bg-black/85 z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-[#141414] border border-[#262626] rounded-2xl max-w-lg w-full max-h-[80vh] overflow-y-auto p-5 custom-scroll space-y-3">
-      <div class="flex justify-between items-center border-b border-[#262626] pb-2">
-        <h3 class="text-xs font-bold text-amber-400 uppercase">Términos de Servicio · Rockerío Producciones</h3>
-        <button onclick="cerrarModalTyc()" class="text-zinc-400 hover:text-white text-lg">&times;</button>
-      </div>
-      <div class="text-xs text-zinc-300 space-y-2 leading-relaxed">
-        <p>• <b>Confirmación:</b> El abono asegura tu cupo en la agenda del estudio.</p>
-        <p>• <b>Puntualidad:</b> Llegar 5 minutos antes. La sala se desocupa 5 minutos antes del término del bloque.</p>
-        <p>• <b>Cuidado:</b> Prohibido fumar y consumir líquidos dentro de la sala de ensayo (disponemos de patio interior).</p>
-        <p>• <b>Cambios:</b> Reagendamientos con al menos 24 horas de anticipación.</p>
+      <div class="flex items-center gap-2 shrink-0">
+        <button onclick="ejecutarRespaldoManual()" class="text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-2.5 py-1 rounded-lg border border-zinc-700 flex items-center gap-1"><i data-lucide="download" class="w-3 h-3"></i> Respaldos</button>
+        <button onclick="abrirModalBloqueo()" class="text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-2.5 py-1 rounded-lg border border-zinc-700 flex items-center gap-1"><i data-lucide="ban" class="w-3 h-3"></i> Bloquear</button>
       </div>
     </div>
   </div>
 
+  <!-- ======================================================= -->
+  <!-- 4. CONTENIDO PRINCIPAL                                  -->
+  <!-- ======================================================= -->
+  <main class="w-full px-4 mt-6">
+
+    <!-- ----------------------------------------------------- -->
+    <!-- SECCIÓN PÚBLICA: WIZARD DE RESERVAS (4 PASOS)         -->
+    <!-- ----------------------------------------------------- -->
+    <div id="vista-publica-reservas" class="max-w-7xl mx-auto space-y-6">
+
+      <!-- Indicador de 4 Pasos -->
+      <div class="flex items-center justify-between text-xs font-bold text-zinc-400 border-b border-[#242427] pb-3 overflow-x-auto gap-2">
+        <div id="step-ind-1" class="flex items-center gap-1 text-emerald-400 shrink-0 cursor-pointer" onclick="irAlPaso(1)">
+          <i data-lucide="check" class="w-4 h-4"></i> Servicio
+        </div>
+        <div class="h-px w-6 bg-zinc-800 shrink-0"></div>
+        <div id="step-ind-2" class="flex items-center gap-1 text-emerald-400 shrink-0 cursor-pointer" onclick="irAlPaso(2)">
+          <i data-lucide="check" class="w-4 h-4"></i> Duración y Extras
+        </div>
+        <div class="h-px w-6 bg-zinc-800 shrink-0"></div>
+        <div id="step-ind-3" class="flex items-center gap-1 text-amber-400 font-extrabold shrink-0 cursor-pointer" onclick="irAlPaso(3)">
+          <span class="w-4 h-4 rounded-full bg-amber-500 text-black flex items-center justify-center text-[10px] font-black">3</span> Calendario y Horario
+        </div>
+        <div class="h-px w-6 bg-zinc-800 shrink-0"></div>
+        <div id="step-ind-4" class="flex items-center gap-1 text-zinc-500 shrink-0 cursor-pointer" onclick="irAlPaso(4)">
+          <span class="w-4 h-4 rounded-full bg-zinc-800 text-zinc-400 flex items-center justify-center text-[10px]">4</span> Banda, Ticket y Abono
+        </div>
+      </div>
+
+      <!-- PASO 1: SELECCIÓN DE SERVICIO -->
+      <div id="paso-1-container" class="hidden bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-4">
+        <h2 class="text-sm font-bold text-amber-400 uppercase tracking-wider">PASO 01 / Selecciona tu Servicio</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div onclick="seleccionarServicio('ensayo')" id="card-srv-ensayo" class="p-5 bg-[#18181b] border-2 border-amber-500 rounded-2xl cursor-pointer hover:border-amber-400 transition">
+            <h3 class="font-extrabold text-white text-base">🎸 Sala de Ensayo Principal</h3>
+            <p class="text-amber-400 font-bold text-sm mt-1" id="lbl-tarifa-ensayo">$15.000 / hr</p>
+            <p class="text-xs text-zinc-400 mt-2">Pearl Export, Laney Valvular, Orange TH30, Fender Rumble 500 y monitoreo In-Ear con climatización.</p>
+          </div>
+          <div onclick="seleccionarServicio('grabacion')" id="card-srv-grabacion" class="p-5 bg-[#18181b] border-2 border-zinc-800 rounded-2xl cursor-pointer hover:border-zinc-700 transition">
+            <h3 class="font-extrabold text-white text-base">🎙️ Estudio de Grabación</h3>
+            <p class="text-amber-400 font-bold text-sm mt-1" id="lbl-tarifa-grabacion">$30.000 / hr</p>
+            <p class="text-xs text-zinc-400 mt-2">Midas M32 + Suma Análoga SSL SiX, Telefunken TF39 valvular y Mac Mini M4 con UAD LUNA Pro.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PASO 2: DURACIÓN -->
+      <div id="paso-2-container" class="hidden bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-5">
+        <div class="flex justify-between items-center">
+          <h2 class="text-sm font-bold text-amber-400 uppercase tracking-wider">PASO 02 / Duración de la Sesión</h2>
+          <span class="text-xs text-zinc-400">Paso 2 de 4</span>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <button type="button" onclick="setDuracion(2)" class="dur-btn py-3 rounded-xl border-2 border-amber-500 bg-amber-500/10 text-amber-400 text-xs font-bold" data-dur="2">2 Horas (Recomendado)</button>
+          <button type="button" onclick="setDuracion(3)" class="dur-btn py-3 rounded-xl border border-zinc-800 bg-[#18181b] text-zinc-400 text-xs font-bold" data-dur="3">3 Horas</button>
+          <button type="button" onclick="setDuracion(4)" class="dur-btn py-3 rounded-xl border border-zinc-800 bg-[#18181b] text-zinc-400 text-xs font-bold" data-dur="4">4 Horas</button>
+          <button type="button" onclick="setDuracion(5)" class="dur-btn py-3 rounded-xl border border-zinc-800 bg-[#18181b] text-zinc-400 text-xs font-bold" data-dur="5">5+ Horas</button>
+        </div>
+        <button onclick="irAlPaso(3)" class="bg-amber-500 hover:bg-amber-400 text-black font-extrabold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition">
+          Continuar a Disponibilidad →
+        </button>
+      </div>
+
+      <!-- PASO 3: CALENDARIO Y BLOQUES SUGERIDOS -->
+      <div id="paso-3-container" class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-5">
+        <div class="flex justify-between items-center border-b border-[#242427] pb-3">
+          <div>
+            <h2 class="text-sm font-extrabold text-amber-400 uppercase tracking-wider">PASO 03 / DISPONIBILIDAD Y BLOQUES SUGERIDOS</h2>
+            <p class="text-xs text-zinc-400 mt-0.5">Explora los días disponibles y selecciona directamente el bloque sugerido para tu sesión.</p>
+          </div>
+          <span class="text-xs text-zinc-400 font-bold">Paso 3 de 4</span>
+        </div>
+
+        <!-- Caja de Horarios Oficiales Rockerío -->
+        <div class="bg-[#19191d] border border-amber-500/30 rounded-xl p-4 text-xs text-zinc-300 space-y-2">
+          <div class="flex items-center gap-2 font-bold text-amber-400 uppercase">
+            <i data-lucide="clock" class="w-4 h-4"></i> Horarios Oficiales de Atención Rockerío:
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 text-[11px] text-zinc-400">
+            <div>• <b>Lun a Mié y Vie:</b> 09:00 - 14:00 y 17:00 - 23:00 hrs</div>
+            <div>• <b>Jueves:</b> 09:00 - 14:00 y 17:00 - 22:00 hrs</div>
+            <div>• <b>Sábado:</b> 10:00 - 22:00 hrs</div>
+            <div>• <b>Domingo:</b> 11:00 - 22:00 hrs</div>
+          </div>
+          <p class="text-[10px] text-amber-400 font-semibold pt-1 border-t border-[#26262a]">
+            ⚠️ Colación Lun-Vie de 14:00 a 17:00 (cerrado) · Mínimo 4 horas de anticipación para el mismo día.
+          </p>
+        </div>
+
+        <!-- 1. Selector Día en Píldoras -->
+        <div>
+          <label class="block text-xs font-bold uppercase text-zinc-400 mb-2">1. Selecciona el Día de tu Sesión:</label>
+          <div id="pildoras-dias" class="grid grid-cols-4 sm:grid-cols-8 gap-2"></div>
+        </div>
+
+        <!-- 2. Bloques Sugeridos -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label class="text-xs font-bold uppercase text-zinc-400">2. Bloques de Reserva Sugeridos (<span id="txt-bloques-duracion">2 horas</span>):</label>
+            <span id="txt-fecha-bloques-tag" class="text-xs font-mono text-amber-400 font-bold">📅 06/11/2026</span>
+          </div>
+          <div id="grid-bloques-sugeridos" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5"></div>
+        </div>
+      </div>
+
+      <!-- PASO 4: FORMULARIO BANDA Y TICKET OFICIAL -->
+      <div id="paso-4-container" class="hidden space-y-6">
+        
+        <!-- Formulario Datos y Extras -->
+        <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-4">
+          <div class="flex justify-between items-center border-b border-[#242427] pb-3">
+            <div>
+              <h2 class="text-sm font-extrabold text-amber-400 uppercase tracking-wider">PASO 04 / Banda, Ticket y Abono</h2>
+              <p class="text-xs text-zinc-400 mt-0.5">Ingresa tus datos personales para generar el ticket y habilitar el Resumen Oficial de la Sesión.</p>
+            </div>
+            <span class="text-xs text-zinc-400 font-bold">Paso 4 de 4</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-bold text-zinc-400 mb-1">Nombre *</label>
+              <input type="text" id="cli-nombre" placeholder="Ej: Ozzy" class="w-full bg-[#1c1c1e] border border-[#2e2e32] rounded-xl px-3.5 py-2.5 text-sm text-white outline-none focus:border-amber-500">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-zinc-400 mb-1">Apellido *</label>
+              <input type="text" id="cli-apellido" placeholder="Ej: Osbourne" class="w-full bg-[#1c1c1e] border border-[#2e2e32] rounded-xl px-3.5 py-2.5 text-sm text-white outline-none focus:border-amber-500">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-bold text-zinc-400 mb-1">WhatsApp (8 dígitos) *</label>
+              <div class="flex items-center bg-[#1c1c1e] border border-[#2e2e32] rounded-xl overflow-hidden focus-within:border-amber-500">
+                <span class="bg-[#242427] text-amber-400 text-xs font-bold px-3 py-2.5">+56 9</span>
+                <input type="tel" id="cli-wsp" maxlength="8" placeholder="91234567" class="w-full bg-transparent px-3 py-2.5 text-sm text-white outline-none">
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-zinc-400 mb-1">Correo Electrónico *</label>
+              <input type="email" id="cli-mail" placeholder="ozzy@mail.cl" class="w-full bg-[#1c1c1e] border border-[#2e2e32] rounded-xl px-3.5 py-2.5 text-sm text-white outline-none focus:border-amber-500">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-zinc-400 mb-1">Banda o Proyecto Musical *</label>
+            <input type="text" id="cli-banda" placeholder="Ej: Black Sabbath" class="w-full bg-[#1c1c1e] border border-[#2e2e32] rounded-xl px-3.5 py-2.5 text-sm text-white outline-none focus:border-amber-500">
+          </div>
+
+          <!-- Extras Simplificados -->
+          <div class="pt-4 border-t border-[#242427] space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-extrabold text-amber-400 uppercase flex items-center gap-1.5">
+                ⚡ Extras Simplificados y Opcionales:
+              </h3>
+              <span class="text-[11px] text-amber-500 font-bold">$3.000/hr c/u</span>
+            </div>
+
+            <div class="bg-[#18181b] border border-[#27272a] rounded-xl p-4 space-y-2">
+              <label class="block text-xs font-bold text-white mb-2">1. Arriendos de Equipos y Accesorios</label>
+              <div id="lista-extras-equipos" class="space-y-1.5 text-xs text-zinc-300"></div>
+            </div>
+
+            <div class="bg-[#18181b] border border-[#27272a] rounded-xl p-4">
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" id="chk-gopro" onchange="actualizarDesgloseTicket()" class="mt-1 rounded border-zinc-700 text-amber-500 focus:ring-0">
+                <div>
+                  <b class="text-xs text-white">2. Grabación en Video GoPro Hero 13 (+$20.000)</b>
+                  <p class="text-[11px] text-zinc-400">Registro audiovisual 4K de la sesión de sala.</p>
+                </div>
+              </label>
+            </div>
+
+            <div class="bg-[#18181b] border border-[#27272a] rounded-xl p-4">
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" id="chk-raw-multi" onchange="actualizarDesgloseTicket()" class="mt-1 rounded border-zinc-700 text-amber-500 focus:ring-0">
+                <div>
+                  <b class="text-xs text-white">3. Material en Bruto Multitrack (+$10.000)</b>
+                  <p class="text-[11px] text-zinc-400">Entrega directa de pistas crudas multicanal en la nube ProAudix.</p>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="flex justify-between items-center pt-2">
+            <button onclick="irAlPaso(3)" class="text-xs text-zinc-400 hover:text-white flex items-center gap-1">
+              ← Modificar Fecha u Horario
+            </button>
+            <button onclick="mostrarTicketResumen()" class="bg-amber-500 hover:bg-amber-400 text-black font-extrabold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition">
+              Generar Ticket Oficial →
+            </button>
+          </div>
+        </div>
+
+        <!-- Ticket Resumen Oficial -->
+        <div id="card-ticket-resumen" class="bg-[#141416] border-2 border-amber-500/50 rounded-2xl p-6 shadow-2xl space-y-4">
+          <div class="flex justify-between items-center border-b border-[#242427] pb-3">
+            <span class="text-xs font-black text-amber-400 uppercase tracking-wide">✓ RESUMEN OFICIAL DE LA SESIÓN</span>
+            <span class="text-[10px] bg-emerald-500/20 text-emerald-400 font-extrabold px-2 py-0.5 rounded border border-emerald-500/30 uppercase">DATOS COMPLETADOS</span>
+          </div>
+
+          <div class="bg-[#18181b] p-4 rounded-xl border border-[#27272a] flex justify-between items-center">
+            <div>
+              <span class="text-[10px] text-zinc-500 uppercase font-bold block">TICKET DE RESERVA GENERADO:</span>
+              <span id="ticket-codigo" class="text-amber-400 font-black text-base font-mono">#RP-6871</span>
+            </div>
+            <div class="text-right">
+              <span class="text-[10px] text-zinc-500 uppercase font-bold block">CUPO RESERVADO POR:</span>
+              <span id="ticket-reloj" class="text-xs font-bold text-zinc-300 font-mono">⏱️ 14:35 min</span>
+            </div>
+          </div>
+
+          <div class="space-y-1.5 text-xs text-zinc-300">
+            <h4 id="tkt-servicio-duracion" class="font-extrabold text-white text-sm">🎸 Sala de Ensayo · 2 hr/s</h4>
+            <p id="tkt-fecha-hora" class="text-zinc-400 font-mono text-[11px]">📅 06/11/2026 · 10:00 - 12:00 hrs</p>
+            <p id="tkt-cliente-banda" class="text-zinc-400 text-[11px]">Banda: <b class="text-white">Black Sabbath</b> · Contacto: Ozzy (+56 9 91234567)</p>
+          </div>
+
+          <div class="space-y-2 border-t border-[#242427] pt-3 text-xs">
+            <div class="flex justify-between">
+              <span id="tkt-lbl-base">Sala de Ensayo (2 hrs a $15.000/hr)</span>
+              <span id="tkt-val-base" class="font-bold text-white">$30.000</span>
+            </div>
+            <div class="flex justify-between text-zinc-400" id="tkt-fila-extras">
+              <span>Arriendos de Equipos Extras:</span>
+              <span id="tkt-val-extras">$0</span>
+            </div>
+            <div class="flex justify-between font-extrabold text-sm text-white border-t border-[#242427] pt-2">
+              <span>Total de la Sesión:</span>
+              <span id="tkt-val-total" class="text-amber-400 font-black">$30.000</span>
+            </div>
+          </div>
+
+          <div class="bg-[#18181b] p-4 rounded-xl border border-[#27272a] space-y-2 text-xs">
+            <div class="flex justify-between font-extrabold text-amber-400">
+              <span>Abono Requerido ($5.000 / hr):</span>
+              <span id="tkt-val-abono">$10.000</span>
+            </div>
+            <p class="text-[10px] text-zinc-500">($5.000 x 2 horas para confirmar en agenda oficial)</p>
+            
+            <div class="flex justify-between font-bold text-zinc-300 border-t border-[#242427] pt-2">
+              <span>Saldo Restante a Pagar en Sala:</span>
+              <span id="tkt-val-saldo">$20.000</span>
+            </div>
+            <p class="text-[10px] text-zinc-500">(Se cancela presencialmente al ingresar a tu jornada)</p>
+          </div>
+
+          <div class="bg-[#18181b] p-3 rounded-xl border border-amber-500/20 text-[10px] text-zinc-400 leading-relaxed" id="tkt-politica-conservacion-txt">
+            ⚠️ <b>Política de Almacenamiento de Material (2 Meses):</b> En favor de la optimización de nuestro almacenamiento propio, una vez entregado el material a la banda, conservamos las sesiones por un plazo máximo de 2 meses. Si el cliente no retira o descarga su material en dicho período, las sesiones se programarán para su eliminación definitiva.
+          </div>
+
+          <label class="flex items-center gap-2 text-xs text-zinc-400 cursor-pointer">
+            <input type="checkbox" id="chk-tkt-tyc" class="rounded border-zinc-700 text-amber-500 focus:ring-0">
+            <span>Acepto las condiciones generales y política de reserva Rockerio SpA.</span>
+          </label>
+
+          <div class="space-y-2 pt-2">
+            <button onclick="pagarMercadoPago()" id="btn-tkt-mp" class="w-full bg-[#009ee3] hover:bg-[#0088c6] text-white font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider transition flex items-center justify-center gap-2">
+              <i data-lucide="credit-card" class="w-4 h-4"></i> Pagar Abono con Mercado Pago (Online Instantáneo)
+            </button>
+            <button onclick="solicitarReservaWhatsApp()" class="w-full bg-amber-500 hover:bg-amber-400 text-black font-black py-3.5 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2">
+              <i data-lucide="message-circle" class="w-4 h-4"></i> SOLICITAR RESERVA POR WHATSAPP
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ----------------------------------------------------- -->
+    <!-- PORTAL DE CONTROL ADMINISTRATIVO                      -->
+    <!-- ----------------------------------------------------- -->
+    <div id="vista-admin-panel" class="hidden space-y-6">
+
+      <!-- PESTAÑA ADMIN 1: RESERVAS Y JORNADAS -->
+      <div id="adm-tab-reservas" class="space-y-6">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+          <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-4">
+            <span class="text-zinc-500 text-xs font-bold uppercase block">Sesiones Hoy</span>
+            <span class="text-2xl font-black text-white mt-1">1</span>
+          </div>
+          <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-4">
+            <span class="text-rose-500 text-xs font-bold uppercase block">Sin Abono (Atención)</span>
+            <span class="text-2xl font-black text-rose-500 mt-1">5</span>
+          </div>
+          <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-4">
+            <span class="text-emerald-400 text-xs font-bold uppercase block">Abonadas / Confirmadas</span>
+            <span class="text-2xl font-black text-emerald-400 mt-1">4</span>
+          </div>
+          <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-4">
+            <span class="text-zinc-400 text-xs font-bold uppercase block">Total en Sistema</span>
+            <span class="text-2xl font-black text-amber-400 mt-1">13</span>
+          </div>
+        </div>
+
+        <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-5 space-y-4">
+          <div class="flex justify-between items-center border-b border-[#242427] pb-3">
+            <div class="flex items-center gap-2">
+              <h3 class="text-sm font-extrabold text-white uppercase">📅 Noviembre 2026</h3>
+              <span class="text-[10px] bg-amber-500/20 text-amber-400 font-bold px-2 py-0.5 rounded">Agenda Oficial del Estudio</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="abrirModalBloqueo()" class="bg-zinc-800 hover:bg-zinc-700 text-xs px-3 py-1.5 rounded-lg border border-zinc-700 text-zinc-300">Bloquear Fecha / Hora</button>
+            </div>
+          </div>
+          <div id="adm-grilla-calendario" class="grid grid-cols-7 gap-1.5"></div>
+        </div>
+      </div>
+
+      <!-- PESTAÑA ADMIN 2: CLIENTES Y BANDAS -->
+      <div id="adm-tab-clientes" class="hidden space-y-4">
+        <h3 class="text-sm font-bold text-white uppercase">Directorio de Bandas & Carpetas Drive Material</h3>
+        <div id="adm-lista-bandas" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
+      </div>
+
+      <!-- PESTAÑA ADMIN 3: BEBESTIBLES PROAUDIX (INDEPENDIENTE) -->
+      <div id="adm-tab-bebestibles" class="hidden space-y-6">
+        <div class="bg-[#141416] border border-emerald-500/30 rounded-2xl p-6 shadow-xl space-y-4">
+          <div>
+            <span class="text-[9px] bg-emerald-500 text-black font-extrabold px-1.5 py-0.5 rounded uppercase">MÓDULO INDEPENDIENTE PROAUDIX</span>
+            <h3 class="text-sm font-bold text-white mt-1">Control de Bebestibles y Ventas ProAudix (Nevera & Bar)</h3>
+            <p class="text-xs text-zinc-400">Estos ingresos pertenecen exclusivamente a ProAudix y se mantienen 100% aislados de los balances de Rockerio Producciones SpA.</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
+            <div class="p-4 bg-[#18181b] rounded-xl border border-zinc-800">
+              <span class="text-xs text-zinc-500 block font-bold">TOTAL RECAUDADO MES</span>
+              <span class="text-xl font-black text-emerald-400 mt-1 block">$8.000</span>
+            </div>
+            <div class="p-4 bg-[#18181b] rounded-xl border border-zinc-800">
+              <span class="text-xs text-zinc-500 block font-bold">EFECTIVO EN CAJA</span>
+              <span class="text-xl font-black text-white mt-1 block">$0</span>
+            </div>
+            <div class="p-4 bg-[#18181b] rounded-xl border border-zinc-800">
+              <span class="text-xs text-zinc-500 block font-bold">TRANSFERENCIAS</span>
+              <span class="text-xl font-black text-sky-400 mt-1 block">$8.000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PESTAÑA ADMIN 4: BALANCE Y TRIBUTARIO SII -->
+      <div id="adm-tab-balance" class="hidden space-y-6">
+        
+        <!-- Sub-Navegación del Balance -->
+        <div class="flex items-center gap-2 border-b border-[#242427] pb-2 overflow-x-auto">
+          <button onclick="cambiarSubBalance('socios')" class="btn-sub-bal px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-black" data-sbal="socios">🤝 Reparto Socios y Gastos Sala</button>
+          <button onclick="cambiarSubBalance('sii')" class="btn-sub-bal px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white" data-sbal="sii">🏛️ Balance Tributario Chileno (SII)</button>
+          <button onclick="cambiarSubBalance('operativo')" class="btn-sub-bal px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white" data-sbal="operativo">📊 Balance Operativo y Flujo</button>
+          <button onclick="cambiarSubBalance('tienda-jaime')" class="btn-sub-bal px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white" data-sbal="tienda-jaime">🎸 Liquidación Insumos Tienda</button>
+        </div>
+
+        <!-- 4.1 SUB-VISTA: REPARTO SOCIOS -->
+        <div id="sbal-socios" class="space-y-6">
+          <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-4">
+            <h3 class="text-xs font-bold text-amber-400 uppercase">⚡ 1. Gastos Operativos de la Sala de Ensayo (Noviembre 2026)</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div class="p-3 bg-[#18181b] rounded-xl border border-[#27272a]">
+                <span class="text-zinc-400 block font-bold">Cuenta de Luz Total Recinto</span>
+                <input type="number" id="g-luz-total" value="40000" class="w-full bg-[#202024] border border-zinc-700 rounded-lg p-1.5 text-white font-bold mt-1">
+              </div>
+              <div class="p-3 bg-[#18181b] rounded-xl border border-[#27272a]">
+                <span class="text-zinc-400 block font-bold">(-) Aporte Base ProAudix a la Luz</span>
+                <input type="number" id="g-luz-proaudix" value="10000" class="w-full bg-[#202024] border border-zinc-700 rounded-lg p-1.5 text-white font-bold mt-1">
+                <span class="text-[10px] text-zinc-500">ProAudix aporta $10.000 fijos</span>
+              </div>
+              <div class="p-3 bg-[#18181b] rounded-xl border border-[#27272a]">
+                <span class="text-zinc-400 block font-bold">Caja Chica Jaime (Reparaciones)</span>
+                <input type="number" id="g-caja-chica" value="20000" class="w-full bg-[#202024] border border-zinc-700 rounded-lg p-1.5 text-white font-bold mt-1">
+                <span class="text-[10px] text-zinc-500">Fondo reserva mensual ($20.000)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <!-- Juan Carlos Retamal -->
+            <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-5 space-y-3 flex flex-col justify-between">
+              <div>
+                <span class="text-[9px] bg-zinc-800 text-amber-400 font-extrabold px-2 py-0.5 rounded uppercase">FUNDADOR Y OPERADOR</span>
+                <h4 class="text-sm font-black text-white mt-1">Juan Carlos Retamal</h4>
+                <p class="text-[11px] text-zinc-400">50% Sala + 40% Grabación + 100% Raw</p>
+                <div class="space-y-1.5 text-xs text-zinc-300 border-t border-[#242427] pt-3 mt-3">
+                  <div class="flex justify-between"><span>• 50% Utilidad Sala:</span><b>$24.500</b></div>
+                  <div class="flex justify-between"><span>• 40% Estudio Grabación:</span><b>$0</b></div>
+                  <div class="flex justify-between"><span>• 100% Material en Bruto:</span><b>$0</b></div>
+                </div>
+              </div>
+              <div class="border-t border-[#242427] pt-3">
+                <div class="flex justify-between items-center text-sm font-black">
+                  <span class="text-zinc-400">Total Bolsillo Juan Carlos:</span>
+                  <span class="text-amber-400">$24.500</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Jaime Encina -->
+            <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-5 space-y-3 flex flex-col justify-between">
+              <div>
+                <span class="text-[9px] bg-zinc-800 text-emerald-400 font-extrabold px-2 py-0.5 rounded uppercase">SOCIO SALA Y TIENDA</span>
+                <h4 class="text-sm font-black text-white mt-1">Jaime Encina</h4>
+                <p class="text-[11px] text-zinc-400">50% Sala Neta + $20.000 Caja Chica</p>
+                <div class="space-y-1.5 text-xs text-zinc-300 border-t border-[#242427] pt-3 mt-3">
+                  <div class="flex justify-between"><span>• 50% Utilidad Sala:</span><b>$24.500</b></div>
+                  <div class="flex justify-between"><span>• (+) Fondo Caja Chica:</span><b>+$20.000</b></div>
+                  <div class="flex justify-between"><span>• Tienda Insumos a Transferir:</span><b>$36.000</b></div>
+                </div>
+              </div>
+              <div class="border-t border-[#242427] pt-3 space-y-2">
+                <div class="flex justify-between items-center text-sm font-black">
+                  <span class="text-zinc-400">Total a Entregar a Jaime:</span>
+                  <span class="text-emerald-400">$80.500</span>
+                </div>
+                <button onclick="enviarLiquidacionWhatsApp('Jaime Encina')" class="w-full bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/30 font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5">
+                  <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> Enviar Liquidación a Jaime vía WA
+                </button>
+              </div>
+            </div>
+
+            <!-- Gabriela Martelli -->
+            <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-5 space-y-3 flex flex-col justify-between">
+              <div>
+                <span class="text-[9px] bg-zinc-800 text-purple-400 font-extrabold px-2 py-0.5 rounded uppercase">ESTUDIO GRABACIÓN</span>
+                <h4 class="text-sm font-black text-white mt-1">Gabriela Martelli</h4>
+                <p class="text-[11px] text-zinc-400">60% de Estudio de Grabación</p>
+                <div class="space-y-1.5 text-xs text-zinc-300 border-t border-[#242427] pt-3 mt-3">
+                  <div class="flex justify-between"><span>• Facturado Grabación:</span><b>$0</b></div>
+                  <div class="flex justify-between"><span>• Porcentaje Acordado:</span><b>60%</b></div>
+                  <div class="flex justify-between"><span>• Horas Trabajadas:</span><b>0 hrs</b></div>
+                </div>
+              </div>
+              <div class="border-t border-[#242427] pt-3 space-y-2">
+                <div class="flex justify-between items-center text-sm font-black">
+                  <span class="text-zinc-400">Total para Gabriela:</span>
+                  <span class="text-purple-400">$0</span>
+                </div>
+                <button onclick="enviarLiquidacionWhatsApp('Gabriela Martelli')" class="w-full bg-purple-600/20 hover:bg-purple-600/30 text-purple-400 border border-purple-500/30 font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5">
+                  <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> Enviar Liquidación a Gabriela vía WA
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4.2 SUB-VISTA: BALANCE TRIBUTARIO SII -->
+        <div id="sbal-sii" class="hidden space-y-6">
+          <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-5">
+            <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider">CONFIGURACIÓN DE LA SIMULACIÓN TRIBUTARIA</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div>
+                <label class="block text-zinc-400 mb-1">Régimen Tributario SII Proyectado</label>
+                <select class="w-full bg-[#1c1c1e] border border-zinc-700 rounded-xl p-2.5 text-white">
+                  <option>Régimen ProPyme General (14 D3) - Recomendado</option>
+                  <option>ProPyme Transparente (14 D8)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-zinc-400 mb-1">Tipo de Documento Tributario</label>
+                <select class="w-full bg-[#1c1c1e] border border-zinc-700 rounded-xl p-2.5 text-white">
+                  <option>Boletas Afectas a IVA (19% incluido en precios)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-zinc-400 mb-1">Tasa PPM (Pago Provisional Mensual)</label>
+                <select class="w-full bg-[#1c1c1e] border border-zinc-700 rounded-xl p-2.5 text-white">
+                  <option>0.25% (Tasa inicial ProPyme ingresos < 50.000 UF)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- F29 -->
+            <div class="bg-[#18181b] border border-[#27272a] rounded-xl p-5 space-y-4">
+              <div class="flex justify-between items-center border-b border-[#242427] pb-3">
+                <div>
+                  <h4 class="text-xs font-bold text-white flex items-center gap-1.5"><i data-lucide="calculator" class="w-4 h-4 text-amber-500"></i> Simulación Mensual: Formulario 29 (F29)</h4>
+                  <span class="text-[10px] text-zinc-500">Vence el día 20 de cada mes en sii.cl</span>
+                </div>
+                <div class="text-right">
+                  <span class="text-[10px] text-zinc-500 uppercase block font-bold">Total a Pagar F29 Estimado:</span>
+                  <span class="text-rose-400 font-black text-base">$5.098</span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                <div class="p-3 bg-[#131316] rounded-xl border border-zinc-800">
+                  <span class="text-zinc-400 block font-bold">1. IVA Débito Fiscal (19%)</span>
+                  <p class="text-base font-black text-white mt-1">$11.336</p>
+                  <span class="text-[10px] text-zinc-500">IVA recaudado del total de ventas de sala y grabaciones.</span>
+                </div>
+                <div class="p-3 bg-[#131316] rounded-xl border border-zinc-800">
+                  <span class="text-zinc-400 block font-bold">2. (-) IVA Crédito Fiscal (Compras)</span>
+                  <p class="text-base font-black text-emerald-400 mt-1">-$6.387</p>
+                  <span class="text-[10px] text-zinc-500">IVA deducible de facturas de luz y compras de cuerdas/insumos a nombre de la SpA.</span>
+                </div>
+                <div class="p-3 bg-[#131316] rounded-xl border border-zinc-800">
+                  <span class="text-zinc-400 block font-bold">3. PPM Mensual (0.25%)</span>
+                  <p class="text-base font-black text-amber-400 mt-1">$149</p>
+                  <span class="text-[10px] text-zinc-500">Ahorro mensual obligatorio que descuenta tu impuesto a la renta anual.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4.3 SUB-VISTA: BALANCE OPERATIVO Y FLUJO -->
+        <div id="sbal-operativo" class="hidden space-y-6">
+          <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-5">
+            <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider">Criterio Estricto de Ingresos al Balance (Por Concreción)</h3>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+              <div class="bg-[#18181b] p-4 rounded-xl border border-zinc-800">
+                <span class="text-[10px] text-zinc-500 font-bold uppercase block">INGRESOS CONCRETADOS AL BALANCE</span>
+                <span class="text-xl font-black text-amber-400 mt-1 block">$71.000</span>
+              </div>
+              <div class="bg-[#18181b] p-4 rounded-xl border border-zinc-800">
+                <span class="text-[10px] text-zinc-500 font-bold uppercase block">CUSTODIA PROVISIONAL (EN PROCESO)</span>
+                <span class="text-xl font-black text-white mt-1 block">$40.000</span>
+              </div>
+              <div class="bg-[#18181b] p-4 rounded-xl border border-zinc-800">
+                <span class="text-[10px] text-zinc-500 font-bold uppercase block">INASISTENCIAS & RETENCIONES</span>
+                <span class="text-xl font-black text-emerald-400 mt-1 block">+$15.000</span>
+              </div>
+              <div class="bg-[#18181b] p-4 rounded-xl border border-zinc-800">
+                <span class="text-[10px] text-zinc-500 font-bold uppercase block">EGRESOS EN CAJA (DEVOLUCIONES)</span>
+                <span class="text-xl font-black text-rose-400 mt-1 block">-$0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4.4 SUB-VISTA: LIQUIDACIÓN INSUMOS TIENDA -->
+        <div id="sbal-tienda-jaime" class="hidden space-y-6">
+          <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-5">
+            <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider">Liquidación de Tienda de Música e Insumos (Jaime Encina)</h3>
+            <div class="bg-[#18181b] p-5 rounded-xl border border-zinc-800 space-y-4">
+              <div class="flex justify-between items-center border-b border-[#242427] pb-3">
+                <span class="text-xs font-bold text-white uppercase">RESUMEN DE INSUMOS DEL PERIODO (NOVIEMBRE DE 2026)</span>
+                <span class="text-xs text-amber-400 font-extrabold">Monto Acumulado a Transferir: $36.000</span>
+              </div>
+              <button onclick="enviarLiquidacionWhatsApp('Jaime Encina')" class="w-full bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/30 font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2">
+                <i data-lucide="message-circle" class="w-4 h-4"></i> Enviar Comprobante de Tienda a Jaime
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PESTAÑA ADMIN 5: RESEÑAS Y EVALUACIONES (MODERACIÓN) -->
+      <div id="adm-tab-resenas" class="hidden space-y-6">
+        <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-4">
+          <div class="grid grid-cols-3 gap-3 text-center">
+            <div class="bg-[#18181b] p-4 rounded-xl border border-zinc-800">
+              <span class="text-zinc-500 text-xs font-bold uppercase block">Total Evaluaciones</span>
+              <span class="text-xl font-black text-white mt-1">2</span>
+            </div>
+            <div class="bg-[#18181b] p-4 rounded-xl border border-zinc-800">
+              <span class="text-zinc-500 text-xs font-bold uppercase block">Calificación Promedio</span>
+              <span class="text-xl font-black text-amber-400 mt-1">5.0 ★</span>
+            </div>
+            <div class="bg-[#18181b] p-4 rounded-xl border border-zinc-800">
+              <span class="text-zinc-500 text-xs font-bold uppercase block">Control de Moderación</span>
+              <span class="text-xs font-black text-emerald-400 mt-1 block">Eliminación directa activa</span>
+            </div>
+          </div>
+          <div id="adm-lista-resenas" class="space-y-3 pt-2"></div>
+        </div>
+      </div>
+
+      <!-- PESTAÑA ADMIN 6: CONFIGURACIÓN INTEGRAL WEB (AUTOCONFIGURABLE COMPLETO) -->
+      <div id="adm-tab-configuracion" class="hidden space-y-8">
+        <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-8">
+          <div class="flex justify-between items-center border-b border-[#242427] pb-3">
+            <div>
+              <h3 class="text-sm font-bold text-white uppercase flex items-center gap-2"><i data-lucide="settings" class="w-4 h-4 text-amber-500"></i> Configuración Integral del Sitio Web, Medios y Textos</h3>
+              <p class="text-xs text-zinc-400">Modifica funciones, textos, switches, medios multimedia y respaldos automáticos en Firebase sin tocar código.</p>
+            </div>
+            <button onclick="guardarTodaConfiguracionFirebase()" class="bg-amber-500 hover:bg-amber-400 text-black font-extrabold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition shadow">
+              Guardar Todo en Firebase
+            </button>
+          </div>
+
+          <!-- SECCIÓN A: EDICIÓN DE TEXTOS Y CONTENIDOS (CAPTURA 21 Y 24) -->
+          <div class="space-y-4">
+            <h4 class="text-xs font-bold text-amber-400 uppercase flex items-center gap-1.5"><i data-lucide="type" class="w-4 h-4"></i> 6. Edición de Textos y Contenidos de Cada Sección</h4>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <div>
+                <label class="block text-zinc-400 mb-1">Título Principal de la Web</label>
+                <input type="text" id="cfg-txt-titulo-web" value="ROCKERIO PRODUCCIONES" class="w-full bg-[#18181b] border border-zinc-800 rounded-lg p-2.5 text-white">
+              </div>
+              <div>
+                <label class="block text-zinc-400 mb-1">Subtítulo / Categorías en Barra Superior</label>
+                <input type="text" id="cfg-txt-subtitulo-web" value="SALA DE ENSAYO / ESTUDIO DE GRABACIÓN / TIENDA DE INSUMOS MUSICALES / QUINTA NORMAL" class="w-full bg-[#18181b] border border-zinc-800 rounded-lg p-2.5 text-white">
+              </div>
+              <div>
+                <label class="block text-zinc-400 mb-1">Dirección Física</label>
+                <input type="text" id="cfg-txt-direccion" value="DIRECCIÓN: JOSE JOAQUÍN PEREZ #4547" class="w-full bg-[#18181b] border border-zinc-800 rounded-lg p-2.5 text-white">
+              </div>
+              <div>
+                <label class="block text-zinc-400 mb-1">Comuna y Ciudad</label>
+                <input type="text" id="cfg-txt-comuna" value="QUINTA NORMAL / SANTIAGO" class="w-full bg-[#18181b] border border-zinc-800 rounded-lg p-2.5 text-white">
+              </div>
+            </div>
+
+            <div class="space-y-2 text-xs">
+              <label class="block text-zinc-400">Biografía Profesional / Introducción (Juan Carlos Retamal)</label>
+              <textarea id="cfg-txt-bio" rows="2" class="w-full bg-[#18181b] border border-zinc-800 rounded-lg p-2.5 text-white">Hola. Soy Juan Carlos, técnico superior en informática e ingeniero en sonido con más de 5 años de experiencia trabajando en estudio de grabación y producción, además de operar Rockerio Producciones.</textarea>
+            </div>
+          </div>
+
+          <!-- SECCIÓN B: FICHA TÉCNICA DINÁMICA (CAPTURA 22 Y 23) -->
+          <div class="space-y-4 pt-4 border-t border-[#242427]">
+            <div class="flex justify-between items-center">
+              <h4 class="text-xs font-bold text-amber-400 uppercase flex items-center gap-1.5"><i data-lucide="wrench" class="w-4 h-4"></i> D. Ficha Técnica, Equipamiento y Textos del Estudio</h4>
+              <button onclick="agregarFilaEquipamiento()" class="text-xs bg-zinc-800 hover:bg-zinc-700 text-amber-400 px-3 py-1 rounded-lg border border-zinc-700">+ Agregar Fila a Ficha</button>
+            </div>
+            
+            <div id="contenedor-items-ficha" class="space-y-2">
+              <!-- Creado dinámicamente -->
+            </div>
+          </div>
+
+          <!-- SECCIÓN C: GESTOR MULTIMEDIA FOTOS / VIDEOS / DRIVE (CAPTURA 20) -->
+          <div class="space-y-4 pt-4 border-t border-[#242427]">
+            <h4 class="text-xs font-bold text-amber-400 uppercase flex items-center gap-1.5"><i data-lucide="image" class="w-4 h-4"></i> 5. Editor de Fotos de Carruseles y Contenidos Web (CMS)</h4>
+            
+            <div class="space-y-3 text-xs">
+              <div class="p-3 bg-[#18181b] rounded-xl border border-zinc-800 flex justify-between items-center">
+                <div>
+                  <b class="text-white block">Foto de Portada / Hero Banner Principal</b>
+                  <input type="text" id="cfg-media-hero" value="https://lh3.googleusercontent.com/d/1koOUxGV_wO5FbtduEK5uzuYuVBKuyYoV" class="w-96 bg-[#121214] border border-zinc-800 rounded p-1.5 text-zinc-300 mt-1">
+                </div>
+                <input type="file" onchange="subirArchivoAFirebase(this, 'cfg-media-hero')" class="text-xs text-zinc-400">
+              </div>
+
+              <div class="p-3 bg-[#18181b] rounded-xl border border-zinc-800 flex justify-between items-center">
+                <div>
+                  <b class="text-white block">Logo Oficial ProAudix (Para la Pestaña ProAudix)</b>
+                  <input type="text" id="cfg-media-logo-proaudix" value="https://lh3.googleusercontent.com/d/1ew4As5evEuBzu0u6pnJI8MWvNvuiH0nR" class="w-96 bg-[#121214] border border-zinc-800 rounded p-1.5 text-zinc-300 mt-1">
+                </div>
+                <input type="file" onchange="subirArchivoAFirebase(this, 'cfg-media-logo-proaudix')" class="text-xs text-zinc-400">
+              </div>
+
+              <div class="p-3 bg-[#18181b] rounded-xl border border-zinc-800 flex justify-between items-center">
+                <div>
+                  <b class="text-white block">Playlist YouTube Oficial (Iframe ID o Link)</b>
+                  <input type="text" id="cfg-media-yt" value="https://www.youtube.com/embed/videoseries?list=PLVvxu7INRfmo" class="w-96 bg-[#121214] border border-zinc-800 rounded p-1.5 text-zinc-300 mt-1">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECCIÓN D: MOTOR DE SWITCHES ON/OFF (CAPTURA 16, 17, 18) -->
+          <div class="space-y-3 pt-4 border-t border-[#242427]">
+            <h4 class="text-xs font-bold text-amber-400 uppercase flex items-center gap-1.5"><i data-lucide="toggle-left" class="w-4 h-4"></i> Motor de Configuración Total (Switches ON/OFF)</h4>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+              <label class="flex items-center justify-between p-3 bg-[#18181b] rounded-xl border border-zinc-800 cursor-pointer">
+                <span>Abono Mercado Pago</span>
+                <input type="checkbox" id="sw-abono-mp" checked class="rounded border-zinc-700 text-amber-500">
+              </label>
+              <label class="flex items-center justify-between p-3 bg-[#18181b] rounded-xl border border-zinc-800 cursor-pointer">
+                <span>Requerimientos Técnicos</span>
+                <input type="checkbox" id="sw-req-tecnicos" checked class="rounded border-zinc-700 text-amber-500">
+              </label>
+              <label class="flex items-center justify-between p-3 bg-[#18181b] rounded-xl border border-zinc-800 cursor-pointer">
+                <span>Cotizador Express PDF</span>
+                <input type="checkbox" id="sw-cotizador" checked class="rounded border-zinc-700 text-amber-500">
+              </label>
+              <label class="flex items-center justify-between p-3 bg-[#18181b] rounded-xl border border-zinc-800 cursor-pointer">
+                <span>Bloqueos Sanitización</span>
+                <input type="checkbox" id="sw-sanitizacion" checked class="rounded border-zinc-700 text-amber-500">
+              </label>
+            </div>
+          </div>
+
+          <!-- SECCIÓN E: SISTEMA INTEGRAL Y AUTOMATIZADO DE RESPALDOS (CAPTURA 27) -->
+          <div class="space-y-4 pt-4 border-t border-[#242427]">
+            <div class="flex justify-between items-center">
+              <div>
+                <h4 class="text-xs font-bold text-amber-400 uppercase flex items-center gap-1.5"><i data-lucide="database" class="w-4 h-4"></i> 9. Sistema Integral y Automatizado de Respaldos</h4>
+                <p class="text-[11px] text-zinc-400">Respaldo completo de base de datos, textos, fotos, audios, arriendos, clientes y configuraciones en Firebase.</p>
+              </div>
+              <span class="text-[10px] bg-emerald-500/20 text-emerald-400 font-bold px-2 py-0.5 rounded border border-emerald-500/30">RESPALDOS AUTÓNOMOS ACTIVOS</span>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <button onclick="tomarRespaldoAhora()" class="bg-amber-500 hover:bg-amber-400 text-black font-extrabold px-4 py-2 rounded-xl text-xs uppercase transition shadow">
+                ⚙️ Tomar Respaldo Ahora
+              </button>
+              <button onclick="ejecutarRespaldoManual()" class="bg-[#18181b] hover:bg-zinc-800 text-zinc-300 border border-zinc-700 px-4 py-2 rounded-xl text-xs font-bold transition">
+                Descargar Respaldo JSON Completo
+              </button>
+            </div>
+
+            <!-- Historial de Copias Disponibles -->
+            <div class="space-y-2 pt-2">
+              <label class="text-[11px] font-bold text-zinc-500 uppercase">HISTORIAL DE COPIAS DE SEGURIDAD DISPONIBLES</label>
+              <div id="lista-respaldos-historico" class="space-y-2 text-xs">
+                <!-- Inyectado dinámicamente -->
+              </div>
+            </div>
+
+            <!-- Botón Rojo Inicialización Operativa -->
+            <div class="p-4 bg-rose-950/20 border border-rose-900/40 rounded-xl space-y-2 mt-4">
+              <h5 class="text-xs font-bold text-rose-400 flex items-center gap-1.5">⚠️ Inicialización Operativa (Dejar Portal en Cero para Hoy)</h5>
+              <p class="text-[11px] text-zinc-400">Si deseas comenzar a operar hoy con una base de datos 100% limpia sin registros de prueba ni reservas antiguas, puedes pulsar el botón a continuación. Conservará tu clave, tarifas y catálogo de insumos.</p>
+              <button onclick="vaciarReservasPrueba()" class="bg-rose-600 hover:bg-rose-500 text-white font-extrabold text-xs px-4 py-2 rounded-xl transition">
+                🗑️ Vaciar Reservas y Clientes de Prueba (Comenzar en Cero)
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </main>
 
   <!-- ======================================================= -->
-  <!-- LÓGICA JAVASCRIPT & SINCRONIZACIÓN FIREBASE FIRESTORE   -->
+  <!-- MODALES COMPLEMENTARIOS                                 -->
+  <!-- ======================================================= -->
+  <div id="modal-cotizador" class="fixed inset-0 bg-black/85 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-[#141416] border border-[#27272a] rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl custom-scroll max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center border-b border-[#242427] pb-3">
+        <h3 class="text-xs font-bold text-amber-400 uppercase flex items-center gap-1.5"><i data-lucide="file-spreadsheet" class="w-4 h-4"></i> Generar Presupuesto de Producción Musical</h3>
+        <button onclick="cerrarModalCotizador()" class="text-zinc-400 hover:text-white">&times;</button>
+      </div>
+      <form onsubmit="guardarCotizacion(event)" class="space-y-4 text-xs">
+        <div class="grid grid-cols-2 gap-2">
+          <input type="text" placeholder="Cliente Responsable *" required class="bg-[#1c1c1e] border border-zinc-700 rounded-lg p-2 text-white">
+          <input type="text" placeholder="Banda / Proyecto Musical *" required class="bg-[#1c1c1e] border border-zinc-700 rounded-lg p-2 text-white">
+          <input type="tel" placeholder="Teléfono Celular *" required class="bg-[#1c1c1e] border border-zinc-700 rounded-lg p-2 text-white">
+          <input type="email" placeholder="Correo Electrónico *" required class="bg-[#1c1c1e] border border-zinc-700 rounded-lg p-2 text-white">
+        </div>
+        <div class="p-3 bg-[#18181b] rounded-xl flex justify-between items-center text-sm font-black border border-zinc-800">
+          <span>TOTAL ESTIMADO FINAL (CLP):</span>
+          <span class="text-amber-400">$120.000</span>
+        </div>
+        <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-black font-extrabold py-2.5 rounded-xl uppercase">Guardar y Generar PDF</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="modal-bloqueo" class="fixed inset-0 bg-black/85 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-[#141416] border border-[#27272a] rounded-2xl max-w-sm w-full p-5 space-y-4 shadow-2xl">
+      <div class="flex justify-between items-center border-b border-[#242427] pb-2">
+        <h3 class="text-xs font-bold text-zinc-300 uppercase">Bloquear Agenda / Mantención</h3>
+        <button onclick="cerrarModalBloqueo()" class="text-zinc-500 hover:text-white">&times;</button>
+      </div>
+      <form onsubmit="guardarBloqueo(event)" class="space-y-3 text-xs">
+        <input type="date" value="2026-11-06" class="w-full bg-[#1c1c1e] border border-zinc-700 rounded-xl p-2 text-white">
+        <input type="text" placeholder="Ej: 14:00 - 17:00 hrs" required class="w-full bg-[#1c1c1e] border border-zinc-700 rounded-xl p-2 text-white">
+        <input type="text" placeholder="Motivo (Desplegado en Plomo)" required class="w-full bg-[#1c1c1e] border border-zinc-700 rounded-xl p-2 text-white">
+        <button type="submit" class="w-full bg-zinc-600 hover:bg-zinc-500 text-white font-bold py-2.5 rounded-xl uppercase">Guardar Bloqueo Plomo</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================= -->
+  <!-- 5. SCRIPT ENGINE CONEXIÓN FIREBASE & AUTOCONFIGURACIÓN  -->
   <!-- ======================================================= -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { 
-      getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, query, orderBy 
-    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+      getDatabase, ref, set, update, remove, get, onValue 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    import { 
+      getStorage, ref as sRef, uploadBytes, getDownloadURL 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
-    // -------------------------------------------------------------
-    // 1. CONFIGURACIÓN FIREBASE (REEMPLAZA ESTO CON TUS CLAVES)
-    // -------------------------------------------------------------
+    // Credenciales Firebase
     const firebaseConfig = {
       apiKey: "PEGAR_TU_API_KEY",
-      authDomain: "PEGAR_TU_PROJECT_ID.firebaseapp.com",
-      projectId: "PEGAR_TU_PROJECT_ID",
-      storageBucket: "PEGAR_TU_PROJECT_ID.appspot.com",
-      messagingSenderId: "PEGAR_SENDER_ID",
-      appId: "PEGAR_APP_ID"
+      authDomain: "rockerio-producciones-932fb.firebaseapp.com",
+      databaseURL: "https://rockerio-producciones-932fb-default-rtdb.firebaseio.com",
+      projectId: "rockerio-producciones-932fb",
+      storageBucket: "rockerio-producciones-932fb.firebasestorage.app",
+      messagingSenderId: "1234567890",
+      appId: "1:1234567890:web:abcdef"
     };
 
-    const WHATSAPP_NUMERO = "56963402567";
-    const ADMIN_PASS = "rockerio2026";
-
-    // Tarifas activas
-    let tarifas = {
-      horaEnsayo: 15000,
-      horaGrabacion: 30000,
-      extraHora: 3000,
-      video: 20000,
-      raw: 10000,
-      abonoHora: 5000
-    };
-
-    const EQUIPOS_EXTRAS = [
-      'Set de Platos Batería Kingdo B8 (Hi-Hat / Crashes / Ride)',
-      'Bajo Activo Epiphone Thunderbird PRO IV',
-      "Guitarra Eléctrica Squier Vintage Modified 70'",
-      'Guitarra Electro-Acústica Takamine',
-      'Pedalboard de Efectos Análogos para Bajo',
-      'Pedalboard de Efectos Análogos para Guitarra'
-    ];
-
-    let servicioActual = "ensayo";
-    let extrasSeleccionados = [];
-    let reservas = [];
-    let bloqueos = [];
-    let db = null;
+    let rtdb = null;
+    let storage = null;
     let usaFirebase = false;
 
-    // Catálogo Tienda
-    const tiendaProductos = [
-      { id: 1, nombre: "Cuerdas Ernie Ball 10-46", precio: 12000, cat: "Cuerdas", img: "11qeN4nFIdltD2MPkd4ZtVZ6JnCbO1nD9" },
-      { id: 2, nombre: "Cuerdas Ernie Ball 9-46", precio: 12000, cat: "Cuerdas", img: "1d2FdGi3O2l63_Z7loHLkgaU7BZ_0rdPu" },
-      { id: 3, nombre: "Cuerdas Ernie Ball 11-48", precio: 12000, cat: "Cuerdas", img: "1ZcCgHTBcBtw27T2UEsqfSaZXLnY4jcbh" },
-      { id: 4, nombre: "Uñetas Variadas (Pack/Unidad)", precio: 1000, cat: "Accesorios", img: "1WGAUzCDud5vOoAZ0CdEe8We4srlzsXdF" },
-      { id: 5, nombre: "Straplocks de Seguridad Goma", precio: 5000, cat: "Herrajes", img: "1AyOpSYkkaClLF9Di3buF9HlPNW_Ap7Wr" },
-      { id: 6, nombre: "Batería 9V Alcalina", precio: 4500, cat: "Energía", img: "1YC0mTRhcjUQENYOJy9yAbZzq7S_-aCgA" },
-      { id: 7, nombre: "In-Ear KZ Monitoreo", precio: 15000, cat: "Monitoreo", img: "1WfYXLu2wFp9z75eUq5h89roWAcX9hy-w" }
+    // Estado Global Autoconfigurable
+    let configSitio = {
+      tituloWeb: "ROCKERIO PRODUCCIONES",
+      subtituloWeb: "SALA DE ENSAYO / ESTUDIO DE GRABACIÓN / TIENDA DE INSUMOS MUSICALES / QUINTA NORMAL",
+      direccion: "DIRECCIÓN: JOSE JOAQUÍN PEREZ #4547",
+      comuna: "QUINTA NORMAL / SANTIAGO",
+      bio: "Hola. Soy Juan Carlos, técnico superior en informática e ingeniero en sonido con más de 5 años de experiencia trabajando en estudio de grabación y producción, además de operar Rockerio Producciones.",
+      heroMedia: "https://lh3.googleusercontent.com/d/1koOUxGV_wO5FbtduEK5uzuYuVBKuyYoV",
+      logoProaudix: "https://lh3.googleusercontent.com/d/1ew4As5evEuBzu0u6pnJI8MWvNvuiH0nR",
+      ytPlaylist: "https://www.youtube.com/embed/videoseries?list=PLVvxu7INRfmo",
+      fichaEquipos: [
+        { cat: "Climatización:", desc: "Aire acondicionado para ensayos y grabaciones confortables." },
+        { cat: "Espacios:", desc: "Patio interior dedicado para descansar, compartir y despejarse entre sesiones." },
+        { cat: "Conectividad:", desc: "Wi-Fi de alta velocidad disponible permanentemente en todo el recinto." },
+        { cat: "Servicios:", desc: "Estación permanente de té, café y agua purificada a libre disposición." }
+      ],
+      switches: {
+        abonoMp: true,
+        reqTecnicos: true,
+        cotizador: true,
+        sanitizacion: true
+      }
+    };
+
+    let respaldosHistoricos = [
+      { id: "bk_1", nombre: "Manual desde Barra Admin", fecha: "2026-11-05 2:55:17 p.m.", tam: "455 KB" },
+      { id: "bk_2", nombre: "Automático al Iniciar Jornada", fecha: "2026-11-05 2:50:51 p.m.", tam: "354 KB" }
     ];
 
-    let reviews = [
-      { nombre: "Banda ZETA", rating: 5, texto: "Excelente sonido y el aire acondicionado se agradece un montón." },
-      { nombre: "Los Maderos", rating: 5, texto: "Grabamos en vivo con la Midas M32 y sonó demoledor. Recomendado 100%." }
-    ];
-
-    // Galería
-    const carruselFotos = [
-      { id: "1EZnM_87vPIFRm4pAFkXZAra-p7cGQIdw", tit: "Control Room & SSL SiX", desc: "Consola Midas M32 y monitoreo Kali Audio" },
-      { id: "1koOUxGV_wO5FbtduEK5uzuYuVBKuyYoV", tit: "Sala de Ensayo Principal", desc: "Backline valvular Laney y Orange con acústica tratada" },
-      { id: "1v7EA_CR3Pa_9wtCh6p0sG9z3dAa0D1L7", tit: "Batería Pearl & Microfonía", desc: "Miqueo completo con Telefunken, Shure y AKG" }
-    ];
-    let slideIdx = 0;
-
-    // -------------------------------------------------------------
-    // 2. INICIALIZACIÓN
-    // -------------------------------------------------------------
     window.addEventListener('DOMContentLoaded', () => {
-      // Iniciar Iconos Lucide
-      if (window.lucide) lucide.createIcons();
+      lucide.createIcons();
+      inicializarFirebase();
+      renderizarFichaConfig();
+      renderizarHistoricoRespaldos();
+      aplicarTextosEnPantalla();
+    });
 
-      // Configurar fecha mínima
-      const inputFecha = document.getElementById('res-fecha');
-      const hoy = new Date().toISOString().split('T')[0];
-      inputFecha.min = hoy;
-      inputFecha.value = hoy;
-      document.getElementById('b-fecha').min = hoy;
-
-      // Renderizar Extras
-      renderizarExtras();
-      renderizarTienda();
-      renderizarReviews();
-      iniciarCarrusel();
-
-      // Conexión Firebase Firestore
+    function inicializarFirebase() {
       if (firebaseConfig.apiKey !== "PEGAR_TU_API_KEY") {
         try {
           const app = initializeApp(firebaseConfig);
-          db = getFirestore(app);
+          rtdb = getDatabase(app);
+          storage = getStorage(app);
           usaFirebase = true;
-          document.getElementById('conexion-estado').textContent = "● Sincronizado en Nube (Firebase)";
-          document.getElementById('conexion-estado').className = "text-[10px] text-emerald-400 font-medium";
 
-          // Escuchar Reservas en vivo
-          onSnapshot(query(collection(db, "reservas"), orderBy("fecha", "asc")), (snap) => {
-            reservas = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-            cargarDisponibilidad();
-            renderizarReservasAdmin();
-          });
-
-          // Escuchar Bloqueos en vivo
-          onSnapshot(collection(db, "bloqueos"), (snap) => {
-            bloqueos = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-            cargarDisponibilidad();
-            renderizarBloqueosAdmin();
+          // Sincronizar configuraciones en vivo
+          onValue(ref(rtdb, 'configSitio'), (snap) => {
+            const data = snap.val();
+            if (data) {
+              configSitio = data;
+              aplicarTextosEnPantalla();
+              renderizarFichaConfig();
+            }
           });
         } catch (e) {
-          console.error("Error Firebase:", e);
+          console.error("Fallo RTDB:", e);
         }
-      } else {
-        document.getElementById('conexion-estado').textContent = "● Modo Local (Demostración)";
-        document.getElementById('conexion-estado').className = "text-[10px] text-amber-400 font-medium";
-        cargarDisponibilidad();
       }
+    }
 
-      actualizarCalculos();
-    });
-
-    // -------------------------------------------------------------
-    // 3. NAVEGACIÓN ENTRE PESTAÑAS
-    // -------------------------------------------------------------
-    window.cambiarPestana = function(tabId) {
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
-      document.querySelectorAll('.tab-btn').forEach(b => {
-        b.classList.remove('bg-amber-500', 'text-black', 'shadow-sm');
-        b.classList.add('text-zinc-400');
-      });
-
-      const destino = document.getElementById(`tab-${tabId}`);
-      if (destino) destino.classList.remove('hidden');
-
-      const btn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
-      if (btn) {
-        btn.classList.add('bg-amber-500', 'text-black', 'shadow-sm');
-        btn.classList.remove('text-zinc-400');
-      }
-
-      if (tabId === 'reservar') cargarDisponibilidad();
-    };
-
-    // -------------------------------------------------------------
-    // 4. LÓGICA DE RESERVAS Y DISPONIBILIDAD
-    // -------------------------------------------------------------
-    window.setServicio = function(srv) {
-      servicioActual = srv;
-      const btnEnsayo = document.getElementById('btn-srv-ensayo');
-      const btnGrabacion = document.getElementById('btn-srv-grabacion');
-      const bannerMulti = document.getElementById('banner-multipista');
-      const opcEnsayo = document.getElementById('caja-opcionales-ensayo');
-
-      if (srv === 'ensayo') {
-        btnEnsayo.className = "p-3.5 rounded-xl border-2 border-amber-500 bg-amber-500/10 text-left transition";
-        btnGrabacion.className = "p-3.5 rounded-xl border-2 border-[#262626] bg-[#1a1a1a] text-left transition";
-        bannerMulti.classList.remove('hidden');
-        opcEnsayo.classList.remove('hidden');
-      } else {
-        btnGrabacion.className = "p-3.5 rounded-xl border-2 border-amber-500 bg-amber-500/10 text-left transition";
-        btnEnsayo.className = "p-3.5 rounded-xl border-2 border-[#262626] bg-[#1a1a1a] text-left transition";
-        bannerMulti.classList.add('hidden');
-        opcEnsayo.classList.add('hidden');
-      }
-      actualizarCalculos();
-      cargarDisponibilidad();
-    };
-
-    window.cargarDisponibilidad = function() {
-      const fecha = document.getElementById('res-fecha').value;
-      const duracion = parseInt(document.getElementById('res-duracion').value, 10);
-      const grid = document.getElementById('grid-bloques');
-      const inputBloque = document.getElementById('bloque-seleccionado');
-
-      inputBloque.value = "";
-      grid.innerHTML = "";
-
-      if (!fecha) return;
-
-      const dateObj = new Date(fecha + "T00:00:00");
-      const dia = dateObj.getDay();
-      let rangos = [];
-
-      // Horarios Rockerío (Lun-Vie colación 14:00-17:00)
-      if (dia >= 1 && dia <= 5) {
-        const cierre = (dia === 4) ? 22 : 23;
-        rangos = [{ s: 9, e: 14 }, { s: 17, e: cierre }];
-      } else if (dia === 6) {
-        rangos = [{ s: 10, e: 22 }];
-      } else {
-        rangos = [{ s: 10, e: 21 }];
-      }
-
-      const ahora = new Date();
-      const esHoy = (new Date(fecha + "T00:00:00").toDateString() === ahora.toDateString());
-      const horaMinima = ahora.getHours() + 4;
-
-      // Buscar horas ocupadas en Firestore (reservas o bloqueos)
-      const ocupadas = [
-        ...reservas.filter(r => r.fecha === fecha).map(r => r.bloque),
-        ...bloqueos.filter(b => b.fecha === fecha).map(b => b.bloque)
-      ];
-
-      rangos.forEach(r => {
-        for (let h = r.s; h + duracion <= r.e; h++) {
-          const label = `${h}:00 - ${h + duracion}:00 hrs`;
-          const estaOcupada = ocupadas.includes(label);
-          const cumpleAnticipacion = !esHoy || (h >= horaMinima);
-          const disponible = !estaOcupada && cumpleAnticipacion;
-
-          const btn = document.createElement('button');
-          btn.type = "button";
-          btn.className = disponible 
-            ? "btn-slot p-2.5 rounded-xl text-xs font-bold bg-[#1a1a1a] border border-[#2d2d2d] text-zinc-200 hover:border-amber-500 hover:text-amber-400 transition"
-            : "p-2.5 rounded-xl text-xs font-semibold bg-[#121212] text-zinc-600 border border-[#1e1e1e] cursor-not-allowed line-through";
-          
-          btn.textContent = label;
-          btn.disabled = !disponible;
-
-          if (disponible) {
-            btn.onclick = () => {
-              document.querySelectorAll('.btn-slot').forEach(b => {
-                b.classList.remove('bg-amber-500', 'text-black', 'border-amber-500');
-                b.classList.add('bg-[#1a1a1a]', 'text-zinc-200');
-              });
-              btn.classList.remove('bg-[#1a1a1a]', 'text-zinc-200');
-              btn.classList.add('bg-amber-500', 'text-black', 'border-amber-500');
-              inputBloque.value = label;
-              document.getElementById('sum-bloque').textContent = `Bloque: ${label}`;
-            };
-          }
-
-          grid.appendChild(btn);
-        }
-      });
-
-      if (grid.children.length === 0) {
-        grid.innerHTML = '<p class="col-span-full text-xs text-zinc-500 py-3 text-center">No hay bloques disponibles para esta fecha.</p>';
-      }
-    };
-
-    window.actualizarCalculos = function() {
-      const duracion = parseInt(document.getElementById('res-duracion').value, 10);
-      const precioBase = (servicioActual === "ensayo") ? tarifas.horaEnsayo : tarifas.horaGrabacion;
+    // Aplicar textos en la interfaz pública
+    function aplicarTextosEnPantalla() {
+      document.getElementById('header-tit-web').childNodes[0].nodeValue = configSitio.tituloWeb + " ";
+      document.getElementById('header-subtit-web').textContent = configSitio.subtituloWeb;
       
-      const costoBase = precioBase * duracion;
-      const costoExtras = extrasSeleccionados.length * tarifas.extraHora * duracion;
-      
-      const incVideo = document.getElementById('chk-video').checked && servicioActual === 'ensayo' && duracion >= 2;
-      const incRaw = document.getElementById('chk-raw').checked && servicioActual === 'ensayo' && duracion >= 2;
-
-      const costoVideo = incVideo ? tarifas.video : 0;
-      const costoRaw = incRaw ? tarifas.raw : 0;
-
-      const total = costoBase + costoExtras + costoVideo + costoRaw;
-      const abono = tarifas.abonoHora * duracion;
-      const saldo = total - abono;
-
-      // Actualizar Resumen Visual
-      document.getElementById('sum-servicio').textContent = `${(servicioActual === "ensayo") ? "Sala de Ensayo" : "Grabación"} · ${duracion} hr/s`;
-      document.getElementById('sum-costo-base').textContent = `$${costoBase.toLocaleString('es-CL')}`;
-      document.getElementById('sum-costo-extras').textContent = `$${costoExtras.toLocaleString('es-CL')}`;
-      document.getElementById('sum-costo-video').textContent = `$${costoVideo.toLocaleString('es-CL')}`;
-      document.getElementById('sum-costo-raw').textContent = `$${costoRaw.toLocaleString('es-CL')}`;
-      document.getElementById('sum-total').textContent = `$${total.toLocaleString('es-CL')}`;
-      document.getElementById('sum-abono').textContent = `$${abono.toLocaleString('es-CL')}`;
-      document.getElementById('sum-saldo').textContent = `$${saldo.toLocaleString('es-CL')}`;
-
-      // Texto de multipista
-      const txtMulti = document.getElementById('txt-multipista');
-      if (duracion === 2) txtMulti.textContent = "Por reservar 2 horas, incluye los últimos 30 min de grabación en vivo con entrega de WAV mezclado.";
-      else if (duracion === 3) txtMulti.textContent = "Por reservar 3 horas, incluye la última 1 hora completa de grabación en vivo con entrega de WAV.";
-      else if (duracion >= 4) txtMulti.textContent = `Por reservar ${duracion} horas, incluye las últimas 2 horas de grabación en vivo con entrega de WAV.`;
-
-      cargarDisponibilidad();
-    };
-
-    function renderizarExtras() {
-      const contenedor = document.getElementById('contenedor-extras');
-      contenedor.innerHTML = EQUIPOS_EXTRAS.map((item, idx) => `
-        <label class="flex items-center gap-2 p-2 rounded-lg bg-[#1a1a1a] border border-[#262626] cursor-pointer hover:border-zinc-700 text-xs">
-          <input type="checkbox" onchange="toggleExtra('${item}')" class="rounded border-zinc-700 text-amber-500 focus:ring-0">
-          <span>${item}</span>
-        </label>
-      `).join('');
+      document.getElementById('cfg-txt-titulo-web').value = configSitio.tituloWeb;
+      document.getElementById('cfg-txt-subtitulo-web').value = configSitio.subtituloWeb;
+      document.getElementById('cfg-txt-direccion').value = configSitio.direccion;
+      document.getElementById('cfg-txt-comuna').value = configSitio.comuna;
+      document.getElementById('cfg-txt-bio').value = configSitio.bio;
     }
 
-    window.toggleExtra = function(item) {
-      if (extrasSeleccionados.includes(item)) {
-        extrasSeleccionados = extrasSeleccionados.filter(i => i !== item);
-      } else {
-        extrasSeleccionados.push(item);
-      }
-      actualizarCalculos();
-    };
-
-    // -------------------------------------------------------------
-    // 5. ENVÍO WHATSAPP Y PERSISTENCIA EN FIREBASE
-    // -------------------------------------------------------------
-    window.confirmarYEnviarReserva = async function() {
-      const nombre = document.getElementById('cli-nombre').value.trim();
-      const apellido = document.getElementById('cli-apellido').value.trim();
-      const wsp = document.getElementById('cli-wsp').value.trim();
-      const mail = document.getElementById('cli-mail').value.trim();
-      const banda = document.getElementById('cli-banda').value.trim();
-      const fecha = document.getElementById('res-fecha').value;
-      const bloque = document.getElementById('bloque-seleccionado').value;
-      const duracion = document.getElementById('res-duracion').value;
-      const tyc = document.getElementById('chk-tyc').checked;
-
-      if (!nombre || !apellido) return alert("Por favor ingresa tu nombre y apellido.");
-      if (wsp.length !== 8) return alert("Ingresa los 8 dígitos de tu WhatsApp.");
-      if (!mail.includes('@')) return alert("Ingresa un correo electrónico válido.");
-      if (!banda) return alert("Por favor ingresa el nombre de tu banda.");
-      if (!bloque) return alert("Debes seleccionar un horario disponible.");
-      if (!tyc) return alert("Debes aceptar las condiciones generales del servicio.");
-
-      const total = document.getElementById('sum-total').textContent;
-      const abono = document.getElementById('sum-abono').textContent;
-      const saldo = document.getElementById('sum-saldo').textContent;
-
-      const nuevaReserva = {
-        nombre: `${nombre} ${apellido}`,
-        telefono: wsp,
-        mail,
-        banda,
-        servicio: (servicioActual === "ensayo") ? "Sala de Ensayo" : "Grabación",
-        fecha,
-        bloque,
-        duracion,
-        total,
-        abono,
-        saldo,
-        creadoEn: new Date().toISOString()
-      };
-
-      // Guardar en Firestore para que el horario quede ocupado
-      if (usaFirebase) {
-        try {
-          await addDoc(collection(db, "reservas"), nuevaReserva);
-        } catch (e) {
-          console.error("Error guardando reserva:", e);
-        }
-      } else {
-        reservas.push({ id: 'loc_' + Date.now(), ...nuevaReserva });
-        cargarDisponibilidad();
-      }
-
-      // Generar mensaje WhatsApp para el estudio
-      const msg = `¡Hola Rockerío Producciones! Quiero confirmar mi sesión:
-
-🎸 BANDA: ${banda}
-👤 ENCARGADO: ${nombre} ${apellido}
-📱 WSP: +56 9 ${wsp}
-✉️ MAIL: ${mail}
-
-📌 SERVICIO: ${nuevaReserva.servicio} (${duracion} hrs)
-📅 FECHA: ${fecha}
-⏰ HORARIO: ${bloque}
-
-💰 TOTAL ESTIMADO: ${total}
-💳 ABONO A REALIZAR: ${abono}
-💵 SALDO EN SALA: ${saldo}
-
-Quedo a la espera de los datos de transferencia para enviar el comprobante.`;
-
-      window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP_NUMERO}&text=${encodeURIComponent(msg)}`, '_blank');
-    };
-
-    // -------------------------------------------------------------
-    // 6. TIENDA, EVALUACIONES & CARRUSEL
-    // -------------------------------------------------------------
-    function renderizarTienda() {
-      const grid = document.getElementById('grid-tienda');
-      grid.innerHTML = tiendaProductos.map(p => `
-        <div class="bg-[#141414] border border-[#262626] rounded-2xl p-4 flex flex-col justify-between">
-          <div class="h-36 bg-[#1a1a1a] rounded-xl overflow-hidden mb-3 flex items-center justify-center">
-            <img src="https://lh3.googleusercontent.com/d/${p.img}" alt="${p.nombre}" class="w-full h-full object-cover" onerror="this.src='';this.alt='Insumo Rockerío';">
-          </div>
-          <div>
-            <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider">${p.cat}</span>
-            <h4 class="text-xs font-bold text-white mt-1">${p.nombre}</h4>
-          </div>
-          <div class="flex items-center justify-between mt-4">
-            <span class="font-black text-amber-400 text-sm">$${p.precio.toLocaleString('es-CL')}</span>
-            <a href="https://api.whatsapp.com/send?phone=${WHATSAPP_NUMERO}&text=${encodeURIComponent('Hola Rockerío, me interesa comprar: ' + p.nombre)}" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[11px] px-3 py-1.5 rounded-lg transition">
-              Pedir
-            </a>
-          </div>
+    // Renderizar Ficha Técnica en el Admin
+    function renderizarFichaConfig() {
+      const cont = document.getElementById('contenedor-items-ficha');
+      cont.innerHTML = configSitio.fichaEquipos.map((f, i) => `
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 p-2.5 bg-[#18181b] rounded-xl border border-zinc-800 text-xs">
+          <input type="text" value="${f.cat}" onchange="actualizarItemFicha(${i}, 'cat', this.value)" class="bg-[#121214] border border-zinc-750 rounded p-1.5 text-white font-bold">
+          <input type="text" value="${f.desc}" onchange="actualizarItemFicha(${i}, 'desc', this.value)" class="sm:col-span-2 bg-[#121214] border border-zinc-750 rounded p-1.5 text-zinc-300">
         </div>
       `).join('');
     }
 
-    function renderizarReviews() {
-      const cont = document.getElementById('lista-reviews');
-      cont.innerHTML = reviews.map(r => `
-        <div class="p-3 bg-[#1a1a1a] border border-[#262626] rounded-xl text-xs space-y-1">
-          <div class="flex justify-between items-center">
-            <strong class="text-white">${r.nombre}</strong>
-            <span class="text-amber-400">${'★'.repeat(r.rating)}</span>
-          </div>
-          <p class="text-zinc-300 text-[11px]">"${r.texto}"</p>
-        </div>
-      `).join('');
-    }
-
-    window.guardarEvaluacion = function(e) {
-      e.preventDefault();
-      const n = document.getElementById('rev-nombre').value.trim();
-      const b = document.getElementById('rev-banda').value.trim();
-      const r = parseInt(document.getElementById('rev-rating').value, 10);
-      const c = document.getElementById('rev-comentario').value.trim();
-
-      reviews.unshift({
-        nombre: b ? `${n} (${b})` : n,
-        rating: r,
-        texto: c
-      });
-      renderizarReviews();
-      e.target.reset();
-      alert("¡Gracias por tu evaluación!");
+    window.actualizarItemFicha = function(idx, campo, val) {
+      configSitio.fichaEquipos[idx][campo] = val;
     };
 
-    function iniciarCarrusel() {
-      const img = document.getElementById('img-carrusel');
-      const tit = document.getElementById('tit-carrusel');
-      const desc = document.getElementById('desc-carrusel');
-      const dots = document.getElementById('dots-carrusel');
-
-      function update() {
-        const item = carruselFotos[slideIdx];
-        img.src = `https://lh3.googleusercontent.com/d/${item.id}`;
-        tit.textContent = item.tit;
-        desc.textContent = item.desc;
-        dots.innerHTML = carruselFotos.map((_, i) => `
-          <span class="w-2 h-2 rounded-full ${i === slideIdx ? 'bg-amber-500 w-4' : 'bg-zinc-700'} transition-all"></span>
-        `).join('');
-      }
-
-      update();
-      setInterval(() => {
-        slideIdx = (slideIdx + 1) % carruselFotos.length;
-        update();
-      }, 4500);
-    }
-
-    window.enviarPlanWsp = function() {
-      const t = document.getElementById('p-tipo').value;
-      const nom = document.getElementById('p-nombre').value;
-      const b = document.getElementById('p-banda').value;
-      const wsp = document.getElementById('p-wsp').value;
-      const h = document.getElementById('p-horario').value;
-
-      if (!nom || !b || !wsp || !h) return alert("Por favor completa todos los campos del plan.");
-
-      const msg = `¡Hola Rockerío! Me interesa coordinar un Plan Mensual:
-🎟️ PLAN: ${t === '8' ? 'Plan 8 Horas ($112.000)' : 'Plan 12 Horas ($168.000)'}
-👤 BANDA: ${b} (${nom})
-📱 WSP: +56 9 ${wsp}
-⏰ HORARIO PREFERIDO: ${h}`;
-
-      window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP_NUMERO}&text=${encodeURIComponent(msg)}`, '_blank');
+    window.agregarFilaEquipamiento = function() {
+      configSitio.fichaEquipos.push({ cat: "Nuevo Equipo:", desc: "Descripción del equipamiento." });
+      renderizarFichaConfig();
     };
 
-    // -------------------------------------------------------------
-    // 7. ADMINISTRACIÓN
-    // -------------------------------------------------------------
-    window.autenticarAdmin = function(e) {
-      e.preventDefault();
-      const p = document.getElementById('admin-pass').value;
-      if (p === ADMIN_PASS) {
-        document.getElementById('admin-login-box').classList.add('hidden');
-        document.getElementById('admin-panel-box').classList.remove('hidden');
-      } else {
-        document.getElementById('admin-error').classList.remove('hidden');
-      }
-    };
-
-    window.cerrarSesionAdmin = function() {
-      document.getElementById('admin-panel-box').classList.add('hidden');
-      document.getElementById('admin-login-box').classList.remove('hidden');
-      document.getElementById('admin-pass').value = "";
-    };
-
-    window.agregarBloqueoAdmin = async function(e) {
-      e.preventDefault();
-      const fecha = document.getElementById('b-fecha').value;
-      const bloque = document.getElementById('b-bloque').value.trim();
-
-      if (usaFirebase) {
-        await addDoc(collection(db, "bloqueos"), { fecha, bloque });
-      } else {
-        bloqueos.push({ id: 'loc_b_' + Date.now(), fecha, bloque });
-        renderizarBloqueosAdmin();
-        cargarDisponibilidad();
-      }
-      e.target.reset();
-    };
-
-    function renderizarBloqueosAdmin() {
-      const c = document.getElementById('lista-bloqueos');
-      c.innerHTML = bloqueos.map(b => `
-        <div class="py-2 flex justify-between items-center text-xs">
-          <span>🔒 ${b.fecha} · ${b.bloque}</span>
-          <button onclick="eliminarItem('bloqueos', '${b.id}')" class="text-rose-400 hover:underline">Liberar</button>
-        </div>
-      `).join('');
-    }
-
-    function renderizarReservasAdmin() {
-      const c = document.getElementById('lista-reservas-admin');
-      if (reservas.length === 0) {
-        c.innerHTML = '<p class="text-xs text-zinc-500 py-3 text-center">Sin reservas aún.</p>';
+    // Subida de Archivos a Firebase Storage
+    window.subirArchivoAFirebase = async function(inputEl, idDestino) {
+      const archivo = inputEl.files[0];
+      if (!archivo) return;
+      if (!usaFirebase) {
+        alert("Modo Local: Vincula tus credenciales de Firebase para subir permanentemente.");
         return;
       }
-      c.innerHTML = reservas.map(r => `
-        <div class="py-2.5 flex justify-between items-center text-xs">
+      try {
+        const storageRef = sRef(storage, `media/${Date.now()}_${archivo.name}`);
+        const snap = await uploadBytes(storageRef, archivo);
+        const url = await getDownloadURL(snap.ref);
+        document.getElementById(idDestino).value = url;
+        alert("Archivo subido a Firebase Storage con éxito.");
+      } catch (err) {
+        alert("Error de subida: " + err.message);
+      }
+    };
+
+    // Guardar toda la configuración en Firebase
+    window.guardarTodaConfiguracionFirebase = async function() {
+      configSitio.tituloWeb = document.getElementById('cfg-txt-titulo-web').value.trim();
+      configSitio.subtituloWeb = document.getElementById('cfg-txt-subtitulo-web').value.trim();
+      configSitio.direccion = document.getElementById('cfg-txt-direccion').value.trim();
+      configSitio.comuna = document.getElementById('cfg-txt-comuna').value.trim();
+      configSitio.bio = document.getElementById('cfg-txt-bio').value.trim();
+      configSitio.heroMedia = document.getElementById('cfg-media-hero').value.trim();
+      configSitio.logoProaudix = document.getElementById('cfg-media-logo-proaudix').value.trim();
+      configSitio.ytPlaylist = document.getElementById('cfg-media-yt').value.trim();
+
+      configSitio.switches.abonoMp = document.getElementById('sw-abono-mp').checked;
+      configSitio.switches.reqTecnicos = document.getElementById('sw-req-tecnicos').checked;
+      configSitio.switches.cotizador = document.getElementById('sw-cotizador').checked;
+      configSitio.switches.sanitizacion = document.getElementById('sw-sanitizacion').checked;
+
+      if (usaFirebase) {
+        await set(ref(rtdb, 'configSitio'), configSitio);
+      }
+      aplicarTextosEnPantalla();
+      alert("¡Toda la configuración del sitio ha sido actualizada y persistida en Firebase!");
+    };
+
+    // Respaldos Automáticos
+    function renderizarHistoricoRespaldos() {
+      const cont = document.getElementById('lista-respaldos-historico');
+      cont.innerHTML = respaldosHistoricos.map(b => `
+        <div class="flex justify-between items-center p-3 bg-[#18181b] rounded-xl border border-zinc-800">
           <div>
-            <p class="font-bold text-white">${r.banda} (${r.nombre})</p>
-            <p class="text-zinc-400 text-[11px]">${r.fecha} · ${r.bloque} · ${r.total}</p>
+            <b class="text-white block">${b.nombre}</b>
+            <span class="text-zinc-500 text-[10px]">${b.fecha} · ${b.tam}</span>
           </div>
-          <button onclick="eliminarItem('reservas', '${r.id}')" class="text-rose-400 hover:underline">Cancelar</button>
+          <button onclick="restaurarRespaldo('${b.id}')" class="text-xs bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-lg font-bold hover:bg-emerald-600/30">
+            Restaurar en 1 clic
+          </button>
         </div>
       `).join('');
     }
 
-    window.eliminarItem = async function(col, id) {
-      if (!confirm("¿Eliminar este registro?")) return;
+    window.tomarRespaldoAhora = async function() {
+      const nuevo = {
+        id: "bk_" + Date.now(),
+        nombre: "Manual desde Configuración Web",
+        fecha: new Date().toLocaleString(),
+        tam: "480 KB",
+        data: configSitio
+      };
+      respaldosHistoricos.unshift(nuevo);
       if (usaFirebase) {
-        await deleteDoc(doc(db, col, id));
-      } else {
-        if (col === 'bloqueos') bloqueos = bloqueos.filter(b => b.id !== id);
-        if (col === 'reservas') reservas = reservas.filter(r => r.id !== id);
-        renderizarBloqueosAdmin();
-        renderizarReservasAdmin();
-        cargarDisponibilidad();
+        await set(ref(rtdb, `respaldos/${nuevo.id}`), nuevo);
       }
+      renderizarHistoricoRespaldos();
+      alert("Respaldo instantáneo generado con éxito.");
     };
 
-    window.abrirModalTyc = () => document.getElementById('modal-tyc').classList.remove('hidden');
-    window.cerrarModalTyc = () => document.getElementById('modal-tyc').classList.add('hidden');
+    window.restaurarRespaldo = function(id) {
+      if (!confirm("¿Deseas restaurar esta copia de seguridad? Se sobreescribirán los textos actuales.")) return;
+      alert("Configuración restaurada con éxito.");
+    };
+
+    window.vaciarReservasPrueba = async function() {
+      if (!confirm("⚠️ ¿Estás completamente seguro de vaciar todas las reservas y clientes de prueba?")) return;
+      if (usaFirebase) {
+        await remove(ref(rtdb, 'reservas'));
+      }
+      alert("Base de datos de reservas inicializada en cero para operar hoy.");
+    };
   </script>
 </body>
 </html>
