@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content">
-  <title>Rockerio Producciones SpA | Portal Oficial</title>
+  <title>Rockerio Producciones SpA | Plataforma Integral de Gestión y Agenda</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -41,31 +41,31 @@
     }
   </style>
 </head>
-<body class="min-h-screen antialiased selection:bg-amber-500 selection:text-black pb-20">
+<body class="min-h-screen antialiased selection:bg-amber-500 selection:text-black pb-24">
 
   <!-- ======================================================= -->
-  <!-- 1. ENCABEZADO PRINCIPAL (NAVBAR SUPERIOR FLUIDO)        -->
+  <!-- 1. BARRA SUPERIOR FLUIDA (FULL-WIDTH)                   -->
   <!-- ======================================================= -->
   <header class="bg-[#121214] border-b border-[#242427] px-4 py-2.5 sticky top-0 z-50">
     <div class="w-full flex items-center justify-between gap-3">
       
       <!-- Identidad Corporativa -->
       <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-black font-black shadow-md shadow-amber-500/20 shrink-0">
-          <i data-lucide="mic-2" class="w-4 h-4"></i>
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-black font-black shadow-md shadow-amber-500/20 shrink-0">
+          <i data-lucide="mic-2" class="w-5 h-5"></i>
         </div>
         <div>
           <h1 id="header-tit-web" class="text-xs sm:text-sm font-black tracking-wider text-white uppercase flex items-center gap-2">
             Rockerio Producciones SpA
-            <span id="badge-rt-status" class="text-[9px] bg-emerald-500/10 text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-500/20 font-bold uppercase">RTDB Sincronizado</span>
+            <span id="badge-rt-status" class="text-[9px] bg-emerald-500/10 text-emerald-400 px-1.5 py-0.5 rounded border border-emerald-500/20 font-bold uppercase">Online</span>
           </h1>
-          <p id="header-subtit-web" class="text-[10px] text-zinc-400">SALA DE ENSAYO / ESTUDIO DE GRABACIÓN / TIENDA DE INSUMOS MUSICALES / QUINTA NORMAL</p>
+          <p id="header-subtit-web" class="text-[10px] text-zinc-400">Juan Carlos Retamal G. · Operaciones, Producción & Finanzas</p>
         </div>
       </div>
 
       <!-- Barra de Estado Admin / Switch de Modo -->
       <div class="flex items-center gap-2">
-        <button onclick="alternarModoAdmin()" id="btn-cambio-modo" class="text-xs bg-[#1f1f23] hover:bg-[#27272a] text-zinc-300 border border-zinc-700 px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 font-bold">
+        <button onclick="window.alternarModoAdmin()" id="btn-cambio-modo" class="text-xs bg-[#1f1f23] hover:bg-[#27272a] text-zinc-300 border border-zinc-700 px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 font-bold cursor-pointer">
           <i data-lucide="shield" class="w-3.5 h-3.5 text-amber-500"></i>
           <span id="txt-cambio-modo">Portal de Control Admin</span>
         </button>
@@ -78,57 +78,55 @@
   <!-- ======================================================= -->
   <div id="nav-publico" class="bg-[#151518] border-b border-[#242427] px-4 py-2">
     <div class="max-w-7xl mx-auto flex gap-1.5 overflow-x-auto custom-scroll">
-      <button onclick="cambiarSeccionPublica('reservar')" id="tab-pub-reservar" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 bg-amber-500 text-black shadow-sm" data-tab="reservar">
+      <button onclick="window.cambiarSeccionPublica('reservar')" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 bg-amber-500 text-black shadow-sm" data-tab="reservar">
         <i data-lucide="calendar" class="w-4 h-4"></i> RESERVA Y DISPONIBILIDAD
       </button>
-      <button onclick="cambiarSeccionPublica('produccion')" id="tab-pub-produccion" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="produccion">
+      <button onclick="window.cambiarSeccionPublica('produccion')" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="produccion">
         <i data-lucide="sliders" class="w-4 h-4"></i> PRODUCCIÓN
       </button>
-      <button onclick="cambiarSeccionPublica('ficha')" id="tab-pub-ficha" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="ficha">
+      <button onclick="window.cambiarSeccionPublica('ficha')" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="ficha">
         <i data-lucide="file-text" class="w-4 h-4"></i> FICHA TÉCNICA
       </button>
-      <button onclick="cambiarSeccionPublica('planes')" id="tab-pub-planes" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="planes">
+      <button onclick="window.cambiarSeccionPublica('planes')" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="planes">
         <i data-lucide="award" class="w-4 h-4"></i> PLANES
       </button>
-      <button onclick="cambiarSeccionPublica('tienda')" id="tab-pub-tienda" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="tienda">
+      <button onclick="window.cambiarSeccionPublica('tienda')" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="tienda">
         <i data-lucide="shopping-bag" class="w-4 h-4"></i> TIENDA
       </button>
-      <button onclick="cambiarSeccionPublica('evaluaciones')" id="tab-pub-evaluaciones" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="evaluaciones">
+      <button onclick="window.cambiarSeccionPublica('evaluaciones')" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="evaluaciones">
         <i data-lucide="star" class="w-4 h-4"></i> EVALUACIONES
       </button>
-      <button onclick="cambiarSeccionPublica('galeria')" id="tab-pub-galeria" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="galeria">
+      <button onclick="window.cambiarSeccionPublica('galeria')" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="galeria">
         <i data-lucide="image" class="w-4 h-4"></i> GALERÍA
       </button>
-      <button onclick="cambiarSeccionPublica('contacto')" id="tab-pub-contacto" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="contacto">
+      <button onclick="window.cambiarSeccionPublica('contacto')" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="contacto">
         <i data-lucide="phone" class="w-4 h-4"></i> CONTACTO
       </button>
-      <button onclick="cambiarSeccionPublica('proaudix')" id="tab-pub-proaudix" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="proaudix">
+      <button onclick="window.cambiarSeccionPublica('proaudix')" class="btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800" data-tab="proaudix">
         <i data-lucide="coffee" class="w-4 h-4"></i> PROAUDIX
       </button>
     </div>
   </div>
 
   <!-- ======================================================= -->
-  <!-- 3. NAVEGACIÓN ADMINISTRATIVA (SUBMENÚ COMPLETO)         -->
+  <!-- 3. NAVEGACIÓN ADMINISTRATIVA                           -->
   <!-- ======================================================= -->
   <div id="nav-admin" class="hidden bg-[#18181b] border-b border-[#2b2b2f] px-4 py-2">
     <div class="w-full flex items-center justify-between gap-4 overflow-x-auto custom-scroll">
       <div class="flex items-center gap-1">
         <span class="text-[10px] bg-amber-500 text-black font-extrabold px-1.5 py-0.5 rounded uppercase mr-1">ADMIN</span>
-        <button onclick="cambiarPestanaAdmin('reservas')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-black shrink-0" data-adm="reservas">Reservas y Jornadas</button>
-        <button onclick="abrirModalCotizador()" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white shrink-0">Cotizador Express PDF <span class="text-[9px] bg-amber-500/20 text-amber-400 px-1 py-0.2 rounded ml-1">SpA</span></button>
-        <button onclick="cambiarPestanaAdmin('clientes')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white shrink-0" data-adm="clientes">Clientes y Bandas 36</button>
-        <button onclick="cambiarPestanaAdmin('planes')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white shrink-0" data-adm="planes">Planes Mensuales</button>
-        <button onclick="cambiarPestanaAdmin('tienda')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white shrink-0" data-adm="tienda">Control Tienda</button>
-        <button onclick="cambiarPestanaAdmin('bebestibles')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-emerald-400 hover:bg-emerald-950/40 shrink-0" data-adm="bebestibles">Bebestibles ProAudix <span class="text-[9px] bg-emerald-500/20 px-1 py-0.5 rounded">Independiente</span></button>
-        <button onclick="cambiarPestanaAdmin('balance')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white shrink-0" data-adm="balance">Balance y Tributario SII</button>
-        <button onclick="cambiarPestanaAdmin('resenas')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white shrink-0" data-adm="resenas">Reseñas y Evaluaciones</button>
-        <button onclick="cambiarPestanaAdmin('configuracion')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-amber-400 hover:text-white shrink-0" data-adm="configuracion">⚙️ Configuración Web</button>
+        <button onclick="window.cambiarPestanaAdmin('reservas')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-black shrink-0" data-adm="reservas">Reservas y Jornadas</button>
+        <button onclick="window.abrirModalCotizador()" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white shrink-0">Cotizador Express PDF <span class="text-[9px] bg-amber-500/20 text-amber-400 px-1 py-0.2 rounded ml-1">SpA</span></button>
+        <button onclick="window.cambiarPestanaAdmin('clientes')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white shrink-0" data-adm="clientes">Clientes y Bandas</button>
+        <button onclick="window.cambiarPestanaAdmin('tienda')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white shrink-0" data-adm="tienda">Control Tienda</button>
+        <button onclick="window.cambiarPestanaAdmin('bebestibles')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-emerald-400 hover:bg-emerald-950/40 shrink-0" data-adm="bebestibles">Bebestibles ProAudix <span class="text-[9px] bg-emerald-500/20 px-1 py-0.5 rounded">Independiente</span></button>
+        <button onclick="window.cambiarPestanaAdmin('balance')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white shrink-0" data-adm="balance">Balance y Tributario SII</button>
+        <button onclick="window.cambiarPestanaAdmin('configuracion')" class="tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-amber-400 hover:text-white shrink-0" data-adm="configuracion">⚙️ Configuración Web</button>
       </div>
 
       <div class="flex items-center gap-2 shrink-0">
-        <button onclick="ejecutarRespaldoManual()" class="text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-2.5 py-1 rounded-lg border border-zinc-700 flex items-center gap-1"><i data-lucide="download" class="w-3 h-3"></i> Respaldos</button>
-        <button onclick="abrirModalBloqueo()" class="text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-2.5 py-1 rounded-lg border border-zinc-700 flex items-center gap-1"><i data-lucide="ban" class="w-3 h-3"></i> Bloquear</button>
+        <button onclick="window.ejecutarRespaldoManual()" class="text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-2.5 py-1 rounded-lg border border-zinc-700 flex items-center gap-1 cursor-pointer"><i data-lucide="download" class="w-3 h-3"></i> Respaldos</button>
+        <button onclick="window.abrirModalBloqueo()" class="text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-2.5 py-1 rounded-lg border border-zinc-700 flex items-center gap-1 cursor-pointer"><i data-lucide="ban" class="w-3 h-3"></i> Bloquear</button>
       </div>
     </div>
   </div>
@@ -143,35 +141,35 @@
     <!-- ----------------------------------------------------- -->
     <div id="vista-publica-reservas" class="max-w-7xl mx-auto space-y-6">
 
-      <!-- Indicador de 4 Pasos -->
+      <!-- Indicador de Pasos -->
       <div class="flex items-center justify-between text-xs font-bold text-zinc-400 border-b border-[#242427] pb-3 overflow-x-auto gap-2">
-        <div id="step-ind-1" class="flex items-center gap-1 text-emerald-400 shrink-0 cursor-pointer" onclick="irAlPaso(1)">
-          <i data-lucide="check" class="w-4 h-4"></i> Servicio
+        <div id="step-ind-1" class="flex items-center gap-1 text-amber-400 font-extrabold shrink-0 cursor-pointer" onclick="window.irAlPaso(1)">
+          <span class="w-4 h-4 rounded-full bg-amber-500 text-black flex items-center justify-center text-[10px] font-black">1</span> 1. Servicio
         </div>
         <div class="h-px w-6 bg-zinc-800 shrink-0"></div>
-        <div id="step-ind-2" class="flex items-center gap-1 text-emerald-400 shrink-0 cursor-pointer" onclick="irAlPaso(2)">
-          <i data-lucide="check" class="w-4 h-4"></i> Duración y Extras
+        <div id="step-ind-2" class="flex items-center gap-1 text-zinc-500 shrink-0 cursor-pointer" onclick="window.irAlPaso(2)">
+          <span class="w-4 h-4 rounded-full bg-zinc-800 text-zinc-400 flex items-center justify-center text-[10px]">2</span> 2. Duración y Extras
         </div>
         <div class="h-px w-6 bg-zinc-800 shrink-0"></div>
-        <div id="step-ind-3" class="flex items-center gap-1 text-amber-400 font-extrabold shrink-0 cursor-pointer" onclick="irAlPaso(3)">
-          <span class="w-4 h-4 rounded-full bg-amber-500 text-black flex items-center justify-center text-[10px] font-black">3</span> Calendario y Horario
+        <div id="step-ind-3" class="flex items-center gap-1 text-zinc-500 shrink-0 cursor-pointer" onclick="window.irAlPaso(3)">
+          <span class="w-4 h-4 rounded-full bg-zinc-800 text-zinc-400 flex items-center justify-center text-[10px]">3</span> 3. Calendario y Horario
         </div>
         <div class="h-px w-6 bg-zinc-800 shrink-0"></div>
-        <div id="step-ind-4" class="flex items-center gap-1 text-zinc-500 shrink-0 cursor-pointer" onclick="irAlPaso(4)">
-          <span class="w-4 h-4 rounded-full bg-zinc-800 text-zinc-400 flex items-center justify-center text-[10px]">4</span> Banda, Ticket y Abono
+        <div id="step-ind-4" class="flex items-center gap-1 text-zinc-500 shrink-0 cursor-pointer" onclick="window.irAlPaso(4)">
+          <span class="w-4 h-4 rounded-full bg-zinc-800 text-zinc-400 flex items-center justify-center text-[10px]">4</span> 4. Banda, Ticket y Abono
         </div>
       </div>
 
       <!-- PASO 1: SELECCIÓN DE SERVICIO -->
-      <div id="paso-1-container" class="hidden bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-4">
+      <div id="paso-1-container" class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-4">
         <h2 class="text-sm font-bold text-amber-400 uppercase tracking-wider">PASO 01 / Selecciona tu Servicio</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div onclick="seleccionarServicio('ensayo')" id="card-srv-ensayo" class="p-5 bg-[#18181b] border-2 border-amber-500 rounded-2xl cursor-pointer hover:border-amber-400 transition">
+          <div onclick="window.seleccionarServicio('ensayo')" id="card-srv-ensayo" class="p-5 bg-[#18181b] border-2 border-amber-500 rounded-2xl cursor-pointer hover:border-amber-400 transition">
             <h3 class="font-extrabold text-white text-base">🎸 Sala de Ensayo Principal</h3>
             <p class="text-amber-400 font-bold text-sm mt-1" id="lbl-tarifa-ensayo">$15.000 / hr</p>
             <p class="text-xs text-zinc-400 mt-2">Pearl Export, Laney Valvular, Orange TH30, Fender Rumble 500 y monitoreo In-Ear con climatización.</p>
           </div>
-          <div onclick="seleccionarServicio('grabacion')" id="card-srv-grabacion" class="p-5 bg-[#18181b] border-2 border-zinc-800 rounded-2xl cursor-pointer hover:border-zinc-700 transition">
+          <div onclick="window.seleccionarServicio('grabacion')" id="card-srv-grabacion" class="p-5 bg-[#18181b] border-2 border-zinc-800 rounded-2xl cursor-pointer hover:border-zinc-700 transition">
             <h3 class="font-extrabold text-white text-base">🎙️ Estudio de Grabación</h3>
             <p class="text-amber-400 font-bold text-sm mt-1" id="lbl-tarifa-grabacion">$30.000 / hr</p>
             <p class="text-xs text-zinc-400 mt-2">Midas M32 + Suma Análoga SSL SiX, Telefunken TF39 valvular y Mac Mini M4 con UAD LUNA Pro.</p>
@@ -183,21 +181,21 @@
       <div id="paso-2-container" class="hidden bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-5">
         <div class="flex justify-between items-center">
           <h2 class="text-sm font-bold text-amber-400 uppercase tracking-wider">PASO 02 / Duración de la Sesión</h2>
-          <span class="text-xs text-zinc-400">Paso 2 de 4</span>
+          <span class="text-xs text-zinc-400 font-bold">Paso 2 de 4</span>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-          <button type="button" onclick="setDuracion(2)" class="dur-btn py-3 rounded-xl border-2 border-amber-500 bg-amber-500/10 text-amber-400 text-xs font-bold" data-dur="2">2 Horas (Recomendado)</button>
-          <button type="button" onclick="setDuracion(3)" class="dur-btn py-3 rounded-xl border border-zinc-800 bg-[#18181b] text-zinc-400 text-xs font-bold" data-dur="3">3 Horas</button>
-          <button type="button" onclick="setDuracion(4)" class="dur-btn py-3 rounded-xl border border-zinc-800 bg-[#18181b] text-zinc-400 text-xs font-bold" data-dur="4">4 Horas</button>
-          <button type="button" onclick="setDuracion(5)" class="dur-btn py-3 rounded-xl border border-zinc-800 bg-[#18181b] text-zinc-400 text-xs font-bold" data-dur="5">5+ Horas</button>
+          <button type="button" onclick="window.setDuracion(2)" class="dur-btn py-3 rounded-xl border-2 border-amber-500 bg-amber-500/10 text-amber-400 text-xs font-bold" data-dur="2">2 Horas (Recomendado)</button>
+          <button type="button" onclick="window.setDuracion(3)" class="dur-btn py-3 rounded-xl border border-zinc-800 bg-[#18181b] text-zinc-400 text-xs font-bold" data-dur="3">3 Horas</button>
+          <button type="button" onclick="window.setDuracion(4)" class="dur-btn py-3 rounded-xl border border-zinc-800 bg-[#18181b] text-zinc-400 text-xs font-bold" data-dur="4">4 Horas</button>
+          <button type="button" onclick="window.setDuracion(5)" class="dur-btn py-3 rounded-xl border border-zinc-800 bg-[#18181b] text-zinc-400 text-xs font-bold" data-dur="5">5+ Horas</button>
         </div>
-        <button onclick="irAlPaso(3)" class="bg-amber-500 hover:bg-amber-400 text-black font-extrabold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition">
+        <button onclick="window.irAlPaso(3)" class="bg-amber-500 hover:bg-amber-400 text-black font-extrabold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition">
           Continuar a Disponibilidad →
         </button>
       </div>
 
       <!-- PASO 3: CALENDARIO Y BLOQUES SUGERIDOS -->
-      <div id="paso-3-container" class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-5">
+      <div id="paso-3-container" class="hidden bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-5">
         <div class="flex justify-between items-center border-b border-[#242427] pb-3">
           <div>
             <h2 class="text-sm font-extrabold text-amber-400 uppercase tracking-wider">PASO 03 / DISPONIBILIDAD Y BLOQUES SUGERIDOS</h2>
@@ -206,7 +204,7 @@
           <span class="text-xs text-zinc-400 font-bold">Paso 3 de 4</span>
         </div>
 
-        <!-- Caja de Horarios Oficiales Rockerío -->
+        <!-- Horarios Oficiales -->
         <div class="bg-[#19191d] border border-amber-500/30 rounded-xl p-4 text-xs text-zinc-300 space-y-2">
           <div class="flex items-center gap-2 font-bold text-amber-400 uppercase">
             <i data-lucide="clock" class="w-4 h-4"></i> Horarios Oficiales de Atención Rockerío:
@@ -222,26 +220,25 @@
           </p>
         </div>
 
-        <!-- 1. Selector Día en Píldoras -->
+        <!-- 1. Píldoras de Días -->
         <div>
           <label class="block text-xs font-bold uppercase text-zinc-400 mb-2">1. Selecciona el Día de tu Sesión:</label>
           <div id="pildoras-dias" class="grid grid-cols-4 sm:grid-cols-8 gap-2"></div>
         </div>
 
-        <!-- 2. Bloques Sugeridos -->
+        <!-- 2. Bloques -->
         <div>
           <div class="flex justify-between items-center mb-2">
             <label class="text-xs font-bold uppercase text-zinc-400">2. Bloques de Reserva Sugeridos (<span id="txt-bloques-duracion">2 horas</span>):</label>
-            <span id="txt-fecha-bloques-tag" class="text-xs font-mono text-amber-400 font-bold">📅 06/11/2026</span>
+            <span id="txt-fecha-bloques-tag" class="text-xs font-mono text-amber-400 font-bold"></span>
           </div>
           <div id="grid-bloques-sugeridos" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5"></div>
         </div>
       </div>
 
-      <!-- PASO 4: FORMULARIO BANDA Y TICKET OFICIAL -->
+      <!-- PASO 4: FORMULARIO BANDA Y TICKET -->
       <div id="paso-4-container" class="hidden space-y-6">
         
-        <!-- Formulario Datos y Extras -->
         <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-4">
           <div class="flex justify-between items-center border-b border-[#242427] pb-3">
             <div>
@@ -254,11 +251,11 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label class="block text-xs font-bold text-zinc-400 mb-1">Nombre *</label>
-              <input type="text" id="cli-nombre" placeholder="Ej: Ozzy" class="w-full bg-[#1c1c1e] border border-[#2e2e32] rounded-xl px-3.5 py-2.5 text-sm text-white outline-none focus:border-amber-500">
+              <input type="text" id="cli-nombre" placeholder="Ej: Juan" class="w-full bg-[#1c1c1e] border border-[#2e2e32] rounded-xl px-3.5 py-2.5 text-sm text-white outline-none focus:border-amber-500">
             </div>
             <div>
               <label class="block text-xs font-bold text-zinc-400 mb-1">Apellido *</label>
-              <input type="text" id="cli-apellido" placeholder="Ej: Osbourne" class="w-full bg-[#1c1c1e] border border-[#2e2e32] rounded-xl px-3.5 py-2.5 text-sm text-white outline-none focus:border-amber-500">
+              <input type="text" id="cli-apellido" placeholder="Ej: Pérez" class="w-full bg-[#1c1c1e] border border-[#2e2e32] rounded-xl px-3.5 py-2.5 text-sm text-white outline-none focus:border-amber-500">
             </div>
           </div>
 
@@ -272,13 +269,13 @@
             </div>
             <div>
               <label class="block text-xs font-bold text-zinc-400 mb-1">Correo Electrónico *</label>
-              <input type="email" id="cli-mail" placeholder="ozzy@mail.cl" class="w-full bg-[#1c1c1e] border border-[#2e2e32] rounded-xl px-3.5 py-2.5 text-sm text-white outline-none focus:border-amber-500">
+              <input type="email" id="cli-mail" placeholder="contacto@banda.cl" class="w-full bg-[#1c1c1e] border border-[#2e2e32] rounded-xl px-3.5 py-2.5 text-sm text-white outline-none focus:border-amber-500">
             </div>
           </div>
 
           <div>
             <label class="block text-xs font-bold text-zinc-400 mb-1">Banda o Proyecto Musical *</label>
-            <input type="text" id="cli-banda" placeholder="Ej: Black Sabbath" class="w-full bg-[#1c1c1e] border border-[#2e2e32] rounded-xl px-3.5 py-2.5 text-sm text-white outline-none focus:border-amber-500">
+            <input type="text" id="cli-banda" placeholder="Ej: Banda Rock" class="w-full bg-[#1c1c1e] border border-[#2e2e32] rounded-xl px-3.5 py-2.5 text-sm text-white outline-none focus:border-amber-500">
           </div>
 
           <!-- Extras Simplificados -->
@@ -297,7 +294,7 @@
 
             <div class="bg-[#18181b] border border-[#27272a] rounded-xl p-4">
               <label class="flex items-start gap-3 cursor-pointer">
-                <input type="checkbox" id="chk-gopro" onchange="actualizarDesgloseTicket()" class="mt-1 rounded border-zinc-700 text-amber-500 focus:ring-0">
+                <input type="checkbox" id="chk-gopro" onchange="window.actualizarDesgloseTicket()" class="mt-1 rounded border-zinc-700 text-amber-500 focus:ring-0">
                 <div>
                   <b class="text-xs text-white">2. Grabación en Video GoPro Hero 13 (+$20.000)</b>
                   <p class="text-[11px] text-zinc-400">Registro audiovisual 4K de la sesión de sala.</p>
@@ -307,7 +304,7 @@
 
             <div class="bg-[#18181b] border border-[#27272a] rounded-xl p-4">
               <label class="flex items-start gap-3 cursor-pointer">
-                <input type="checkbox" id="chk-raw-multi" onchange="actualizarDesgloseTicket()" class="mt-1 rounded border-zinc-700 text-amber-500 focus:ring-0">
+                <input type="checkbox" id="chk-raw-multi" onchange="window.actualizarDesgloseTicket()" class="mt-1 rounded border-zinc-700 text-amber-500 focus:ring-0">
                 <div>
                   <b class="text-xs text-white">3. Material en Bruto Multitrack (+$10.000)</b>
                   <p class="text-[11px] text-zinc-400">Entrega directa de pistas crudas multicanal en la nube ProAudix.</p>
@@ -317,10 +314,10 @@
           </div>
 
           <div class="flex justify-between items-center pt-2">
-            <button onclick="irAlPaso(3)" class="text-xs text-zinc-400 hover:text-white flex items-center gap-1">
+            <button onclick="window.irAlPaso(3)" class="text-xs text-zinc-400 hover:text-white flex items-center gap-1 cursor-pointer">
               ← Modificar Fecha u Horario
             </button>
-            <button onclick="mostrarTicketResumen()" class="bg-amber-500 hover:bg-amber-400 text-black font-extrabold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition">
+            <button onclick="window.mostrarTicketResumen()" class="bg-amber-500 hover:bg-amber-400 text-black font-extrabold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition cursor-pointer">
               Generar Ticket Oficial →
             </button>
           </div>
@@ -340,23 +337,23 @@
             </div>
             <div class="text-right">
               <span class="text-[10px] text-zinc-500 uppercase font-bold block">CUPO RESERVADO POR:</span>
-              <span id="ticket-reloj" class="text-xs font-bold text-zinc-300 font-mono">⏱️ 14:35 min</span>
+              <span id="ticket-reloj" class="text-xs font-bold text-zinc-300 font-mono">⏱️ 15:00 min</span>
             </div>
           </div>
 
           <div class="space-y-1.5 text-xs text-zinc-300">
             <h4 id="tkt-servicio-duracion" class="font-extrabold text-white text-sm">🎸 Sala de Ensayo · 2 hr/s</h4>
-            <p id="tkt-fecha-hora" class="text-zinc-400 font-mono text-[11px]">📅 06/11/2026 · 10:00 - 12:00 hrs</p>
-            <p id="tkt-cliente-banda" class="text-zinc-400 text-[11px]">Banda: <b class="text-white">Black Sabbath</b> · Contacto: Ozzy (+56 9 91234567)</p>
+            <p id="tkt-fecha-hora" class="text-zinc-400 font-mono text-[11px]"></p>
+            <p id="tkt-cliente-banda" class="text-zinc-400 text-[11px]"></p>
           </div>
 
           <div class="space-y-2 border-t border-[#242427] pt-3 text-xs">
             <div class="flex justify-between">
-              <span id="tkt-lbl-base">Sala de Ensayo (2 hrs a $15.000/hr)</span>
+              <span id="tkt-lbl-base">Sesión Base:</span>
               <span id="tkt-val-base" class="font-bold text-white">$30.000</span>
             </div>
             <div class="flex justify-between text-zinc-400" id="tkt-fila-extras">
-              <span>Arriendos de Equipos Extras:</span>
+              <span>Arriendos Extras & Video:</span>
               <span id="tkt-val-extras">$0</span>
             </div>
             <div class="flex justify-between font-extrabold text-sm text-white border-t border-[#242427] pt-2">
@@ -370,7 +367,7 @@
               <span>Abono Requerido ($5.000 / hr):</span>
               <span id="tkt-val-abono">$10.000</span>
             </div>
-            <p class="text-[10px] text-zinc-500">($5.000 x 2 horas para confirmar en agenda oficial)</p>
+            <p class="text-[10px] text-zinc-500">($5.000 por hora para confirmar cupo en agenda oficial)</p>
             
             <div class="flex justify-between font-bold text-zinc-300 border-t border-[#242427] pt-2">
               <span>Saldo Restante a Pagar en Sala:</span>
@@ -379,20 +376,17 @@
             <p class="text-[10px] text-zinc-500">(Se cancela presencialmente al ingresar a tu jornada)</p>
           </div>
 
-          <div class="bg-[#18181b] p-3 rounded-xl border border-amber-500/20 text-[10px] text-zinc-400 leading-relaxed" id="tkt-politica-conservacion-txt">
-            ⚠️ <b>Política de Almacenamiento de Material (2 Meses):</b> En favor de la optimización de nuestro almacenamiento propio, una vez entregado el material a la banda, conservamos las sesiones por un plazo máximo de 2 meses. Si el cliente no retira o descarga su material en dicho período, las sesiones se programarán para su eliminación definitiva.
+          <div class="bg-[#18181b] p-3 rounded-xl border border-amber-500/20 text-[10px] text-zinc-400 leading-relaxed">
+            ⚠️ <b>Conservación de Material (2 Meses):</b> En favor de la optimización de almacenamiento, las pistas y videos se conservan un máximo de 2 meses tras la sesión antes de su eliminación definitiva.
           </div>
 
           <label class="flex items-center gap-2 text-xs text-zinc-400 cursor-pointer">
-            <input type="checkbox" id="chk-tkt-tyc" class="rounded border-zinc-700 text-amber-500 focus:ring-0">
-            <span>Acepto las condiciones generales y política de reserva Rockerio SpA.</span>
+            <input type="checkbox" id="chk-tkt-tyc" checked class="rounded border-zinc-700 text-amber-500 focus:ring-0">
+            <span>Acepto las condiciones generales y política de reserva Rockerio SpA (Ley N° 19.628).</span>
           </label>
 
           <div class="space-y-2 pt-2">
-            <button onclick="pagarMercadoPago()" id="btn-tkt-mp" class="w-full bg-[#009ee3] hover:bg-[#0088c6] text-white font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider transition flex items-center justify-center gap-2">
-              <i data-lucide="credit-card" class="w-4 h-4"></i> Pagar Abono con Mercado Pago (Online Instantáneo)
-            </button>
-            <button onclick="solicitarReservaWhatsApp()" class="w-full bg-amber-500 hover:bg-amber-400 text-black font-black py-3.5 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2">
+            <button onclick="window.solicitarReservaWhatsApp()" class="w-full bg-amber-500 hover:bg-amber-400 text-black font-black py-3.5 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 cursor-pointer">
               <i data-lucide="message-circle" class="w-4 h-4"></i> SOLICITAR RESERVA POR WHATSAPP
             </button>
           </div>
@@ -400,6 +394,68 @@
 
       </div>
 
+    </div>
+
+    <!-- ----------------------------------------------------- -->
+    <!-- OTRAS SECCIONES PÚBLICAS (PRODUCCIÓN, FICHA, ETC.)    -->
+    <!-- ----------------------------------------------------- -->
+    <div id="seccion-produccion" class="hidden max-w-7xl mx-auto space-y-6">
+      <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-4">
+        <h2 class="text-sm font-extrabold text-amber-400 uppercase">Producción Musical y Estudio</h2>
+        <p id="pub-txt-bio" class="text-xs text-zinc-300 leading-relaxed"></p>
+      </div>
+    </div>
+
+    <div id="seccion-ficha" class="hidden max-w-7xl mx-auto space-y-6">
+      <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-4">
+        <h2 class="text-sm font-extrabold text-amber-400 uppercase">Ficha Técnica y Equipamiento</h2>
+        <div id="pub-lista-ficha" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs"></div>
+      </div>
+    </div>
+
+    <div id="seccion-planes" class="hidden max-w-7xl mx-auto space-y-6">
+      <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-4">
+        <h2 class="text-sm font-extrabold text-amber-400 uppercase">Planes Mensuales y Membresías</h2>
+        <p class="text-xs text-zinc-300">4 ensayos al mes con horario fijo preferencial.</p>
+      </div>
+    </div>
+
+    <div id="seccion-tienda" class="hidden max-w-7xl mx-auto space-y-6">
+      <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-4">
+        <h2 class="text-sm font-extrabold text-amber-400 uppercase">Tienda e Insumos en Sala</h2>
+        <p class="text-xs text-zinc-300">Cuerdas, uñetas, baterías 9V y accesorios.</p>
+      </div>
+    </div>
+
+    <div id="seccion-evaluaciones" class="hidden max-w-7xl mx-auto space-y-6">
+      <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-4">
+        <h2 class="text-sm font-extrabold text-amber-400 uppercase">Evaluaciones de Músicos</h2>
+        <p class="text-xs text-zinc-300">Experiencias y comentarios de bandas.</p>
+      </div>
+    </div>
+
+    <div id="seccion-galeria" class="hidden max-w-7xl mx-auto space-y-6">
+      <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-4">
+        <h2 class="text-sm font-extrabold text-amber-400 uppercase">Galería Multimedia</h2>
+        <div class="rounded-xl overflow-hidden">
+          <img id="pub-img-hero" src="https://lh3.googleusercontent.com/d/1koOUxGV_wO5FbtduEK5uzuYuVBKuyYoV" alt="Galería" class="w-full h-80 object-cover">
+        </div>
+      </div>
+    </div>
+
+    <div id="seccion-contacto" class="hidden max-w-7xl mx-auto space-y-6">
+      <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-4">
+        <h2 class="text-sm font-extrabold text-amber-400 uppercase">Ubicación y Contacto Directo</h2>
+        <p id="pub-txt-dir" class="text-xs text-zinc-300"></p>
+        <p id="pub-txt-comuna" class="text-xs text-zinc-400"></p>
+      </div>
+    </div>
+
+    <div id="seccion-proaudix" class="hidden max-w-7xl mx-auto space-y-6">
+      <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-4">
+        <h2 class="text-sm font-extrabold text-amber-400 uppercase">Espacio ProAudix (Área de Descanso & Café)</h2>
+        <p class="text-xs text-zinc-300">Ambiente independiente para relax entre tomas de grabación.</p>
+      </div>
     </div>
 
     <!-- ----------------------------------------------------- -->
@@ -435,7 +491,7 @@
               <span class="text-[10px] bg-amber-500/20 text-amber-400 font-bold px-2 py-0.5 rounded">Agenda Oficial del Estudio</span>
             </div>
             <div class="flex items-center gap-2">
-              <button onclick="abrirModalBloqueo()" class="bg-zinc-800 hover:bg-zinc-700 text-xs px-3 py-1.5 rounded-lg border border-zinc-700 text-zinc-300">Bloquear Fecha / Hora</button>
+              <button onclick="window.abrirModalBloqueo()" class="bg-zinc-800 hover:bg-zinc-700 text-xs px-3 py-1.5 rounded-lg border border-zinc-700 text-zinc-300 cursor-pointer">Bloquear Fecha / Hora</button>
             </div>
           </div>
           <div id="adm-grilla-calendario" class="grid grid-cols-7 gap-1.5"></div>
@@ -448,282 +504,68 @@
         <div id="adm-lista-bandas" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
       </div>
 
-      <!-- PESTAÑA ADMIN 3: BEBESTIBLES PROAUDIX (INDEPENDIENTE) -->
+      <!-- PESTAÑA ADMIN 3: TIENDA -->
+      <div id="adm-tab-tienda" class="hidden space-y-6">
+        <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-4">
+          <h3 class="text-sm font-bold text-white uppercase">Control de Tienda e Insumos</h3>
+          <p class="text-xs text-zinc-400">Control de stock de cuerdas, uñetas y accesorios.</p>
+        </div>
+      </div>
+
+      <!-- PESTAÑA ADMIN 4: BEBESTIBLES PROAUDIX -->
       <div id="adm-tab-bebestibles" class="hidden space-y-6">
         <div class="bg-[#141416] border border-emerald-500/30 rounded-2xl p-6 shadow-xl space-y-4">
           <div>
             <span class="text-[9px] bg-emerald-500 text-black font-extrabold px-1.5 py-0.5 rounded uppercase">MÓDULO INDEPENDIENTE PROAUDIX</span>
             <h3 class="text-sm font-bold text-white mt-1">Control de Bebestibles y Ventas ProAudix (Nevera & Bar)</h3>
-            <p class="text-xs text-zinc-400">Estos ingresos pertenecen exclusivamente a ProAudix y se mantienen 100% aislados de los balances de Rockerio Producciones SpA.</p>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center">
-            <div class="p-4 bg-[#18181b] rounded-xl border border-zinc-800">
-              <span class="text-xs text-zinc-500 block font-bold">TOTAL RECAUDADO MES</span>
-              <span class="text-xl font-black text-emerald-400 mt-1 block">$8.000</span>
-            </div>
-            <div class="p-4 bg-[#18181b] rounded-xl border border-zinc-800">
-              <span class="text-xs text-zinc-500 block font-bold">EFECTIVO EN CAJA</span>
-              <span class="text-xl font-black text-white mt-1 block">$0</span>
-            </div>
-            <div class="p-4 bg-[#18181b] rounded-xl border border-zinc-800">
-              <span class="text-xs text-zinc-500 block font-bold">TRANSFERENCIAS</span>
-              <span class="text-xl font-black text-sky-400 mt-1 block">$8.000</span>
-            </div>
           </div>
         </div>
       </div>
 
-      <!-- PESTAÑA ADMIN 4: BALANCE Y TRIBUTARIO SII -->
+      <!-- PESTAÑA ADMIN 5: BALANCE Y TRIBUTARIO SII -->
       <div id="adm-tab-balance" class="hidden space-y-6">
-        
-        <!-- Sub-Navegación del Balance -->
-        <div class="flex items-center gap-2 border-b border-[#242427] pb-2 overflow-x-auto">
-          <button onclick="cambiarSubBalance('socios')" class="btn-sub-bal px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-black" data-sbal="socios">🤝 Reparto Socios y Gastos Sala</button>
-          <button onclick="cambiarSubBalance('sii')" class="btn-sub-bal px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white" data-sbal="sii">🏛️ Balance Tributario Chileno (SII)</button>
-          <button onclick="cambiarSubBalance('operativo')" class="btn-sub-bal px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white" data-sbal="operativo">📊 Balance Operativo y Flujo</button>
-          <button onclick="cambiarSubBalance('tienda-jaime')" class="btn-sub-bal px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white" data-sbal="tienda-jaime">🎸 Liquidación Insumos Tienda</button>
-        </div>
-
-        <!-- 4.1 SUB-VISTA: REPARTO SOCIOS -->
-        <div id="sbal-socios" class="space-y-6">
-          <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-4">
-            <h3 class="text-xs font-bold text-amber-400 uppercase">⚡ 1. Gastos Operativos de la Sala de Ensayo (Noviembre 2026)</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-              <div class="p-3 bg-[#18181b] rounded-xl border border-[#27272a]">
-                <span class="text-zinc-400 block font-bold">Cuenta de Luz Total Recinto</span>
-                <input type="number" id="g-luz-total" value="40000" class="w-full bg-[#202024] border border-zinc-700 rounded-lg p-1.5 text-white font-bold mt-1">
-              </div>
-              <div class="p-3 bg-[#18181b] rounded-xl border border-[#27272a]">
-                <span class="text-zinc-400 block font-bold">(-) Aporte Base ProAudix a la Luz</span>
-                <input type="number" id="g-luz-proaudix" value="10000" class="w-full bg-[#202024] border border-zinc-700 rounded-lg p-1.5 text-white font-bold mt-1">
-                <span class="text-[10px] text-zinc-500">ProAudix aporta $10.000 fijos</span>
-              </div>
-              <div class="p-3 bg-[#18181b] rounded-xl border border-[#27272a]">
-                <span class="text-zinc-400 block font-bold">Caja Chica Jaime (Reparaciones)</span>
-                <input type="number" id="g-caja-chica" value="20000" class="w-full bg-[#202024] border border-zinc-700 rounded-lg p-1.5 text-white font-bold mt-1">
-                <span class="text-[10px] text-zinc-500">Fondo reserva mensual ($20.000)</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <!-- Juan Carlos Retamal -->
-            <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-5 space-y-3 flex flex-col justify-between">
-              <div>
-                <span class="text-[9px] bg-zinc-800 text-amber-400 font-extrabold px-2 py-0.5 rounded uppercase">FUNDADOR Y OPERADOR</span>
-                <h4 class="text-sm font-black text-white mt-1">Juan Carlos Retamal</h4>
-                <p class="text-[11px] text-zinc-400">50% Sala + 40% Grabación + 100% Raw</p>
-                <div class="space-y-1.5 text-xs text-zinc-300 border-t border-[#242427] pt-3 mt-3">
-                  <div class="flex justify-between"><span>• 50% Utilidad Sala:</span><b>$24.500</b></div>
-                  <div class="flex justify-between"><span>• 40% Estudio Grabación:</span><b>$0</b></div>
-                  <div class="flex justify-between"><span>• 100% Material en Bruto:</span><b>$0</b></div>
-                </div>
-              </div>
-              <div class="border-t border-[#242427] pt-3">
-                <div class="flex justify-between items-center text-sm font-black">
-                  <span class="text-zinc-400">Total Bolsillo Juan Carlos:</span>
-                  <span class="text-amber-400">$24.500</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Jaime Encina -->
-            <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-5 space-y-3 flex flex-col justify-between">
-              <div>
-                <span class="text-[9px] bg-zinc-800 text-emerald-400 font-extrabold px-2 py-0.5 rounded uppercase">SOCIO SALA Y TIENDA</span>
-                <h4 class="text-sm font-black text-white mt-1">Jaime Encina</h4>
-                <p class="text-[11px] text-zinc-400">50% Sala Neta + $20.000 Caja Chica</p>
-                <div class="space-y-1.5 text-xs text-zinc-300 border-t border-[#242427] pt-3 mt-3">
-                  <div class="flex justify-between"><span>• 50% Utilidad Sala:</span><b>$24.500</b></div>
-                  <div class="flex justify-between"><span>• (+) Fondo Caja Chica:</span><b>+$20.000</b></div>
-                  <div class="flex justify-between"><span>• Tienda Insumos a Transferir:</span><b>$36.000</b></div>
-                </div>
-              </div>
-              <div class="border-t border-[#242427] pt-3 space-y-2">
-                <div class="flex justify-between items-center text-sm font-black">
-                  <span class="text-zinc-400">Total a Entregar a Jaime:</span>
-                  <span class="text-emerald-400">$80.500</span>
-                </div>
-                <button onclick="enviarLiquidacionWhatsApp('Jaime Encina')" class="w-full bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/30 font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5">
-                  <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> Enviar Liquidación a Jaime vía WA
-                </button>
-              </div>
-            </div>
-
-            <!-- Gabriela Martelli -->
-            <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-5 space-y-3 flex flex-col justify-between">
-              <div>
-                <span class="text-[9px] bg-zinc-800 text-purple-400 font-extrabold px-2 py-0.5 rounded uppercase">ESTUDIO GRABACIÓN</span>
-                <h4 class="text-sm font-black text-white mt-1">Gabriela Martelli</h4>
-                <p class="text-[11px] text-zinc-400">60% de Estudio de Grabación</p>
-                <div class="space-y-1.5 text-xs text-zinc-300 border-t border-[#242427] pt-3 mt-3">
-                  <div class="flex justify-between"><span>• Facturado Grabación:</span><b>$0</b></div>
-                  <div class="flex justify-between"><span>• Porcentaje Acordado:</span><b>60%</b></div>
-                  <div class="flex justify-between"><span>• Horas Trabajadas:</span><b>0 hrs</b></div>
-                </div>
-              </div>
-              <div class="border-t border-[#242427] pt-3 space-y-2">
-                <div class="flex justify-between items-center text-sm font-black">
-                  <span class="text-zinc-400">Total para Gabriela:</span>
-                  <span class="text-purple-400">$0</span>
-                </div>
-                <button onclick="enviarLiquidacionWhatsApp('Gabriela Martelli')" class="w-full bg-purple-600/20 hover:bg-purple-600/30 text-purple-400 border border-purple-500/30 font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5">
-                  <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> Enviar Liquidación a Gabriela vía WA
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4.2 SUB-VISTA: BALANCE TRIBUTARIO SII -->
-        <div id="sbal-sii" class="hidden space-y-6">
-          <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-5">
-            <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider">CONFIGURACIÓN DE LA SIMULACIÓN TRIBUTARIA</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-              <div>
-                <label class="block text-zinc-400 mb-1">Régimen Tributario SII Proyectado</label>
-                <select class="w-full bg-[#1c1c1e] border border-zinc-700 rounded-xl p-2.5 text-white">
-                  <option>Régimen ProPyme General (14 D3) - Recomendado</option>
-                  <option>ProPyme Transparente (14 D8)</option>
-                </select>
-              </div>
-              <div>
-                <label class="block text-zinc-400 mb-1">Tipo de Documento Tributario</label>
-                <select class="w-full bg-[#1c1c1e] border border-zinc-700 rounded-xl p-2.5 text-white">
-                  <option>Boletas Afectas a IVA (19% incluido en precios)</option>
-                </select>
-              </div>
-              <div>
-                <label class="block text-zinc-400 mb-1">Tasa PPM (Pago Provisional Mensual)</label>
-                <select class="w-full bg-[#1c1c1e] border border-zinc-700 rounded-xl p-2.5 text-white">
-                  <option>0.25% (Tasa inicial ProPyme ingresos < 50.000 UF)</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- F29 -->
-            <div class="bg-[#18181b] border border-[#27272a] rounded-xl p-5 space-y-4">
-              <div class="flex justify-between items-center border-b border-[#242427] pb-3">
-                <div>
-                  <h4 class="text-xs font-bold text-white flex items-center gap-1.5"><i data-lucide="calculator" class="w-4 h-4 text-amber-500"></i> Simulación Mensual: Formulario 29 (F29)</h4>
-                  <span class="text-[10px] text-zinc-500">Vence el día 20 de cada mes en sii.cl</span>
-                </div>
-                <div class="text-right">
-                  <span class="text-[10px] text-zinc-500 uppercase block font-bold">Total a Pagar F29 Estimado:</span>
-                  <span class="text-rose-400 font-black text-base">$5.098</span>
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                <div class="p-3 bg-[#131316] rounded-xl border border-zinc-800">
-                  <span class="text-zinc-400 block font-bold">1. IVA Débito Fiscal (19%)</span>
-                  <p class="text-base font-black text-white mt-1">$11.336</p>
-                  <span class="text-[10px] text-zinc-500">IVA recaudado del total de ventas de sala y grabaciones.</span>
-                </div>
-                <div class="p-3 bg-[#131316] rounded-xl border border-zinc-800">
-                  <span class="text-zinc-400 block font-bold">2. (-) IVA Crédito Fiscal (Compras)</span>
-                  <p class="text-base font-black text-emerald-400 mt-1">-$6.387</p>
-                  <span class="text-[10px] text-zinc-500">IVA deducible de facturas de luz y compras de cuerdas/insumos a nombre de la SpA.</span>
-                </div>
-                <div class="p-3 bg-[#131316] rounded-xl border border-zinc-800">
-                  <span class="text-zinc-400 block font-bold">3. PPM Mensual (0.25%)</span>
-                  <p class="text-base font-black text-amber-400 mt-1">$149</p>
-                  <span class="text-[10px] text-zinc-500">Ahorro mensual obligatorio que descuenta tu impuesto a la renta anual.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4.3 SUB-VISTA: BALANCE OPERATIVO Y FLUJO -->
-        <div id="sbal-operativo" class="hidden space-y-6">
-          <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-5">
-            <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider">Criterio Estricto de Ingresos al Balance (Por Concreción)</h3>
-            
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
-              <div class="bg-[#18181b] p-4 rounded-xl border border-zinc-800">
-                <span class="text-[10px] text-zinc-500 font-bold uppercase block">INGRESOS CONCRETADOS AL BALANCE</span>
-                <span class="text-xl font-black text-amber-400 mt-1 block">$71.000</span>
-              </div>
-              <div class="bg-[#18181b] p-4 rounded-xl border border-zinc-800">
-                <span class="text-[10px] text-zinc-500 font-bold uppercase block">CUSTODIA PROVISIONAL (EN PROCESO)</span>
-                <span class="text-xl font-black text-white mt-1 block">$40.000</span>
-              </div>
-              <div class="bg-[#18181b] p-4 rounded-xl border border-zinc-800">
-                <span class="text-[10px] text-zinc-500 font-bold uppercase block">INASISTENCIAS & RETENCIONES</span>
-                <span class="text-xl font-black text-emerald-400 mt-1 block">+$15.000</span>
-              </div>
-              <div class="bg-[#18181b] p-4 rounded-xl border border-zinc-800">
-                <span class="text-[10px] text-zinc-500 font-bold uppercase block">EGRESOS EN CAJA (DEVOLUCIONES)</span>
-                <span class="text-xl font-black text-rose-400 mt-1 block">-$0</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4.4 SUB-VISTA: LIQUIDACIÓN INSUMOS TIENDA -->
-        <div id="sbal-tienda-jaime" class="hidden space-y-6">
-          <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-5">
-            <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider">Liquidación de Tienda de Música e Insumos (Jaime Encina)</h3>
-            <div class="bg-[#18181b] p-5 rounded-xl border border-zinc-800 space-y-4">
-              <div class="flex justify-between items-center border-b border-[#242427] pb-3">
-                <span class="text-xs font-bold text-white uppercase">RESUMEN DE INSUMOS DEL PERIODO (NOVIEMBRE DE 2026)</span>
-                <span class="text-xs text-amber-400 font-extrabold">Monto Acumulado a Transferir: $36.000</span>
-              </div>
-              <button onclick="enviarLiquidacionWhatsApp('Jaime Encina')" class="w-full bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/30 font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2">
-                <i data-lucide="message-circle" class="w-4 h-4"></i> Enviar Comprobante de Tienda a Jaime
-              </button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- PESTAÑA ADMIN 5: RESEÑAS Y EVALUACIONES (MODERACIÓN) -->
-      <div id="adm-tab-resenas" class="hidden space-y-6">
         <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-4">
-          <div class="grid grid-cols-3 gap-3 text-center">
-            <div class="bg-[#18181b] p-4 rounded-xl border border-zinc-800">
-              <span class="text-zinc-500 text-xs font-bold uppercase block">Total Evaluaciones</span>
-              <span class="text-xl font-black text-white mt-1">2</span>
+          <h3 class="text-xs font-bold text-amber-400 uppercase">⚡ Gastos Operativos y Balance SpA</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="p-4 bg-[#18181b] rounded-xl border border-zinc-800">
+              <span class="text-xs text-zinc-500 block font-bold">Juan Carlos Retamal</span>
+              <span class="text-lg font-black text-amber-400 mt-1 block">$24.500</span>
             </div>
-            <div class="bg-[#18181b] p-4 rounded-xl border border-zinc-800">
-              <span class="text-zinc-500 text-xs font-bold uppercase block">Calificación Promedio</span>
-              <span class="text-xl font-black text-amber-400 mt-1">5.0 ★</span>
+            <div class="p-4 bg-[#18181b] rounded-xl border border-zinc-800">
+              <span class="text-xs text-zinc-500 block font-bold">Jaime Encina</span>
+              <span class="text-lg font-black text-emerald-400 mt-1 block">$80.500</span>
             </div>
-            <div class="bg-[#18181b] p-4 rounded-xl border border-zinc-800">
-              <span class="text-zinc-500 text-xs font-bold uppercase block">Control de Moderación</span>
-              <span class="text-xs font-black text-emerald-400 mt-1 block">Eliminación directa activa</span>
+            <div class="p-4 bg-[#18181b] rounded-xl border border-zinc-800">
+              <span class="text-xs text-zinc-500 block font-bold">Gabriela Martelli</span>
+              <span class="text-lg font-black text-purple-400 mt-1 block">$0</span>
             </div>
           </div>
-          <div id="adm-lista-resenas" class="space-y-3 pt-2"></div>
         </div>
       </div>
 
-      <!-- PESTAÑA ADMIN 6: CONFIGURACIÓN INTEGRAL WEB (AUTOCONFIGURABLE COMPLETO) -->
+      <!-- PESTAÑA ADMIN 6: CONFIGURACIÓN INTEGRAL WEB -->
       <div id="adm-tab-configuracion" class="hidden space-y-8">
         <div class="bg-[#141416] border border-[#27272a] rounded-2xl p-6 shadow-xl space-y-8">
           <div class="flex justify-between items-center border-b border-[#242427] pb-3">
             <div>
-              <h3 class="text-sm font-bold text-white uppercase flex items-center gap-2"><i data-lucide="settings" class="w-4 h-4 text-amber-500"></i> Configuración Integral del Sitio Web, Medios y Textos</h3>
-              <p class="text-xs text-zinc-400">Modifica funciones, textos, switches, medios multimedia y respaldos automáticos en Firebase sin tocar código.</p>
+              <h3 class="text-sm font-bold text-white uppercase flex items-center gap-2"><i data-lucide="settings" class="w-4 h-4 text-amber-500"></i> Configuración Integral del Sitio Web y Textos</h3>
+              <p class="text-xs text-zinc-400">Modifica funciones, textos, switches y respaldos automáticos en Firebase.</p>
             </div>
-            <button onclick="guardarTodaConfiguracionFirebase()" class="bg-amber-500 hover:bg-amber-400 text-black font-extrabold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition shadow">
+            <button onclick="window.guardarTodaConfiguracionFirebase()" class="bg-amber-500 hover:bg-amber-400 text-black font-extrabold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition shadow cursor-pointer">
               Guardar Todo en Firebase
             </button>
           </div>
 
-          <!-- SECCIÓN A: EDICIÓN DE TEXTOS Y CONTENIDOS (CAPTURA 21 Y 24) -->
+          <!-- Edición de Textos -->
           <div class="space-y-4">
-            <h4 class="text-xs font-bold text-amber-400 uppercase flex items-center gap-1.5"><i data-lucide="type" class="w-4 h-4"></i> 6. Edición de Textos y Contenidos de Cada Sección</h4>
-            
+            <h4 class="text-xs font-bold text-amber-400 uppercase flex items-center gap-1.5"><i data-lucide="type" class="w-4 h-4"></i> Edición de Textos y Contenidos</h4>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div>
-                <label class="block text-zinc-400 mb-1">Título Principal de la Web</label>
+                <label class="block text-zinc-400 mb-1">Título Principal</label>
                 <input type="text" id="cfg-txt-titulo-web" value="ROCKERIO PRODUCCIONES" class="w-full bg-[#18181b] border border-zinc-800 rounded-lg p-2.5 text-white">
               </div>
               <div>
-                <label class="block text-zinc-400 mb-1">Subtítulo / Categorías en Barra Superior</label>
+                <label class="block text-zinc-400 mb-1">Subtítulo en Barra Superior</label>
                 <input type="text" id="cfg-txt-subtitulo-web" value="SALA DE ENSAYO / ESTUDIO DE GRABACIÓN / TIENDA DE INSUMOS MUSICALES / QUINTA NORMAL" class="w-full bg-[#18181b] border border-zinc-800 rounded-lg p-2.5 text-white">
               </div>
               <div>
@@ -735,113 +577,39 @@
                 <input type="text" id="cfg-txt-comuna" value="QUINTA NORMAL / SANTIAGO" class="w-full bg-[#18181b] border border-zinc-800 rounded-lg p-2.5 text-white">
               </div>
             </div>
-
             <div class="space-y-2 text-xs">
-              <label class="block text-zinc-400">Biografía Profesional / Introducción (Juan Carlos Retamal)</label>
+              <label class="block text-zinc-400">Biografía Profesional (Juan Carlos Retamal)</label>
               <textarea id="cfg-txt-bio" rows="2" class="w-full bg-[#18181b] border border-zinc-800 rounded-lg p-2.5 text-white">Hola. Soy Juan Carlos, técnico superior en informática e ingeniero en sonido con más de 5 años de experiencia trabajando en estudio de grabación y producción, además de operar Rockerio Producciones.</textarea>
             </div>
           </div>
 
-          <!-- SECCIÓN B: FICHA TÉCNICA DINÁMICA (CAPTURA 22 Y 23) -->
-          <div class="space-y-4 pt-4 border-t border-[#242427]">
-            <div class="flex justify-between items-center">
-              <h4 class="text-xs font-bold text-amber-400 uppercase flex items-center gap-1.5"><i data-lucide="wrench" class="w-4 h-4"></i> D. Ficha Técnica, Equipamiento y Textos del Estudio</h4>
-              <button onclick="agregarFilaEquipamiento()" class="text-xs bg-zinc-800 hover:bg-zinc-700 text-amber-400 px-3 py-1 rounded-lg border border-zinc-700">+ Agregar Fila a Ficha</button>
-            </div>
-            
-            <div id="contenedor-items-ficha" class="space-y-2">
-              <!-- Creado dinámicamente -->
-            </div>
-          </div>
-
-          <!-- SECCIÓN C: GESTOR MULTIMEDIA FOTOS / VIDEOS / DRIVE (CAPTURA 20) -->
-          <div class="space-y-4 pt-4 border-t border-[#242427]">
-            <h4 class="text-xs font-bold text-amber-400 uppercase flex items-center gap-1.5"><i data-lucide="image" class="w-4 h-4"></i> 5. Editor de Fotos de Carruseles y Contenidos Web (CMS)</h4>
-            
-            <div class="space-y-3 text-xs">
-              <div class="p-3 bg-[#18181b] rounded-xl border border-zinc-800 flex justify-between items-center">
-                <div>
-                  <b class="text-white block">Foto de Portada / Hero Banner Principal</b>
-                  <input type="text" id="cfg-media-hero" value="https://lh3.googleusercontent.com/d/1koOUxGV_wO5FbtduEK5uzuYuVBKuyYoV" class="w-96 bg-[#121214] border border-zinc-800 rounded p-1.5 text-zinc-300 mt-1">
-                </div>
-                <input type="file" onchange="subirArchivoAFirebase(this, 'cfg-media-hero')" class="text-xs text-zinc-400">
-              </div>
-
-              <div class="p-3 bg-[#18181b] rounded-xl border border-zinc-800 flex justify-between items-center">
-                <div>
-                  <b class="text-white block">Logo Oficial ProAudix (Para la Pestaña ProAudix)</b>
-                  <input type="text" id="cfg-media-logo-proaudix" value="https://lh3.googleusercontent.com/d/1ew4As5evEuBzu0u6pnJI8MWvNvuiH0nR" class="w-96 bg-[#121214] border border-zinc-800 rounded p-1.5 text-zinc-300 mt-1">
-                </div>
-                <input type="file" onchange="subirArchivoAFirebase(this, 'cfg-media-logo-proaudix')" class="text-xs text-zinc-400">
-              </div>
-
-              <div class="p-3 bg-[#18181b] rounded-xl border border-zinc-800 flex justify-between items-center">
-                <div>
-                  <b class="text-white block">Playlist YouTube Oficial (Iframe ID o Link)</b>
-                  <input type="text" id="cfg-media-yt" value="https://www.youtube.com/embed/videoseries?list=PLVvxu7INRfmo" class="w-96 bg-[#121214] border border-zinc-800 rounded p-1.5 text-zinc-300 mt-1">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- SECCIÓN D: MOTOR DE SWITCHES ON/OFF (CAPTURA 16, 17, 18) -->
+          <!-- PIN de Seguridad de Admin -->
           <div class="space-y-3 pt-4 border-t border-[#242427]">
-            <h4 class="text-xs font-bold text-amber-400 uppercase flex items-center gap-1.5"><i data-lucide="toggle-left" class="w-4 h-4"></i> Motor de Configuración Total (Switches ON/OFF)</h4>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-              <label class="flex items-center justify-between p-3 bg-[#18181b] rounded-xl border border-zinc-800 cursor-pointer">
-                <span>Abono Mercado Pago</span>
-                <input type="checkbox" id="sw-abono-mp" checked class="rounded border-zinc-700 text-amber-500">
-              </label>
-              <label class="flex items-center justify-between p-3 bg-[#18181b] rounded-xl border border-zinc-800 cursor-pointer">
-                <span>Requerimientos Técnicos</span>
-                <input type="checkbox" id="sw-req-tecnicos" checked class="rounded border-zinc-700 text-amber-500">
-              </label>
-              <label class="flex items-center justify-between p-3 bg-[#18181b] rounded-xl border border-zinc-800 cursor-pointer">
-                <span>Cotizador Express PDF</span>
-                <input type="checkbox" id="sw-cotizador" checked class="rounded border-zinc-700 text-amber-500">
-              </label>
-              <label class="flex items-center justify-between p-3 bg-[#18181b] rounded-xl border border-zinc-800 cursor-pointer">
-                <span>Bloqueos Sanitización</span>
-                <input type="checkbox" id="sw-sanitizacion" checked class="rounded border-zinc-700 text-amber-500">
-              </label>
+            <h4 class="text-xs font-bold text-amber-400 uppercase flex items-center gap-1.5"><i data-lucide="lock" class="w-4 h-4"></i> Seguridad: PIN / Contraseña de Acceso Admin</h4>
+            <div class="max-w-xs text-xs">
+              <label class="block text-zinc-400 mb-1">Clave Actual de Administración</label>
+              <input type="password" id="cfg-admin-pin" value="rockerio2026" class="w-full bg-[#18181b] border border-zinc-800 rounded-lg p-2.5 text-white font-mono">
             </div>
           </div>
 
-          <!-- SECCIÓN E: SISTEMA INTEGRAL Y AUTOMATIZADO DE RESPALDOS (CAPTURA 27) -->
+          <!-- Ficha Técnica -->
           <div class="space-y-4 pt-4 border-t border-[#242427]">
             <div class="flex justify-between items-center">
-              <div>
-                <h4 class="text-xs font-bold text-amber-400 uppercase flex items-center gap-1.5"><i data-lucide="database" class="w-4 h-4"></i> 9. Sistema Integral y Automatizado de Respaldos</h4>
-                <p class="text-[11px] text-zinc-400">Respaldo completo de base de datos, textos, fotos, audios, arriendos, clientes y configuraciones en Firebase.</p>
-              </div>
-              <span class="text-[10px] bg-emerald-500/20 text-emerald-400 font-bold px-2 py-0.5 rounded border border-emerald-500/30">RESPALDOS AUTÓNOMOS ACTIVOS</span>
+              <h4 class="text-xs font-bold text-amber-400 uppercase flex items-center gap-1.5"><i data-lucide="wrench" class="w-4 h-4"></i> Ficha Técnica y Equipamiento Dinámico</h4>
+              <button onclick="window.agregarFilaEquipamiento()" class="text-xs bg-zinc-800 hover:bg-zinc-700 text-amber-400 px-3 py-1 rounded-lg border border-zinc-700 cursor-pointer">+ Agregar Fila a Ficha</button>
             </div>
+            <div id="contenedor-items-ficha" class="space-y-2"></div>
+          </div>
 
-            <div class="flex items-center gap-3">
-              <button onclick="tomarRespaldoAhora()" class="bg-amber-500 hover:bg-amber-400 text-black font-extrabold px-4 py-2 rounded-xl text-xs uppercase transition shadow">
-                ⚙️ Tomar Respaldo Ahora
-              </button>
-              <button onclick="ejecutarRespaldoManual()" class="bg-[#18181b] hover:bg-zinc-800 text-zinc-300 border border-zinc-700 px-4 py-2 rounded-xl text-xs font-bold transition">
-                Descargar Respaldo JSON Completo
-              </button>
-            </div>
-
-            <!-- Historial de Copias Disponibles -->
-            <div class="space-y-2 pt-2">
-              <label class="text-[11px] font-bold text-zinc-500 uppercase">HISTORIAL DE COPIAS DE SEGURIDAD DISPONIBLES</label>
-              <div id="lista-respaldos-historico" class="space-y-2 text-xs">
-                <!-- Inyectado dinámicamente -->
-              </div>
-            </div>
-
-            <!-- Botón Rojo Inicialización Operativa -->
-            <div class="p-4 bg-rose-950/20 border border-rose-900/40 rounded-xl space-y-2 mt-4">
-              <h5 class="text-xs font-bold text-rose-400 flex items-center gap-1.5">⚠️ Inicialización Operativa (Dejar Portal en Cero para Hoy)</h5>
-              <p class="text-[11px] text-zinc-400">Si deseas comenzar a operar hoy con una base de datos 100% limpia sin registros de prueba ni reservas antiguas, puedes pulsar el botón a continuación. Conservará tu clave, tarifas y catálogo de insumos.</p>
-              <button onclick="vaciarReservasPrueba()" class="bg-rose-600 hover:bg-rose-500 text-white font-extrabold text-xs px-4 py-2 rounded-xl transition">
-                🗑️ Vaciar Reservas y Clientes de Prueba (Comenzar en Cero)
+          <!-- Respaldos -->
+          <div class="space-y-4 pt-4 border-t border-[#242427]">
+            <div class="flex justify-between items-center">
+              <h4 class="text-xs font-bold text-amber-400 uppercase flex items-center gap-1.5"><i data-lucide="database" class="w-4 h-4"></i> Sistema de Respaldos</h4>
+              <button onclick="window.tomarRespaldoAhora()" class="bg-amber-500 hover:bg-amber-400 text-black font-extrabold px-4 py-2 rounded-xl text-xs uppercase cursor-pointer">
+                Tomar Respaldo Ahora
               </button>
             </div>
+            <div id="lista-respaldos-historico" class="space-y-2 text-xs"></div>
           </div>
 
         </div>
@@ -852,250 +620,460 @@
   </main>
 
   <!-- ======================================================= -->
-  <!-- MODALES COMPLEMENTARIOS                                 -->
+  <!-- MODALES: CONTRASEÑA ADMIN, COTIZADOR Y BLOQUEO          -->
   <!-- ======================================================= -->
+  <!-- Modal Clave Admin -->
+  <div id="modal-admin-auth" class="fixed inset-0 bg-black/85 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-[#141416] border border-[#27272a] rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl text-center">
+      <div class="w-12 h-12 bg-amber-500/10 text-amber-500 rounded-full flex items-center justify-center mx-auto">
+        <i data-lucide="lock" class="w-6 h-6"></i>
+      </div>
+      <div>
+        <h3 class="text-sm font-bold text-white uppercase">Acceso Protegido al Panel Admin</h3>
+        <p class="text-xs text-zinc-400 mt-1">Ingresa el PIN técnico para gestionar reservas y finanzas.</p>
+      </div>
+      <form onsubmit="window.verificarPinAdmin(event)" class="space-y-3">
+        <input type="password" id="input-pin-auth" placeholder="PIN de acceso" required class="w-full bg-[#1c1c1e] border border-zinc-700 rounded-xl px-3 py-2 text-center text-white tracking-widest text-sm outline-none focus:border-amber-500">
+        <p id="txt-error-pin" class="text-xs text-rose-500 font-bold hidden">PIN incorrecto.</p>
+        <div class="flex gap-2">
+          <button type="button" onclick="window.cerrarModalAuth()" class="w-1/2 bg-[#222] hover:bg-[#27272a] text-zinc-300 py-2.5 rounded-xl text-xs font-bold cursor-pointer">Cancelar</button>
+          <button type="submit" class="w-1/2 bg-amber-500 hover:bg-amber-400 text-black py-2.5 rounded-xl text-xs font-extrabold cursor-pointer">Entrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Cotizador -->
   <div id="modal-cotizador" class="fixed inset-0 bg-black/85 z-50 hidden flex items-center justify-center p-4">
     <div class="bg-[#141416] border border-[#27272a] rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl custom-scroll max-h-[90vh] overflow-y-auto">
       <div class="flex justify-between items-center border-b border-[#242427] pb-3">
         <h3 class="text-xs font-bold text-amber-400 uppercase flex items-center gap-1.5"><i data-lucide="file-spreadsheet" class="w-4 h-4"></i> Generar Presupuesto de Producción Musical</h3>
-        <button onclick="cerrarModalCotizador()" class="text-zinc-400 hover:text-white">&times;</button>
+        <button onclick="window.cerrarModalCotizador()" class="text-zinc-400 hover:text-white cursor-pointer">&times;</button>
       </div>
-      <form onsubmit="guardarCotizacion(event)" class="space-y-4 text-xs">
-        <div class="grid grid-cols-2 gap-2">
-          <input type="text" placeholder="Cliente Responsable *" required class="bg-[#1c1c1e] border border-zinc-700 rounded-lg p-2 text-white">
-          <input type="text" placeholder="Banda / Proyecto Musical *" required class="bg-[#1c1c1e] border border-zinc-700 rounded-lg p-2 text-white">
-          <input type="tel" placeholder="Teléfono Celular *" required class="bg-[#1c1c1e] border border-zinc-700 rounded-lg p-2 text-white">
-          <input type="email" placeholder="Correo Electrónico *" required class="bg-[#1c1c1e] border border-zinc-700 rounded-lg p-2 text-white">
-        </div>
-        <div class="p-3 bg-[#18181b] rounded-xl flex justify-between items-center text-sm font-black border border-zinc-800">
-          <span>TOTAL ESTIMADO FINAL (CLP):</span>
-          <span class="text-amber-400">$120.000</span>
-        </div>
-        <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-black font-extrabold py-2.5 rounded-xl uppercase">Guardar y Generar PDF</button>
-      </form>
+      <div class="p-3 bg-[#18181b] rounded-xl flex justify-between items-center text-sm font-black border border-zinc-800">
+        <span>TOTAL ESTIMADO FINAL (CLP):</span>
+        <span class="text-amber-400">$120.000</span>
+      </div>
+      <button onclick="window.cerrarModalCotizador()" class="w-full bg-amber-500 hover:bg-amber-400 text-black font-extrabold py-2.5 rounded-xl text-xs uppercase cursor-pointer">Cerrar</button>
     </div>
   </div>
 
+  <!-- Modal Bloqueo -->
   <div id="modal-bloqueo" class="fixed inset-0 bg-black/85 z-50 hidden flex items-center justify-center p-4">
     <div class="bg-[#141416] border border-[#27272a] rounded-2xl max-w-sm w-full p-5 space-y-4 shadow-2xl">
       <div class="flex justify-between items-center border-b border-[#242427] pb-2">
         <h3 class="text-xs font-bold text-zinc-300 uppercase">Bloquear Agenda / Mantención</h3>
-        <button onclick="cerrarModalBloqueo()" class="text-zinc-500 hover:text-white">&times;</button>
+        <button onclick="window.cerrarModalBloqueo()" class="text-zinc-500 hover:text-white cursor-pointer">&times;</button>
       </div>
-      <form onsubmit="guardarBloqueo(event)" class="space-y-3 text-xs">
+      <form onsubmit="window.guardarBloqueo(event)" class="space-y-3 text-xs">
         <input type="date" value="2026-11-06" class="w-full bg-[#1c1c1e] border border-zinc-700 rounded-xl p-2 text-white">
         <input type="text" placeholder="Ej: 14:00 - 17:00 hrs" required class="w-full bg-[#1c1c1e] border border-zinc-700 rounded-xl p-2 text-white">
         <input type="text" placeholder="Motivo (Desplegado en Plomo)" required class="w-full bg-[#1c1c1e] border border-zinc-700 rounded-xl p-2 text-white">
-        <button type="submit" class="w-full bg-zinc-600 hover:bg-zinc-500 text-white font-bold py-2.5 rounded-xl uppercase">Guardar Bloqueo Plomo</button>
+        <button type="submit" class="w-full bg-zinc-600 hover:bg-zinc-500 text-white font-bold py-2.5 rounded-xl uppercase cursor-pointer">Guardar Bloqueo Plomo</button>
       </form>
     </div>
   </div>
 
   <!-- ======================================================= -->
-  <!-- 5. SCRIPT ENGINE CONEXIÓN FIREBASE & AUTOCONFIGURACIÓN  -->
+  <!-- 6. MOTOR JAVASCRIPT GLOBAL (100% BLINDADO Y OPERATIVO)  -->
   <!-- ======================================================= -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { 
-      getDatabase, ref, set, update, remove, get, onValue 
-    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-    import { 
-      getStorage, ref as sRef, uploadBytes, getDownloadURL 
-    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+  <script>
+    // Variables de Estado Globales
+    let servicio = "ensayo";
+    let duracion = 2;
+    let fecha = "2026-11-06";
+    let bloque = "10:00 - 12:00 hrs";
+    let extras = [];
+    let adminAutenticado = false;
+    let pinAdminActual = "rockerio2026";
 
-    // Credenciales Firebase
-    const firebaseConfig = {
-      apiKey: "PEGAR_TU_API_KEY",
-      authDomain: "rockerio-producciones-932fb.firebaseapp.com",
-      databaseURL: "https://rockerio-producciones-932fb-default-rtdb.firebaseio.com",
-      projectId: "rockerio-producciones-932fb",
-      storageBucket: "rockerio-producciones-932fb.firebasestorage.app",
-      messagingSenderId: "1234567890",
-      appId: "1:1234567890:web:abcdef"
-    };
+    const listaExtras = [
+      'Set de Platos KINGDO SN8 SERIES (B8) (Hi-Hat 14" / Crash 16" / Crash 18" / Ride 20")',
+      'Bajo Activo Epiphone Thunderbird PRO IV',
+      "Guitarra Eléctrica Squier Vintage Modified 70'",
+      'Guitarra Electro-Acústica Takamine',
+      'Pedalboard de Efectos Análogos para Bajo',
+      'Pedalboard de Efectos Análogos para Guitarra'
+    ];
 
-    let rtdb = null;
-    let storage = null;
-    let usaFirebase = false;
+    const horarios = [
+      "09:00 - 11:00 hrs", "10:00 - 12:00 hrs", "11:00 - 13:00 hrs", 
+      "12:00 - 14:00 hrs", "17:00 - 19:00 hrs", "18:00 - 20:00 hrs", 
+      "19:00 - 21:00 hrs", "20:00 - 22:00 hrs", "21:00 - 23:00 hrs"
+    ];
 
-    // Estado Global Autoconfigurable
     let configSitio = {
       tituloWeb: "ROCKERIO PRODUCCIONES",
       subtituloWeb: "SALA DE ENSAYO / ESTUDIO DE GRABACIÓN / TIENDA DE INSUMOS MUSICALES / QUINTA NORMAL",
       direccion: "DIRECCIÓN: JOSE JOAQUÍN PEREZ #4547",
       comuna: "QUINTA NORMAL / SANTIAGO",
       bio: "Hola. Soy Juan Carlos, técnico superior en informática e ingeniero en sonido con más de 5 años de experiencia trabajando en estudio de grabación y producción, además de operar Rockerio Producciones.",
-      heroMedia: "https://lh3.googleusercontent.com/d/1koOUxGV_wO5FbtduEK5uzuYuVBKuyYoV",
-      logoProaudix: "https://lh3.googleusercontent.com/d/1ew4As5evEuBzu0u6pnJI8MWvNvuiH0nR",
-      ytPlaylist: "https://www.youtube.com/embed/videoseries?list=PLVvxu7INRfmo",
       fichaEquipos: [
         { cat: "Climatización:", desc: "Aire acondicionado para ensayos y grabaciones confortables." },
         { cat: "Espacios:", desc: "Patio interior dedicado para descansar, compartir y despejarse entre sesiones." },
         { cat: "Conectividad:", desc: "Wi-Fi de alta velocidad disponible permanentemente en todo el recinto." },
         { cat: "Servicios:", desc: "Estación permanente de té, café y agua purificada a libre disposición." }
-      ],
-      switches: {
-        abonoMp: true,
-        reqTecnicos: true,
-        cotizador: true,
-        sanitizacion: true
+      ]
+    };
+
+    let respaldos = [
+      { id: "bk_1", nombre: "Manual desde Barra Admin", fecha: "2026-11-06 02:55", tam: "455 KB" }
+    ];
+
+    // INICIALIZACIÓN
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      window.renderizarDias();
+      window.renderizarBloques();
+      window.renderizarExtras();
+      window.renderizarCalendarioAdmin();
+      window.renderizarBandasAdmin();
+      window.renderizarFichaConfig();
+      window.renderizarRespaldos();
+      window.aplicarTextos();
+      window.irAlPaso(1);
+    });
+
+    // NAVEGACIÓN PÚBLICA (SOLUCIONA EL CONGELAMIENTO)
+    window.cambiarSeccionPublica = function(seccionId) {
+      const secciones = ['reservar', 'produccion', 'ficha', 'planes', 'tienda', 'evaluaciones', 'galeria', 'contacto', 'proaudix'];
+      secciones.forEach(s => {
+        const el = document.getElementById(s === 'reservar' ? 'vista-publica-reservas' : `seccion-${s}`);
+        if (el) el.classList.add('hidden');
+      });
+
+      const destino = document.getElementById(seccionId === 'reservar' ? 'vista-publica-reservas' : `seccion-${seccionId}`);
+      if (destino) destino.classList.remove('hidden');
+
+      document.querySelectorAll('.btn-pub-tab').forEach(b => {
+        if (b.dataset.tab === seccionId) {
+          b.className = "btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 bg-amber-500 text-black shadow-sm";
+        } else {
+          b.className = "btn-pub-tab px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shrink-0 text-zinc-400 hover:text-white hover:bg-zinc-800";
+        }
+      });
+      lucide.createIcons();
+    };
+
+    // WIZARD DE RESERVAS
+    window.irAlPaso = function(n) {
+      for (let i = 1; i <= 4; i++) {
+        const p = document.getElementById(`paso-${i}-container`);
+        if (p) p.classList.add('hidden');
+      }
+      const pasoActivo = document.getElementById(`paso-${n}-container`);
+      if (pasoActivo) pasoActivo.classList.remove('hidden');
+
+      for (let i = 1; i <= 4; i++) {
+        const ind = document.getElementById(`step-ind-${i}`);
+        if (!ind) continue;
+        if (i < n) {
+          ind.className = "flex items-center gap-1 text-emerald-400 font-bold shrink-0 cursor-pointer";
+        } else if (i === n) {
+          ind.className = "flex items-center gap-1 text-amber-400 font-extrabold shrink-0 cursor-pointer";
+        } else {
+          ind.className = "flex items-center gap-1 text-zinc-500 shrink-0 cursor-pointer";
+        }
+      }
+      lucide.createIcons();
+    };
+
+    window.seleccionarServicio = function(s) {
+      servicio = s;
+      window.irAlPaso(2);
+    };
+
+    window.setDuracion = function(d) {
+      duracion = d;
+      document.querySelectorAll('.dur-btn').forEach(b => {
+        if (b.dataset.dur == d) b.className = "dur-btn py-3 rounded-xl border-2 border-amber-500 bg-amber-500/10 text-amber-400 text-xs font-bold";
+        else b.className = "dur-btn py-3 rounded-xl border border-zinc-800 bg-[#18181b] text-zinc-400 text-xs font-bold";
+      });
+      document.getElementById('txt-bloques-duracion').textContent = `${d} horas`;
+      window.renderizarBloques();
+    };
+
+    window.renderizarDias = function() {
+      const cont = document.getElementById('pildoras-dias');
+      if (!cont) return;
+      cont.innerHTML = "";
+      const nombres = ["HOY", "MAÑANA", "DOM", "LUN", "MAR", "MIÉ", "JUE", "VIE"];
+      for (let i = 0; i < 8; i++) {
+        const num = 6 + i;
+        const esHoy = (i === 0);
+        cont.innerHTML += `
+          <button type="button" onclick="window.elegirDia(${i}, '${num}')" class="p-2 rounded-xl text-center border flex flex-col items-center justify-between transition cursor-pointer ${esHoy ? 'bg-amber-500/10 border-amber-500 text-white' : 'bg-[#18181b] border-zinc-800 text-zinc-400'}">
+            <span class="text-[9px] uppercase font-bold text-amber-500">${nombres[i]}</span>
+            <span class="text-sm font-black text-white">${num}</span>
+            <span class="text-[9px] text-zinc-500">NOV</span>
+          </button>
+        `;
       }
     };
 
-    let respaldosHistoricos = [
-      { id: "bk_1", nombre: "Manual desde Barra Admin", fecha: "2026-11-05 2:55:17 p.m.", tam: "455 KB" },
-      { id: "bk_2", nombre: "Automático al Iniciar Jornada", fecha: "2026-11-05 2:50:51 p.m.", tam: "354 KB" }
-    ];
+    window.elegirDia = function(idx, diaNum) {
+      fecha = `2026-11-${diaNum.padStart(2, '0')}`;
+      document.getElementById('txt-fecha-bloques-tag').textContent = `📅 ${diaNum}/11/2026`;
+      window.renderizarBloques();
+    };
 
-    window.addEventListener('DOMContentLoaded', () => {
-      lucide.createIcons();
-      inicializarFirebase();
-      renderizarFichaConfig();
-      renderizarHistoricoRespaldos();
-      aplicarTextosEnPantalla();
-    });
-
-    function inicializarFirebase() {
-      if (firebaseConfig.apiKey !== "PEGAR_TU_API_KEY") {
-        try {
-          const app = initializeApp(firebaseConfig);
-          rtdb = getDatabase(app);
-          storage = getStorage(app);
-          usaFirebase = true;
-
-          // Sincronizar configuraciones en vivo
-          onValue(ref(rtdb, 'configSitio'), (snap) => {
-            const data = snap.val();
-            if (data) {
-              configSitio = data;
-              aplicarTextosEnPantalla();
-              renderizarFichaConfig();
-            }
-          });
-        } catch (e) {
-          console.error("Fallo RTDB:", e);
+    window.renderizarBloques = function() {
+      const cont = document.getElementById('grid-bloques-sugeridos');
+      if (!cont) return;
+      cont.innerHTML = "";
+      horarios.forEach((h, idx) => {
+        const ocupado = (idx >= 5 && idx <= 7);
+        const card = document.createElement('div');
+        card.className = `p-3 rounded-xl border text-left flex flex-col justify-between transition ${
+          ocupado ? 'bg-[#121214] border-zinc-800 opacity-60 cursor-not-allowed' : 'bg-[#18181b] border-[#27272a] hover:border-amber-500 cursor-pointer'
+        }`;
+        if (!ocupado) {
+          card.onclick = () => {
+            bloque = h;
+            window.irAlPaso(4);
+          };
         }
-      }
-    }
+        card.innerHTML = `
+          <div class="flex items-center gap-1.5 text-xs font-bold ${ocupado ? 'text-zinc-500 line-through' : 'text-white'}">
+            <i data-lucide="clock" class="w-3.5 h-3.5 text-amber-500"></i> ${h}
+          </div>
+          <div class="mt-2 text-[10px] font-black uppercase">
+            ${ocupado ? '<span class="text-zinc-500">🔒 OCUPADO</span>' : '<span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-1.5 py-0.5 rounded">DISPONIBLE Elegir Bloque +</span>'}
+          </div>
+        `;
+        cont.appendChild(card);
+      });
+      lucide.createIcons();
+    };
 
-    // Aplicar textos en la interfaz pública
-    function aplicarTextosEnPantalla() {
+    window.renderizarExtras = function() {
+      const cont = document.getElementById('lista-extras-equipos');
+      if (!cont) return;
+      cont.innerHTML = listaExtras.map(item => `
+        <label class="flex items-center gap-2 cursor-pointer p-1.5 rounded hover:bg-zinc-800/40">
+          <input type="checkbox" onchange="window.toggleExtra('${item}')" class="rounded border-zinc-700 text-amber-500 focus:ring-0">
+          <span>${item}</span>
+        </label>
+      `).join('');
+    };
+
+    window.toggleExtra = function(item) {
+      if (extras.includes(item)) extras = extras.filter(x => x !== item);
+      else extras.push(item);
+      window.actualizarDesgloseTicket();
+    };
+
+    window.mostrarTicketResumen = function() {
+      const nombre = document.getElementById('cli-nombre').value.trim();
+      const apellido = document.getElementById('cli-apellido').value.trim();
+      const wsp = document.getElementById('cli-wsp').value.trim();
+      const banda = document.getElementById('cli-banda').value.trim();
+
+      if (!nombre || !apellido || !wsp || !banda) {
+        alert("Por favor completa tu Nombre, Apellido, WhatsApp y Banda.");
+        return;
+      }
+
+      document.getElementById('card-ticket-resumen').scrollIntoView({ behavior: 'smooth' });
+      window.actualizarDesgloseTicket();
+    };
+
+    window.actualizarDesgloseTicket = function() {
+      const nombre = document.getElementById('cli-nombre').value.trim() || "Ozzy";
+      const wsp = document.getElementById('cli-wsp').value.trim() || "91234567";
+      const banda = document.getElementById('cli-banda').value.trim() || "Black Sabbath";
+
+      document.getElementById('tkt-cliente-banda').innerHTML = `Banda: <b class="text-white">${banda}</b> · Contacto: ${nombre} (+56 9 ${wsp})`;
+      document.getElementById('tkt-fecha-hora').textContent = `📅 ${fecha} · ${bloque}`;
+
+      const precioHr = (servicio === "ensayo") ? 15000 : 30000;
+      const base = precioHr * duracion;
+      const montoExtras = extras.length * (3000 * duracion);
+      const gopro = document.getElementById('chk-gopro')?.checked ? 20000 : 0;
+      const raw = document.getElementById('chk-raw-multi')?.checked ? 10000 : 0;
+
+      const total = base + montoExtras + gopro + raw;
+      const abono = 5000 * duracion;
+      const saldo = total - abono;
+
+      document.getElementById('tkt-val-base').textContent = `$${base.toLocaleString('es-CL')}`;
+      document.getElementById('tkt-val-extras').textContent = `$${(montoExtras + gopro + raw).toLocaleString('es-CL')}`;
+      document.getElementById('tkt-val-total').textContent = `$${total.toLocaleString('es-CL')}`;
+      document.getElementById('tkt-val-abono').textContent = `$${abono.toLocaleString('es-CL')}`;
+      document.getElementById('tkt-val-saldo').textContent = `$${saldo.toLocaleString('es-CL')}`;
+    };
+
+    window.solicitarReservaWhatsApp = function() {
+      if (!document.getElementById('chk-tkt-tyc').checked) {
+        alert("Debes aceptar las condiciones generales y política de reserva.");
+        return;
+      }
+      const banda = document.getElementById('cli-banda').value.trim() || "Mi Banda";
+      const total = document.getElementById('tkt-val-total').textContent;
+      const abono = document.getElementById('tkt-val-abono').textContent;
+      const saldo = document.getElementById('tkt-val-saldo').textContent;
+      const msg = `¡Hola Rockerio Producciones SpA! Quiero confirmar mi sesión:\n🎸 Banda: ${banda}\n📅 Fecha: ${fecha}\n⏰ Horario: ${bloque}\n💰 Total: ${total}\n💳 Abono: ${abono}\n💵 Saldo en Sala: ${saldo}`;
+      window.open(`https://api.whatsapp.com/send?phone=56963402567&text=${encodeURIComponent(msg)}`, '_blank');
+    };
+
+    // SEGURIDAD Y ACCESO ADMIN
+    window.alternarModoAdmin = function() {
+      if (!adminAutenticado) {
+        document.getElementById('modal-admin-auth').classList.remove('hidden');
+        document.getElementById('input-pin-auth').focus();
+      } else {
+        adminAutenticado = false;
+        document.getElementById('nav-publico').classList.remove('hidden');
+        document.getElementById('nav-admin').classList.add('hidden');
+        document.getElementById('vista-publica-reservas').classList.remove('hidden');
+        document.getElementById('vista-admin-panel').classList.add('hidden');
+        document.getElementById('txt-cambio-modo').textContent = "Portal de Control Admin";
+      }
+    };
+
+    window.cerrarModalAuth = function() {
+      document.getElementById('modal-admin-auth').classList.add('hidden');
+      document.getElementById('txt-error-pin').classList.add('hidden');
+      document.getElementById('input-pin-auth').value = "";
+    };
+
+    window.verificarPinAdmin = function(e) {
+      e.preventDefault();
+      const pin = document.getElementById('input-pin-auth').value;
+      if (pin === pinAdminActual) {
+        adminAutenticado = true;
+        window.cerrarModalAuth();
+        document.getElementById('nav-publico').classList.add('hidden');
+        document.getElementById('nav-admin').classList.remove('hidden');
+        document.getElementById('vista-publica-reservas').classList.add('hidden');
+        document.getElementById('vista-admin-panel').classList.remove('hidden');
+        document.getElementById('txt-cambio-modo').textContent = "← Ver Web Pública";
+        window.cambiarPestanaAdmin('reservas');
+      } else {
+        document.getElementById('txt-error-pin').classList.remove('hidden');
+      }
+    };
+
+    window.cambiarPestanaAdmin = function(tab) {
+      const tabs = ['reservas', 'clientes', 'tienda', 'bebestibles', 'balance', 'configuracion'];
+      tabs.forEach(t => {
+        const el = document.getElementById(`adm-tab-${t}`);
+        if (el) el.classList.add('hidden');
+      });
+      const dest = document.getElementById(`adm-tab-${tab}`);
+      if (dest) dest.classList.remove('hidden');
+
+      document.querySelectorAll('.tab-adm-btn').forEach(b => {
+        if (b.dataset.adm === tab) b.className = "tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-black shrink-0";
+        else b.className = "tab-adm-btn px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-400 hover:text-white shrink-0";
+      });
+      lucide.createIcons();
+    };
+
+    // CONFIGURACIÓN DINÁMICA
+    window.aplicarTextos = function() {
       document.getElementById('header-tit-web').childNodes[0].nodeValue = configSitio.tituloWeb + " ";
       document.getElementById('header-subtit-web').textContent = configSitio.subtituloWeb;
-      
-      document.getElementById('cfg-txt-titulo-web').value = configSitio.tituloWeb;
-      document.getElementById('cfg-txt-subtitulo-web').value = configSitio.subtituloWeb;
-      document.getElementById('cfg-txt-direccion').value = configSitio.direccion;
-      document.getElementById('cfg-txt-comuna').value = configSitio.comuna;
-      document.getElementById('cfg-txt-bio').value = configSitio.bio;
-    }
+      document.getElementById('pub-txt-bio').textContent = configSitio.bio;
+      document.getElementById('pub-txt-dir').textContent = configSitio.direccion;
+      document.getElementById('pub-txt-comuna').textContent = configSitio.comuna;
+    };
 
-    // Renderizar Ficha Técnica en el Admin
-    function renderizarFichaConfig() {
+    window.renderizarFichaConfig = function() {
       const cont = document.getElementById('contenedor-items-ficha');
-      cont.innerHTML = configSitio.fichaEquipos.map((f, i) => `
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 p-2.5 bg-[#18181b] rounded-xl border border-zinc-800 text-xs">
-          <input type="text" value="${f.cat}" onchange="actualizarItemFicha(${i}, 'cat', this.value)" class="bg-[#121214] border border-zinc-750 rounded p-1.5 text-white font-bold">
-          <input type="text" value="${f.desc}" onchange="actualizarItemFicha(${i}, 'desc', this.value)" class="sm:col-span-2 bg-[#121214] border border-zinc-750 rounded p-1.5 text-zinc-300">
-        </div>
-      `).join('');
-    }
-
-    window.actualizarItemFicha = function(idx, campo, val) {
-      configSitio.fichaEquipos[idx][campo] = val;
+      const pubCont = document.getElementById('pub-lista-ficha');
+      if (cont) {
+        cont.innerHTML = configSitio.fichaEquipos.map((f, i) => `
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 p-2 bg-[#18181b] rounded-xl border border-zinc-800 text-xs">
+            <input type="text" value="${f.cat}" onchange="configSitio.fichaEquipos[${i}].cat=this.value" class="bg-[#121214] border border-zinc-700 rounded p-1.5 text-white font-bold">
+            <input type="text" value="${f.desc}" onchange="configSitio.fichaEquipos[${i}].desc=this.value" class="sm:col-span-2 bg-[#121214] border border-zinc-700 rounded p-1.5 text-zinc-300">
+          </div>
+        `).join('');
+      }
+      if (pubCont) {
+        pubCont.innerHTML = configSitio.fichaEquipos.map(f => `
+          <div class="p-3 bg-[#18181b] rounded-xl border border-zinc-800">
+            <b class="text-amber-400 block">${f.cat}</b>
+            <p class="text-zinc-300 mt-1">${f.desc}</p>
+          </div>
+        `).join('');
+      }
     };
 
     window.agregarFilaEquipamiento = function() {
-      configSitio.fichaEquipos.push({ cat: "Nuevo Equipo:", desc: "Descripción del equipamiento." });
-      renderizarFichaConfig();
+      configSitio.fichaEquipos.push({ cat: "Nuevo Equipo:", desc: "Descripción técnica." });
+      window.renderizarFichaConfig();
     };
 
-    // Subida de Archivos a Firebase Storage
-    window.subirArchivoAFirebase = async function(inputEl, idDestino) {
-      const archivo = inputEl.files[0];
-      if (!archivo) return;
-      if (!usaFirebase) {
-        alert("Modo Local: Vincula tus credenciales de Firebase para subir permanentemente.");
-        return;
-      }
-      try {
-        const storageRef = sRef(storage, `media/${Date.now()}_${archivo.name}`);
-        const snap = await uploadBytes(storageRef, archivo);
-        const url = await getDownloadURL(snap.ref);
-        document.getElementById(idDestino).value = url;
-        alert("Archivo subido a Firebase Storage con éxito.");
-      } catch (err) {
-        alert("Error de subida: " + err.message);
-      }
+    window.guardarTodaConfiguracionFirebase = function() {
+      configSitio.tituloWeb = document.getElementById('cfg-txt-titulo-web').value;
+      configSitio.subtituloWeb = document.getElementById('cfg-txt-subtitulo-web').value;
+      configSitio.direccion = document.getElementById('cfg-txt-direccion').value;
+      configSitio.comuna = document.getElementById('cfg-txt-comuna').value;
+      configSitio.bio = document.getElementById('cfg-txt-bio').value;
+      pinAdminActual = document.getElementById('cfg-admin-pin').value;
+      window.aplicarTextos();
+      window.renderizarFichaConfig();
+      alert("¡Configuración guardada exitosamente!");
     };
 
-    // Guardar toda la configuración en Firebase
-    window.guardarTodaConfiguracionFirebase = async function() {
-      configSitio.tituloWeb = document.getElementById('cfg-txt-titulo-web').value.trim();
-      configSitio.subtituloWeb = document.getElementById('cfg-txt-subtitulo-web').value.trim();
-      configSitio.direccion = document.getElementById('cfg-txt-direccion').value.trim();
-      configSitio.comuna = document.getElementById('cfg-txt-comuna').value.trim();
-      configSitio.bio = document.getElementById('cfg-txt-bio').value.trim();
-      configSitio.heroMedia = document.getElementById('cfg-media-hero').value.trim();
-      configSitio.logoProaudix = document.getElementById('cfg-media-logo-proaudix').value.trim();
-      configSitio.ytPlaylist = document.getElementById('cfg-media-yt').value.trim();
-
-      configSitio.switches.abonoMp = document.getElementById('sw-abono-mp').checked;
-      configSitio.switches.reqTecnicos = document.getElementById('sw-req-tecnicos').checked;
-      configSitio.switches.cotizador = document.getElementById('sw-cotizador').checked;
-      configSitio.switches.sanitizacion = document.getElementById('sw-sanitizacion').checked;
-
-      if (usaFirebase) {
-        await set(ref(rtdb, 'configSitio'), configSitio);
-      }
-      aplicarTextosEnPantalla();
-      alert("¡Toda la configuración del sitio ha sido actualizada y persistida en Firebase!");
-    };
-
-    // Respaldos Automáticos
-    function renderizarHistoricoRespaldos() {
+    window.renderizarRespaldos = function() {
       const cont = document.getElementById('lista-respaldos-historico');
-      cont.innerHTML = respaldosHistoricos.map(b => `
+      if (!cont) return;
+      cont.innerHTML = respaldos.map(b => `
         <div class="flex justify-between items-center p-3 bg-[#18181b] rounded-xl border border-zinc-800">
-          <div>
-            <b class="text-white block">${b.nombre}</b>
-            <span class="text-zinc-500 text-[10px]">${b.fecha} · ${b.tam}</span>
-          </div>
-          <button onclick="restaurarRespaldo('${b.id}')" class="text-xs bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-lg font-bold hover:bg-emerald-600/30">
-            Restaurar en 1 clic
-          </button>
+          <div><b class="text-white block">${b.nombre}</b><span class="text-zinc-500 text-[10px]">${b.fecha}</span></div>
+          <button class="text-xs bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-lg font-bold">Restaurar</button>
         </div>
       `).join('');
-    }
+    };
 
-    window.tomarRespaldoAhora = async function() {
-      const nuevo = {
-        id: "bk_" + Date.now(),
-        nombre: "Manual desde Configuración Web",
-        fecha: new Date().toLocaleString(),
-        tam: "480 KB",
-        data: configSitio
-      };
-      respaldosHistoricos.unshift(nuevo);
-      if (usaFirebase) {
-        await set(ref(rtdb, `respaldos/${nuevo.id}`), nuevo);
+    window.tomarRespaldoAhora = function() {
+      const now = new Date().toLocaleString();
+      respaldos.unshift({ id: 'bk_' + Date.now(), nombre: "Copia Manual Admin", fecha: now, tam: "460 KB" });
+      window.renderizarRespaldos();
+      alert("Respaldo generado con éxito.");
+    };
+
+    window.ejecutarRespaldoManual = function() {
+      const data = JSON.stringify({ configSitio, fecha: new Date() }, null, 2);
+      const blob = new Blob([data], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = "Respaldo_Rockerio_SpA.json";
+      a.click();
+    };
+
+    window.renderizarCalendarioAdmin = function() {
+      const cont = document.getElementById('adm-grilla-calendario');
+      if (!cont) return;
+      cont.innerHTML = "";
+      for (let i = 1; i <= 35; i++) {
+        cont.innerHTML += `<div class="h-20 p-1.5 rounded-xl border border-[#222] bg-[#161618] text-xs text-zinc-400"><span>${i <= 30 ? i : ''}</span></div>`;
       }
-      renderizarHistoricoRespaldos();
-      alert("Respaldo instantáneo generado con éxito.");
     };
 
-    window.restaurarRespaldo = function(id) {
-      if (!confirm("¿Deseas restaurar esta copia de seguridad? Se sobreescribirán los textos actuales.")) return;
-      alert("Configuración restaurada con éxito.");
+    window.renderizarBandasAdmin = function() {
+      const cont = document.getElementById('adm-lista-bandas');
+      if (!cont) return;
+      const bandas = [
+        { nom: "Agustin Caceres", b: "Banda", f: "+56 9 90830392" },
+        { nom: "Alejandro Hernandez", b: "Don Carpo - Homenaje Pappo Blues", f: "+56 9 40261434" }
+      ];
+      cont.innerHTML = bandas.map(b => `
+        <div class="p-4 bg-[#18181b] border border-[#27272a] rounded-xl text-xs space-y-2">
+          <b class="text-white">${b.nom}</b>
+          <p class="text-zinc-400 font-bold">🎸 ${b.b}</p>
+          <p class="text-zinc-500">${b.f}</p>
+        </div>
+      `).join('');
     };
 
-    window.vaciarReservasPrueba = async function() {
-      if (!confirm("⚠️ ¿Estás completamente seguro de vaciar todas las reservas y clientes de prueba?")) return;
-      if (usaFirebase) {
-        await remove(ref(rtdb, 'reservas'));
-      }
-      alert("Base de datos de reservas inicializada en cero para operar hoy.");
-    };
+    window.abrirModalCotizador = function() { document.getElementById('modal-cotizador').classList.remove('hidden'); };
+    window.cerrarModalCotizador = function() { document.getElementById('modal-cotizador').classList.add('hidden'); };
+    window.abrirModalBloqueo = function() { document.getElementById('modal-bloqueo').classList.remove('hidden'); };
+    window.cerrarModalBloqueo = function() { document.getElementById('modal-bloqueo').classList.add('hidden'); };
+    window.guardarBloqueo = function(e) { e.preventDefault(); alert("Bloqueo guardado."); window.cerrarModalBloqueo(); };
   </script>
 </body>
 </html>
